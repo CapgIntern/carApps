@@ -1,6 +1,7 @@
 package net.santosh.springboot.service;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,32 +20,32 @@ public class ICarServiceImpl implements ICarService{
 
 	@Override
 	public Car addCar(Car car) {
-		// TODO Auto-generated method stub
-		return null;
+		ICarRepository.save(car);
+		return car;
 	}
 
 	@Override
 	public Car removeCar(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Car return_value = ICarRepository.getCar(id);
+		ICarRepository.deleteById(id);
+		return return_value;
 	}
 
 	@Override
 	public Car updateCar(long id, Car car) {
-		// TODO Auto-generated method stub
-		return null;
+		Car replace = getCar(id);
+		BeanUtils.copyProperties(replace, car);
+		return car;
 	}
 
 	@Override
 	public Car getCar(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ICarRepository.getCar(id);
 	}
 
 	@Override
 	public List<Car> getAllCars() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Car>) ICarRepository.findAll();
 	}
 
 	@Override
@@ -54,15 +55,15 @@ public class ICarServiceImpl implements ICarService{
 	}
 
 	@Override
-	public List<Car> getCarsByModel() {
+	public List<Car> getCarsByModel(String model) {
 		// TODO Auto-generated method stub
-		return null;
+		return (List<Car>) ICarRepository.getCarsByModel(model);
 	}
 
 	@Override
-	public List<Car> getCarsByBrand() {
+	public List<Car> getCarsByBrand(String brand) {
 		// TODO Auto-generated method stub
-		return null;
+		return (List<Car>) ICarRepository.getCarsByBrand(brand);
 	}
 
 }
