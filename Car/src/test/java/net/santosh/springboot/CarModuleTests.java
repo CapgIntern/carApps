@@ -1,7 +1,6 @@
 package net.santosh.springboot;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -108,11 +107,45 @@ public class CarModuleTests {
 	
 	@Test
 	public void getCarsByModelTest() {
+		List<Car> car_list = new ArrayList<Car>();
+		LocalDate reg_date_1 = LocalDate.of(2007,12,03);
+		Car car_values_1 = new Car(123L, "Tata", "Nano", "Basic", reg_date_1, "Andhra Pradesh");
+		LocalDate reg_date_2 = LocalDate.of(2010,10,11);
+		Car car_values_2 = new Car(456L, "Tata", "Nano", "High", reg_date_2, "Telangana");
+		LocalDate reg_date_3 = LocalDate.of(2015,12,28);
+		Car car_values_3 = new Car(789L, "Tata", "Harrier", "High", reg_date_3, "Tamil Nadu");
 		
+		car_list.add(car_values_1);
+		car_list.add(car_values_2);
+		car_list.add(car_values_3);
+		
+		when(iCarRepository.getCarsByModel("Nano")).thenReturn(car_list);
+		
+		List<Car> check_car_list = iCarServiceImpl.getCarsByModel("Nano");
+		
+		assertEquals(2, check_car_list.size());
+		verify(iCarRepository, times(1)).getCarsByModel("Nano");
 	}
 	
 	@Test
 	public void getCarsByBrandTest() {
+		List<Car> car_list = new ArrayList<Car>();
+		LocalDate reg_date_1 = LocalDate.of(2007,12,03);
+		Car car_values_1 = new Car(123L, "Tata", "Nano", "Basic", reg_date_1, "Andhra Pradesh");
+		LocalDate reg_date_2 = LocalDate.of(2010,10,11);
+		Car car_values_2 = new Car(456L, "Tata", "Nano", "High", reg_date_2, "Telangana");
+		LocalDate reg_date_3 = LocalDate.of(2015,12,28);
+		Car car_values_3 = new Car(789L, "Tata", "Harrier", "High", reg_date_3, "Tamil Nadu");
 		
+		car_list.add(car_values_1);
+		car_list.add(car_values_2);
+		car_list.add(car_values_3);
+		
+		when(iCarRepository.getCarsByBrand("Tata")).thenReturn(car_list);
+		
+		List<Car> check_car_list = iCarServiceImpl.getCarsByBrand("Tata");
+		
+		assertEquals(3, check_car_list.size());
+		verify(iCarRepository, times(1)).getCarsByBrand("Tata");
 	}
 }
