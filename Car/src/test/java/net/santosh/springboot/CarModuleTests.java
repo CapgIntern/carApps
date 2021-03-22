@@ -87,11 +87,6 @@ public class CarModuleTests {
 	}
 	
 	@Test
-	public void getCarsByLocationTest() {
-		
-	}
-	
-	@Test
 	public void getCarsByModelTest() {
 		
 	}
