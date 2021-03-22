@@ -62,5 +62,26 @@ public class Car {
 	public void setRegistrationState(String registrationState) {
 		this.registrationState = registrationState;
 	}
+	
+	
+	/**
+	 * @param carId
+	 * @param brand
+	 * @param model
+	 * @param variant
+	 * @param registrationYear
+	 * @param registrationState
+	 */
+	public Car(long carId, String brand, String model, String variant, LocalDate registrationYear,
+			String registrationState) {
+		super();
+		this.carId = carId;
+		this.brand = brand;
+		this.model = model;
+		this.variant = variant;
+		this.registrationYear = registrationYear;
+		this.registrationState = registrationState;
+	}
 
+	
 }
