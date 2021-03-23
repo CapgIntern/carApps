@@ -58,4 +58,3 @@ public class CarController {
 		return carService.removeCar(id);
 	}
 }
-
