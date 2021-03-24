@@ -3,20 +3,27 @@ package net.santosh.springboot.model;
 import java.time.LocalDate;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="car")
 public class Car {
 	@Id
 	private long carId;
+	
 	@Column(name = "brand")
 	private String brand;
+	
 	@Column(name = "model")
 	private String model;
+	
 	@Column(name = "variant")
-
 	private String variant;
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name = "registrationyear")
 	private LocalDate registrationYear;
+	
 	@Column(name = "registrationstate")
 	private String registrationState;
 	
