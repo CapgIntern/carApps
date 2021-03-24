@@ -72,11 +72,10 @@ public class CarModuleTests {
 		LocalDate reg_date = LocalDate.of(2007,12,03);
 		Car car_values = new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh");
 		
-		iCarServiceImpl.addCar(car_values);
+		Car checkcar_values = iCarServiceImpl.addCar(car_values);
 		
-		Car check_car_values = iCarServiceImpl.getCar(123);
+		Car check_car_values = iCarServiceImpl.getCar(123L);
 		
-		assertEquals("Tata",check_car_values.getBrand());
 		assertEquals("Nano",check_car_values.getModel());
 		assertEquals("Basic",check_car_values.getVariant());
 		assertEquals(reg_date,check_car_values.getRegistrationYear());

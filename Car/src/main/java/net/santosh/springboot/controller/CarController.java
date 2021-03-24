@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import net.santosh.springboot.model.Car;
 import net.santosh.springboot.service.ICarServiceImpl;
 
 
+@Api(value = "Swagger2DemoRestController")
 @RestController
 public class CarController {
 	
