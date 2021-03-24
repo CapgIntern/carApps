@@ -26,17 +26,17 @@ public class CarController {
 		return carService.getAllCars();
 	}
 	
-	@GetMapping("/cars/{/carid}")
+	@GetMapping("/carsbyid/{carid}")
 	public Car getCar(@PathVariable("carid") long id) {
 		return carService.getCar(id);
 	}
 	
-	@GetMapping("/cars/{/model}")
+	@GetMapping("/carsbymodel/{model}")
 	public List<Car> getCarsByModel(@PathVariable("model") String model) {
 		return (List<Car>) carService.getCarsByModel(model);
 	}
 
-	@GetMapping("/cars/{/brand}")
+	@GetMapping("/carsbybrand/{brand}")
 	public List<Car> getCarsByBrand(String brand) {
 		return (List<Car>) carService.getCarsByBrand(brand);
 	}
@@ -46,12 +46,12 @@ public class CarController {
 		return carService.addCar(car);
 	}
 	
-	@PutMapping("/updatecar/{/carid}")
-	public Car updateCar(@RequestBody Car car, @PathVariable long id) {
+	@PutMapping("/updatecar/{carid}")
+	public Car updateCar(@PathVariable long id, @RequestBody Car car) {
 		return carService.updateCar(id, car);
 	}
 	
-	@DeleteMapping("/cars/{/carid}")
+	@DeleteMapping("/cars/{carid}")
 	public Car removeCar(long id) {
 		return carService.removeCar(id);
 	}
