@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 public class Card {
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private String cardNumber;
 
 	@Column(name = "cardname")

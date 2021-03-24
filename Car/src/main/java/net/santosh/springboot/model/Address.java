@@ -13,7 +13,7 @@ public class Address {
 	
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.TABLE)
     private String doorNo;
 	
 	@Column(name = "street")
@@ -79,5 +79,3 @@ public class Address {
 		this.pincode = pincode;
 	}
 }
-
-

@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 @Table(name="payment")
 public class Payment {
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private long paymentId;
 	@Column(name = "type")
 	private String type;
