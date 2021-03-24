@@ -48,21 +48,18 @@ public class ICarServiceImpl implements ICarService{
 		return (List<Car>) ICarRepository.findAll();
 	}
 
-	@Override
-	public List<Car> getCarsByLocation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<Car> getCarsByLocation() {
+//		return null;
+//	}
 
 	@Override
 	public List<Car> getCarsByModel(String model) {
-		// TODO Auto-generated method stub
 		return (List<Car>) ICarRepository.getCarsByModel(model);
 	}
 
 	@Override
 	public List<Car> getCarsByBrand(String brand) {
-		// TODO Auto-generated method stub
 		return (List<Car>) ICarRepository.getCarsByBrand(brand);
 	}
 

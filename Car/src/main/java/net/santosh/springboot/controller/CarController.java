@@ -33,13 +33,11 @@ public class CarController {
 	
 	@GetMapping("/cars/{/model}")
 	public List<Car> getCarsByModel(@PathVariable("model") String model) {
-		// TODO Auto-generated method stub
 		return (List<Car>) carService.getCarsByModel(model);
 	}
 
 	@GetMapping("/cars/{/brand}")
 	public List<Car> getCarsByBrand(String brand) {
-		// TODO Auto-generated method stub
 		return (List<Car>) carService.getCarsByBrand(brand);
 	}
 	

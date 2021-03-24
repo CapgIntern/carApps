@@ -13,10 +13,8 @@ public interface ICarService {
 	public Car updateCar(long id, Car car);
 	public Car getCar(long id);
 	public List<Car> getAllCars();
-	public List<Car> getCarsByLocation();
-	@Query("select u from Car u where u.model = ?1" )
+//	public List<Car> getCarsByLocation();
 	public List<Car> getCarsByModel(String model);
-	@Query("select u from Car u where u.brand = ?1" )
 	public List<Car> getCarsByBrand(String brand);
 
 }

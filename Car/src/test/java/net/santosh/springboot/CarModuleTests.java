@@ -73,7 +73,14 @@ public class CarModuleTests {
 		Car car_values = new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh");
 		
 		iCarServiceImpl.addCar(car_values);
-		verify(iCarRepository,times(1)).addCar(car_values);
+		
+		Car check_car_values = iCarServiceImpl.getCar(123);
+		
+		assertEquals("Tata",check_car_values.getBrand());
+		assertEquals("Nano",check_car_values.getModel());
+		assertEquals("Basic",check_car_values.getVariant());
+		assertEquals(reg_date,check_car_values.getRegistrationYear());
+		assertEquals("Andhra Pradesh",check_car_values.getRegistrationState());
 		
 	}
 	
