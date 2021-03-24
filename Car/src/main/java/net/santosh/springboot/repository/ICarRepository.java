@@ -10,7 +10,6 @@ import net.santosh.springboot.model.Car;
 
 @Repository
 public interface ICarRepository extends JpaRepository<Car, Long>{
-	
 
 	@Query("delete from Car c where c.id = :id")
 	public Car removeCar(@Param("id") long id);
