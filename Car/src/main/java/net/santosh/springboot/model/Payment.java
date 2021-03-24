@@ -1,12 +1,18 @@
 package net.santosh.springboot.model;
 
+
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 @Table(name="payment")
@@ -17,9 +23,24 @@ public class Payment {
 	private String type;
 	@Column(name = "status")
 	private String status;
-	@Column(name = "card")
+	
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "p_id")
+	
+	
 	private Card card;
 	
+	public Payment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Payment(String type, String status, Card card) {
+		super();
+		this.type = type;
+		this.status = status;
+		this.card = card;
+	}
 	public long getPaymentId() {
 		return paymentId;
 	}

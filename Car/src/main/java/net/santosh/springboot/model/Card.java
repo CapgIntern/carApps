@@ -2,11 +2,6 @@ package net.santosh.springboot.model;
 
 import java.time.LocalDate;
 import javax.persistence.*;
-import javax.persistence.Column;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 @Entity
 @Table(name="card")
 
@@ -23,8 +18,23 @@ public class Card {
 
 	@Column(name = "cvv")
     private int cvv;
+	
+
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "paymentId")
+	  private Payment payment;
     
     
+	public Card() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Card(String cardName, LocalDate cardExpiry, int cvv) {
+		super();
+		this.cardName = cardName;
+		this.cardExpiry = cardExpiry;
+		this.cvv = cvv;
+	}
 	public String getCardName() {
 		return cardName;
 	}

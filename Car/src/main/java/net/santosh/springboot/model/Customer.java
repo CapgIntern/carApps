@@ -1,20 +1,19 @@
 package net.santosh.springboot.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
-import javax.persistence.Column;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name="customer")
 
 public class Customer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	private String userId;
 	@Column(name = "name")
@@ -25,10 +24,34 @@ public class Customer {
 	private String contactNo;
 	@Column(name = "dob")
 	private  LocalDate dob;
-	@Column(name = "address")
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	
 	private Address address;
 	
 	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "pi_od")
+	private User user;
+	
+	/*@Autowired
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderId")
+	List<Order> orders = new ArrayList<>();*/
+	
+	
+	public Customer(String name, String email, String contactNo, LocalDate dob, Address address) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.contactNo = contactNo;
+		this.dob = dob;
+		this.address = address;
+	}
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public String getUserId() {
 		return userId;
 	}

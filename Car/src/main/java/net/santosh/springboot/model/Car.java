@@ -2,11 +2,6 @@ package net.santosh.springboot.model;
 
 import java.time.LocalDate;
 import javax.persistence.*;
-import javax.persistence.Column;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 @Table(name="car")
@@ -25,7 +20,26 @@ public class Car {
 	@Column(name = "registrationstate")
 	private String registrationState;
 	
+
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cid", referencedColumnName = "userId")
+	  private Customer customer;
 	
+	
+	
+	
+	public Car() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Car(String brand, String model, String variant, LocalDate registrationYear, String registrationState) {
+		super();
+		this.brand = brand;
+		this.model = model;
+		this.variant = variant;
+		this.registrationYear = registrationYear;
+		this.registrationState = registrationState;
+	}
 	public long getCarId() {
 		return carId;
 	}
@@ -62,26 +76,5 @@ public class Car {
 	public void setRegistrationState(String registrationState) {
 		this.registrationState = registrationState;
 	}
-	
-	
-	/**
-	 * @param carId
-	 * @param brand
-	 * @param model
-	 * @param variant
-	 * @param registrationYear
-	 * @param registrationState
-	 */
-	public Car(long carId, String brand, String model, String variant, LocalDate registrationYear,
-			String registrationState) {
-		super();
-		this.carId = carId;
-		this.brand = brand;
-		this.model = model;
-		this.variant = variant;
-		this.registrationYear = registrationYear;
-		this.registrationState = registrationState;
-	}
 
-	
 }

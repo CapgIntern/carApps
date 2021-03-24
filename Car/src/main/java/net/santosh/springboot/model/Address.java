@@ -1,4 +1,5 @@
 package net.santosh.springboot.model;
+
 import javax.persistence.*;
 import javax.persistence.Column;
 
@@ -9,19 +10,37 @@ import javax.persistence.Id;
 @Entity
 @Table(name="address")
 public class Address {
-	@Column(name = "doorno")
-
-	private String doorNo;
+	
+	
+	@Id
+	@GeneratedValue
+    private String doorNo;
+	
 	@Column(name = "street")
 	private String street;
 	@Column(name = "area")
-	private String area;
+	private String area;  
 	@Column(name = "city")
 	private String city;
 	@Column(name = "state")
 	private String state;
 	@Column(name = "pincode")
 	private int pincode;
+	
+	
+	public Address() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Address(String street, String area, String city, String state, int pincode) {
+		super();
+		this.street = street;
+		this.area = area;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+	}
 	
 	public String getDoorNo() {
 		return doorNo;
@@ -60,3 +79,5 @@ public class Address {
 		this.pincode = pincode;
 	}
 }
+
+

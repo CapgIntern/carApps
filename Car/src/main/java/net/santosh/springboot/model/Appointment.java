@@ -1,12 +1,8 @@
 package net.santosh.springboot.model;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.persistence.*;
-import javax.persistence.Column;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 @Table(name="appointment")
@@ -23,11 +19,39 @@ public class Appointment {
 	private LocalDate preferredDate;
 	@Column(name="preferredtime")
 	private LocalTime preferredTime;
-	@Column(name="customer")
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "c_id")
+	
 	private Customer customer;
-	@Column(name="payment")
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "a_id")
+	
 	private Payment payment;
 	
+	
+
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ppid", referencedColumnName = "userId")
+	  private Customer customer1;
+	
+	
+	
+	public Appointment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Appointment(String location, String inspectionType, LocalDate preferredDate, LocalTime preferredTime,
+			Customer customer, Payment payment) {
+		super();
+		this.location = location;
+		this.inspectionType = inspectionType;
+		this.preferredDate = preferredDate;
+		this.preferredTime = preferredTime;
+		this.customer = customer;
+		this.payment = payment;
+	}
 	public long getAppointmentId() {
 		return appointmentId;
 	}
@@ -72,3 +96,4 @@ public class Appointment {
 	}
 
 }
+
