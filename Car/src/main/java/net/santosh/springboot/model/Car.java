@@ -21,7 +21,6 @@ public class Car {
 	private String variant;
 	
 	@Column(name = "registrationyear")
-	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate registrationYear;
 	
 	@Column(name = "registrationstate")

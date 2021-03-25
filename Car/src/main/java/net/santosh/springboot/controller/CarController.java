@@ -3,6 +3,8 @@ package net.santosh.springboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,37 +26,38 @@ public class CarController {
 	ICarServiceImpl carService;
 	
 	@GetMapping("/cars")
-	public List<Car> getAllCars(){
-		return carService.getAllCars();
+	public ResponseEntity<List<Car>> getAllCars(){
+		return ResponseEntity.ok().body(carService.getAllCars());
 	}
 	
 	@GetMapping("/carsbyid/{carid}")
-	public Car getCar(@PathVariable("carid") long id) {
-		return carService.getCar(id);
+	public ResponseEntity<Car> getCar(@PathVariable("carid") long id) {
+		return ResponseEntity.ok().body(carService.getCar(id));
 	}
 	
 	@GetMapping("/carsbymodel/{model}")
-	public List<Car> getCarsByModel(@PathVariable("model") String model) {
-		return (List<Car>) carService.getCarsByModel(model);
+	public ResponseEntity<List<Car>> getCarsByModel(@PathVariable("model") String model) {
+		return ResponseEntity.ok().body(carService.getCarsByModel(model));
 	}
 
 	@GetMapping("/carsbybrand/{brand}")
-	public List<Car> getCarsByBrand(String brand) {
-		return (List<Car>) carService.getCarsByBrand(brand);
+	public ResponseEntity<List<Car>> getCarsByBrand(@PathVariable("brand") String brand) {
+		return ResponseEntity.ok().body(carService.getCarsByBrand(brand));
 	}
 	
 	@PostMapping("/addcar")
-	public Car addCar(@RequestBody Car car) {
-		return carService.addCar(car);
+	public ResponseEntity<Car> addCar(@RequestBody Car car) {
+		return ResponseEntity.ok().body(this.carService.addCar(car));
 	}
 	
 	@PutMapping("/updatecar/{carid}")
-	public Car updateCar(@PathVariable long id, @RequestBody Car car) {
-		return carService.updateCar(id, car);
+	public ResponseEntity<Car> updateCar(@RequestBody Car car, @PathVariable("carid") long id) {
+		return ResponseEntity.ok().body(this.carService.updateCar(car, id));
 	}
 	
 	@DeleteMapping("/cars/{carid}")
-	public Car removeCar(long id) {
-		return carService.removeCar(id);
+	public HttpStatus removeCar(@PathVariable("carid") long id) {
+		this.carService.removeCar(id);
+		return HttpStatus.OK;
 	}
 }

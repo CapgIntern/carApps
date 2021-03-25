@@ -1,5 +1,6 @@
 package net.santosh.springboot.service;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +21,53 @@ public class ICarServiceImpl implements ICarService{
 
 	@Override
 	public Car addCar(Car car) {
-		ICarRepository.save(car);
-		return car;
+		// TODO Auto-generated method stub
+		return ICarRepository.save(car);
 	}
 
 	@Override
-	public Car removeCar(long id) {
-		Car return_value = ICarRepository.getCar(id);
-		ICarRepository.deleteById(id);
-		return return_value;
+	public void removeCar(long id) {
+		Optional<Car> carList = this.ICarRepository.findById(id);
+		
+		if(carList.isPresent()) {
+			this.ICarRepository.delete(carList.get());
+		}
+		else {
+			throw new ResourceNotFoundException("Record not found with ID :" + id);
+		}
 	}
 
 	@Override
-	public Car updateCar(long id, Car car) {
-		Car replace = getCar(id);
-		BeanUtils.copyProperties(replace, car);
-		return car;
+	public Car updateCar(Car car, long id) {
+		Optional<Car> carList = this.ICarRepository.findById(id);
+		
+		if(carList.isPresent()) {
+			Car carUpdate = carList.get();
+			carUpdate.setBrand(car.getBrand());
+			carUpdate.setModel(car.getModel());
+			carUpdate.setVariant(car.getVariant());
+			carUpdate.setRegistrationYear(car.getRegistrationYear());
+			carUpdate.setRegistrationState(car.getRegistrationState());
+			
+			ICarRepository.save(carUpdate);
+			return carUpdate;
+		}
+		else {
+			throw new ResourceNotFoundException("Record not found with ID :" + id);
+		}
+		
 	}
 
 	@Override
 	public Car getCar(long id) {
-		return ICarRepository.getCar(id);
+		Optional<Car> carList = this.ICarRepository.findById(id);
+		
+		if(carList.isPresent()) {
+			return carList.get();
+		}
+		else {
+			throw new ResourceNotFoundException("Record not found with ID :" + id);
+		}
 	}
 
 	@Override
@@ -48,19 +75,22 @@ public class ICarServiceImpl implements ICarService{
 		return (List<Car>) ICarRepository.findAll();
 	}
 
-//	@Override
-//	public List<Car> getCarsByLocation() {
-//		return null;
-//	}
+
 
 	@Override
 	public List<Car> getCarsByModel(String model) {
-		return (List<Car>) ICarRepository.getCarsByModel(model);
+		// TODO Auto-generated method stub
+		return (List<Car>) ICarRepository.findByModel(model);
 	}
 
 	@Override
 	public List<Car> getCarsByBrand(String brand) {
-		return (List<Car>) ICarRepository.getCarsByBrand(brand);
+		// TODO Auto-generated method stub
+		return (List<Car>) ICarRepository.findByBrand(brand);
 	}
 
+//	@Override
+//	public List<Car> getCarsByLocation() {
+//		return null;
+//	}
 }

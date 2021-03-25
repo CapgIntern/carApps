@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,21 +44,22 @@ public class CarModuleTests {
 		car_list.add(car_values_2);
 		car_list.add(car_values_3);
 		
-		when(iCarRepository.getAllCars()).thenReturn(car_list);
+		when(iCarRepository.findAll()).thenReturn(car_list);
 		
 		List<Car> check_car_list = iCarServiceImpl.getAllCars();
 		
 		assertEquals(3, check_car_list.size());
-		verify(iCarRepository, times(1)).getAllCars();
+		verify(iCarRepository, times(1)).findAll();
 		
 	}
 	
 	@Test
 	public void getCarTest() {
 		LocalDate reg_date = LocalDate.of(2007,12,03);
-		when(iCarRepository.getCar(123)).thenReturn(new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh"));
+		Optional<Car> carList = Optional.of(new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh"));
+		when(iCarRepository.findById(123L)).thenReturn(carList);
 		
-		Car car_values = iCarServiceImpl.getCar(123);
+		Car car_values = iCarServiceImpl.getCar(123L);
 		
 		assertEquals("Tata",car_values.getBrand());
 		assertEquals("Nano",car_values.getModel());
@@ -70,16 +72,14 @@ public class CarModuleTests {
 	@Test
 	public void addCarTest() {
 		LocalDate reg_date = LocalDate.of(2007,12,03);
-		Car car_values = new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh");
+		Car car = new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh");
+		when(iCarRepository.save(car)).thenReturn(car);
+		Car car_values = iCarServiceImpl.addCar(car);
 		
-		Car checkcar_values = iCarServiceImpl.addCar(car_values);
-		
-		Car check_car_values = iCarServiceImpl.getCar(123L);
-		
-		assertEquals("Nano",check_car_values.getModel());
-		assertEquals("Basic",check_car_values.getVariant());
-		assertEquals(reg_date,check_car_values.getRegistrationYear());
-		assertEquals("Andhra Pradesh",check_car_values.getRegistrationState());
+		assertEquals("Nano",car_values.getModel());
+		assertEquals("Basic",car_values.getVariant());
+		assertEquals(reg_date,car_values.getRegistrationYear());
+		assertEquals("Andhra Pradesh",car_values.getRegistrationState());
 		
 	}
 	
@@ -87,22 +87,23 @@ public class CarModuleTests {
 	public void  removeCarTest() {
 		LocalDate reg_date = LocalDate.of(2007,12,03);
 		Car car_values = new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh");
-		iCarServiceImpl.addCar(car_values);
+		when(iCarRepository.save(car_values)).thenReturn(car_values);
+		car_values = iCarServiceImpl.addCar(car_values);
 		
-		iCarServiceImpl.removeCar(123);
-		verify(iCarRepository,times(1)).removeCar(123);
+		iCarServiceImpl.removeCar(123L);
+		verify(iCarRepository,times(1)).delete(car_values);
 	}
 	
 	@Test
 	public void updateCarTest() {
 		LocalDate reg_date = LocalDate.of(2007,12,03);
 		Car car_values = new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh");
-		iCarServiceImpl.addCar(car_values);
+		car_values = iCarServiceImpl.addCar(car_values);
 		
 		LocalDate new_reg_date = LocalDate.of(2010,10,11);
 		Car new_car_values = new Car(8900L, "Mahindra", "XUV", "500", new_reg_date, "Telangana");
 		
-		iCarServiceImpl.updateCar(123,new_car_values);
+		iCarServiceImpl.updateCar(new_car_values, 123L);
 		
 		assertEquals("Mahindra",car_values.getBrand());
 		assertEquals("XUV",car_values.getModel());
@@ -125,12 +126,12 @@ public class CarModuleTests {
 		car_list.add(car_values_2);
 		car_list.add(car_values_3);
 		
-		when(iCarRepository.getCarsByModel("Nano")).thenReturn(car_list);
+		when(iCarRepository.findByModel("Nano")).thenReturn(car_list);
 		
 		List<Car> check_car_list = iCarServiceImpl.getCarsByModel("Nano");
 		
-		assertEquals(2, check_car_list.size());
-		verify(iCarRepository, times(1)).getCarsByModel("Nano");
+		assertEquals(3, check_car_list.size());
+		verify(iCarRepository, times(1)).findByModel("Nano");
 	}
 	
 	@Test
@@ -147,11 +148,11 @@ public class CarModuleTests {
 		car_list.add(car_values_2);
 		car_list.add(car_values_3);
 		
-		when(iCarRepository.getCarsByBrand("Tata")).thenReturn(car_list);
+		when(iCarRepository.findByBrand("Tata")).thenReturn(car_list);
 		
 		List<Car> check_car_list = iCarServiceImpl.getCarsByBrand("Tata");
 		
 		assertEquals(3, check_car_list.size());
-		verify(iCarRepository, times(1)).getCarsByBrand("Tata");
+		verify(iCarRepository, times(1)).findByBrand("Tata");
 	}
 }
