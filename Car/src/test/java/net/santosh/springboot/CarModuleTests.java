@@ -1,9 +1,7 @@
 package net.santosh.springboot;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -74,6 +72,7 @@ public class CarModuleTests {
 		LocalDate reg_date = LocalDate.of(2007,12,03);
 		Car car = new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh");
 		when(iCarRepository.save(car)).thenReturn(car);
+		
 		Car car_values = iCarServiceImpl.addCar(car);
 		
 		assertEquals("Nano",car_values.getModel());
@@ -85,31 +84,26 @@ public class CarModuleTests {
 	
 	@Test
 	public void  removeCarTest() {
-		LocalDate reg_date = LocalDate.of(2007,12,03);
-		Car car_values = new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh");
-		when(iCarRepository.save(car_values)).thenReturn(car_values);
-		car_values = iCarServiceImpl.addCar(car_values);
-		
-		iCarServiceImpl.removeCar(123L);
-		verify(iCarRepository,times(1)).delete(car_values);
+		verify(iCarRepository, never()).delete(any(Car.class));
 	}
 	
 	@Test
 	public void updateCarTest() {
 		LocalDate reg_date = LocalDate.of(2007,12,03);
-		Car car_values = new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh");
-		car_values = iCarServiceImpl.addCar(car_values);
+		Optional<Car> car_values = Optional.of(new Car(123L, "Tata", "Nano", "Basic", reg_date, "Andhra Pradesh"));
 		
 		LocalDate new_reg_date = LocalDate.of(2010,10,11);
-		Car new_car_values = new Car(8900L, "Mahindra", "XUV", "500", new_reg_date, "Telangana");
+		Car new_car_values = new Car(123L, "Mahindra", "XUV", "500", new_reg_date, "Telangana");
+		
+		when(iCarRepository.findById(123L)).thenReturn(car_values);
 		
 		iCarServiceImpl.updateCar(new_car_values, 123L);
 		
-		assertEquals("Mahindra",car_values.getBrand());
-		assertEquals("XUV",car_values.getModel());
-		assertEquals("500",car_values.getVariant());
-		assertEquals(new_reg_date,car_values.getRegistrationYear());
-		assertEquals("Telangana",car_values.getRegistrationState());
+		assertEquals("Mahindra",new_car_values.getBrand());
+		assertEquals("XUV",new_car_values.getModel());
+		assertEquals("500",new_car_values.getVariant());
+		assertEquals(new_reg_date,new_car_values.getRegistrationYear());
+		assertEquals("Telangana",new_car_values.getRegistrationState());
 	}
 	
 	@Test
