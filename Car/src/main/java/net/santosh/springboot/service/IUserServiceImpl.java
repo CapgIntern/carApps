@@ -67,7 +67,7 @@ public class IUserServiceImpl implements IUserService {
 		return changeUser;
 	}
 
-//getting all user record by using the method findaAll() of CrudRepository
+	//getting all user record by using the method findaAll() of CrudRepository
 	public List<User> getAllUser() {
 		List<User> user = new ArrayList<User>();
 		userrepo.findAll().forEach(user1 -> user.add(user1));
