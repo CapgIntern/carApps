@@ -32,8 +32,9 @@ public class Car {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Car(String brand, String model, String variant, LocalDate registrationYear, String registrationState) {
+	public Car(long carId, String brand, String model, String variant, LocalDate registrationYear, String registrationState) {
 		super();
+		this.carId = carId;
 		this.brand = brand;
 		this.model = model;
 		this.variant = variant;
