@@ -8,8 +8,9 @@ import javax.persistence.*;
 @Table(name="appointment")
 
 public class Appointment {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private long appointmentId;
 	@Column(name="location")
 	private String location;
@@ -52,6 +53,7 @@ public class Appointment {
 		this.customer = customer;
 		this.payment = payment;
 	}
+	
 	public long getAppointmentId() {
 		return appointmentId;
 	}

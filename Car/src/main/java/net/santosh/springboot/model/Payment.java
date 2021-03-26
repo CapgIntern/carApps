@@ -18,7 +18,6 @@ import javax.persistence.OneToOne;
 @Table(name="payment")
 public class Payment {
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
 	private long paymentId;
 	@Column(name = "type")
 	private String type;
@@ -28,8 +27,6 @@ public class Payment {
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "p_id")
-	
-	
 	private Card card;
 	
 	public Payment() {

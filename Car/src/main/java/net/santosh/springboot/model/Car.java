@@ -3,26 +3,20 @@ package net.santosh.springboot.model;
 import java.time.LocalDate;
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
 @Table(name="car")
 public class Car {
 	@Id
 	private long carId;
-	
 	@Column(name = "brand")
 	private String brand;
-	
 	@Column(name = "model")
 	private String model;
-	
 	@Column(name = "variant")
+
 	private String variant;
-	
 	@Column(name = "registrationyear")
 	private LocalDate registrationYear;
-	
 	@Column(name = "registrationstate")
 	private String registrationState;
 	
@@ -38,9 +32,8 @@ public class Car {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Car(Long carId, String brand, String model, String variant, LocalDate registrationYear, String registrationState) {
+	public Car(String brand, String model, String variant, LocalDate registrationYear, String registrationState) {
 		super();
-		this.carId = carId;
 		this.brand = brand;
 		this.model = model;
 		this.variant = variant;

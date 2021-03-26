@@ -2,12 +2,17 @@ package net.santosh.springboot.service;
 import net.santosh.springboot.model.*;
 import java.util.List;
 
+import java.util.*;
+
+
+
 
 public interface IOrderService {
 	public Order addOrder(Order order);
-	public Order removeOrder(long id);
-	public Order  updateOrder(long id, Order order);
-	public Order  getOrderDetails(long id);
-	public List<Order> getAllOrders(); 
-
+	public Optional<Order> removeOrder(Long orderId);
+	public Order getOrderDetails(Long orderId);
+	public List<Order> getAllOrders();
+	public Order updateOrder(long orderId, Order order);
+	
+	
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import javax.persistence.*;
 
 @Entity
-@Table(name="horder")
+@Table(name="Norder")
 
 public class Order {
 	@Id
@@ -20,7 +20,7 @@ public class Order {
 	  private Customer customer;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "fsfds_id")
+	@JoinColumn(name = "payord_id")
 	
 	private Payment payment;
 	

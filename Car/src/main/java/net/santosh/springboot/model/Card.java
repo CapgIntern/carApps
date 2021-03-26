@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 public class Card {
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
 	private String cardNumber;
 
 	@Column(name = "cardname")
@@ -21,9 +20,7 @@ public class Card {
     private int cvv;
 	
 
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "paymentId")
-	  private Payment payment;
+	
     
     
 	public Card() {

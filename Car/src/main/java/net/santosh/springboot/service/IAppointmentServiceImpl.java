@@ -1,6 +1,7 @@
 package net.santosh.springboot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,33 +26,62 @@ public class IAppointmentServiceImpl  implements IAppointmentService {
 	}
 
 	@Override
-	public Appointment removeAppointment(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void removeAppointment(long id) {
+           Optional<Appointment> appointmentDb = this.IAppointmentRepository.findById(id);
+		
+		if(appointmentDb.isPresent()) {
+			this.IAppointmentRepository.delete(appointmentDb.get());
+		}else {
+			throw new ResourceNotFoundException("Record not found with id : " + id);
+		}
 	}
 
+	
 	@Override
-	public Appointment updateAppointment(long id, Appointment appointment) {
-		// TODO Auto-generated method stub
-		return null;
+	public Appointment updateAppointment(Appointment appointment) {
+       Optional<Appointment> appointmentDb = this.IAppointmentRepository.findById(appointment.getAppointmentId());
+		
+		if(appointmentDb.isPresent()) {
+			Appointment appointmentUpdate = appointmentDb.get();
+			appointmentUpdate.setAppointmentId(appointment.getAppointmentId());
+			appointmentUpdate.setLocation(appointment.getLocation());
+			appointmentUpdate.setPreferredDate(appointment.getPreferredDate());
+			appointmentUpdate.setPreferredTime(appointment.getPreferredTime());
+			appointmentUpdate.setCustomer(appointment.getCustomer());
+			appointmentUpdate.setPayment(appointment.getPayment());
+			
+			
+			
+			IAppointmentRepository.save(appointmentUpdate);
+			return appointmentUpdate;
+		}else {
+			throw new ResourceNotFoundException("Record not found with id : " + appointment.getAppointmentId());
+		}
+		
+		
 	}
 
 	@Override
 	public Appointment getAppointment(long id) {
-		// TODO Auto-generated method stub
-		return null;
+       Optional<Appointment> appointmentDb = this.IAppointmentRepository.findById(id);
+		
+		if(appointmentDb.isPresent()) {
+			return appointmentDb.get();
+		}else {
+			throw new ResourceNotFoundException("Record not found with id : " + id);
+		}
 	}
 
+	
 	@Override
 	public List<Appointment> getAllAppointments() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.IAppointmentRepository.findAll();
 	}
 
 	@Override
 	public List<Appointment> getOpenAppointments() {
-		// TODO Auto-generated method stub
-		return null;
+		 
+		return this.IAppointmentRepository.findAll();
 	}
 
 }
