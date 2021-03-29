@@ -1,6 +1,5 @@
 package net.santosh.springboot.exception;
 
-
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus

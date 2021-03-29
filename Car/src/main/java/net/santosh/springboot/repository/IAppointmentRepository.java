@@ -10,5 +10,5 @@ import net.santosh.springboot.model.Appointment;
 @Repository
 public interface IAppointmentRepository extends JpaRepository<Appointment,Long>{
 	
-
+	Object findByAppointmentId(int i);
 }
