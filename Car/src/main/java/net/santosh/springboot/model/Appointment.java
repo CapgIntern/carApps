@@ -21,10 +21,16 @@ public class Appointment {
 	@Column(name="preferredtime")
 	private LocalTime preferredTime;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "c_id")
+	public Appointment(String location, String inspectionType, LocalDate preferredDate) {
+		super();
+		this.location = location;
+		this.inspectionType = inspectionType;
+		this.preferredDate = preferredDate;
+	}
+	//@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//@JoinColumn(name = "c_id")
 	
-	private Customer customer;
+	//private Customer customer;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "a_id")
@@ -35,24 +41,31 @@ public class Appointment {
 
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ppid", referencedColumnName = "userId")
-	  private Customer customer1;
+	  private Customer customer;
 	
 	
 	
-	public Appointment() {
+	
+	public Appointment(long appointmentId, String location, String inspectionType, LocalDate preferredDate,
+			LocalTime preferredTime) {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Appointment(String location, String inspectionType, LocalDate preferredDate, LocalTime preferredTime,
-			Customer customer, Payment payment) {
-		super();
+		this.appointmentId = appointmentId;
 		this.location = location;
 		this.inspectionType = inspectionType;
 		this.preferredDate = preferredDate;
 		this.preferredTime = preferredTime;
-		this.customer = customer;
-		this.payment = payment;
 	}
+
+
+
+
+	public Appointment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+ 
 	
 	public long getAppointmentId() {
 		return appointmentId;
@@ -98,4 +111,3 @@ public class Appointment {
 	}
 
 }
-
