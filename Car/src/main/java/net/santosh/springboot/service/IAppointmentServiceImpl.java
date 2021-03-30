@@ -49,7 +49,7 @@ public class IAppointmentServiceImpl  implements IAppointmentService {
 	@Override
 	public Appointment updateAppointment(Appointment appointment) {
        Optional<Appointment> appointmentDb = this.IAppointmentRepository.findById(appointment.getAppointmentId());
-		try {
+	
 		if(appointmentDb.isPresent()) {
 			Appointment appointmentUpdate = appointmentDb.get();
 			appointmentUpdate.setAppointmentId(appointment.getAppointmentId());
@@ -62,14 +62,14 @@ public class IAppointmentServiceImpl  implements IAppointmentService {
 			
 			
 			IAppointmentRepository.save(appointmentUpdate);
-			return appointmentUpdate;
-		}else {
+			return appointmentUpdate;}
+		else {
 			throw new ResourceNotFoundException("Record not found with id : " + appointment.getAppointmentId());
 		}
-		}catch(Exception e){
-			throw new ModelUpdateException("couldnt update the appointment details,please try again " );
-		}
-		
+//		}catch(Exception e){
+//			throw new ModelUpdateException("couldnt update the appointment details,please try again " );
+//		}
+//		
 		
 	}
 

@@ -55,7 +55,7 @@ public class IAppointmentServiceTest {
 		LocalDate preferredDate = LocalDate.of(2007,12,03);
 		LocalTime preferredTime = LocalTime.of(8, 9);
 		Optional<Appointment> appointmentList = Optional.of(new Appointment(1,"kavoor", "Open", preferredDate ,preferredTime));
-		when(iAppointmentRepository.findByAppointmentId(1)).thenReturn(appointmentList);
+		when(iAppointmentRepository.findById(1L)).thenReturn(appointmentList);
 		
 		Appointment appointment_values = iAppointmentServiceImpl.getAppointment(1);
 		
@@ -103,7 +103,7 @@ public class IAppointmentServiceTest {
 		LocalTime preferredTime_2 = LocalTime.of(8, 9);
 		Appointment new_appointment_values = new Appointment(3,"mumbai", "Open", preferredDate_2 ,preferredTime_2);
 		
-		when(iAppointmentRepository.findByAppointmentId(3)).thenReturn(new_appointment_values);
+		when(iAppointmentRepository.findById(3L)).thenReturn(appointment_values);
 		
 		iAppointmentServiceImpl.updateAppointment(new_appointment_values);
 		
