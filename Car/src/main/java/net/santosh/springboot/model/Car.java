@@ -23,14 +23,13 @@ public class Car {
 
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cid", referencedColumnName = "userId")
-	  private Customer customer;
+	private Customer customer;
 	
 	
 	
 	
 	public Car() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Car(long carId, String brand, String model, String variant, LocalDate registrationYear, String registrationState) {
 		super();

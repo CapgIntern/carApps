@@ -34,7 +34,6 @@ public class Appointment {
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "a_id")
-	
 	private Payment payment;
 	
 	

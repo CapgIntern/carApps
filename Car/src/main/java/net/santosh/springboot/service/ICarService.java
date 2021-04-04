@@ -17,6 +17,6 @@ public interface ICarService {
 	public List<Car> getAllCars();
 	public List<Car> getCarsByModel(String model);
 	public List<Car> getCarsByBrand(String brand);
-//	public List<Car> getCarsByLocation();
+	public List<Car> getCarsByLocation();
 	
 }

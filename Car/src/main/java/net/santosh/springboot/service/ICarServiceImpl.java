@@ -118,8 +118,8 @@ public class ICarServiceImpl implements ICarService{
 		}
 	}
 
-//	@Override
-//	public List<Car> getCarsByLocation() {
-//		return null;
-//	}
+	@Override
+	public List<Car> getCarsByLocation() {
+		return null;
+	}
 }
