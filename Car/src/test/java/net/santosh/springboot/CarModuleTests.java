@@ -17,7 +17,14 @@ import org.mockito.junit.MockitoJUnitRunner;
 import net.santosh.springboot.model.Car;
 import net.santosh.springboot.repository.ICarRepository;
 import net.santosh.springboot.service.ICarServiceImpl;
-
+/**********************************************************************************
+ * @author                 G Gagandeep reddy
+ * Description             It is a service implementation test class that defines the methods
+ *                         to test the service.
+ * Version                 1.0
+ * created date            24-03-2021
+ *
+ ****************************************************************************************/
 
 @RunWith(MockitoJUnitRunner.class)
 public class CarModuleTests {
@@ -27,7 +34,12 @@ public class CarModuleTests {
 	
 	@Mock
 	ICarRepository iCarRepository;
-	
+	/************************************************************************************
+	 * Method                     getAllCarsTest
+	 * Description                It is used to test getAllCars method 
+	 * created by                 G Gagandeep reddy
+	 * created date               24-03-2021
+	 ***********************************************************************************/
 	@Test
 	public void getAllCarsTest() {
 		List<Car> car_list = new ArrayList<Car>();
@@ -50,6 +62,12 @@ public class CarModuleTests {
 		verify(iCarRepository, times(1)).findAll();
 		
 	}
+	/************************************************************************************
+	 * Method                     getCarTest
+	 * Description                It is used to test getCars method 
+	 * created by                 G Gagandeep reddy
+	 * created date               24-03-2021
+	 ***********************************************************************************/
 	
 	@Test
 	public void getCarTest() {
@@ -66,7 +84,12 @@ public class CarModuleTests {
 		assertEquals("Andhra Pradesh",car_values.getRegistrationState());
 	
 	}
-	
+	/************************************************************************************
+	 * Method                     addCarTest
+	 * Description                It is used to test addCar method 
+	 * created by                 G Gagandeep reddy
+	 * created date               24-03-2021
+	 ***********************************************************************************/
 	@Test
 	public void addCarTest() {
 		LocalDate reg_date = LocalDate.of(2007,12,03);
@@ -81,11 +104,23 @@ public class CarModuleTests {
 		assertEquals("Andhra Pradesh",car_values.getRegistrationState());
 		
 	}
+	/************************************************************************************
+	 * Method                     removecarTest
+	 * Description                It is used to test removecar method 
+	 * created by                 G sai nikesh
+	 * created date               24-03-2021
+	 ***********************************************************************************/
 	
 	@Test
 	public void  removeCarTest() {
 		verify(iCarRepository, never()).delete(any(Car.class));
 	}
+	/************************************************************************************
+	 * Method                     updatecarTest
+	 * Description                It is used to test updatecar method 
+	 * created by                 G sai nikesh
+	 * created date               24-03-2021
+	 ***********************************************************************************/
 	
 	@Test
 	public void updateCarTest() {
@@ -105,6 +140,13 @@ public class CarModuleTests {
 		assertEquals(new_reg_date,new_car_values.getRegistrationYear());
 		assertEquals("Telangana",new_car_values.getRegistrationState());
 	}
+	
+	/************************************************************************************
+	 * Method                     getCarsbyModelTest
+	 * Description                It is used to test getCarsbyModel method 
+	 * created by                 G Gagandeep reddy
+	 * created date               24-03-2021
+	 ***********************************************************************************/
 	
 	@Test
 	public void getCarsByModelTest() {
@@ -127,6 +169,12 @@ public class CarModuleTests {
 		assertEquals(3, check_car_list.size());
 		verify(iCarRepository, times(1)).findByModel("Nano");
 	}
+	/************************************************************************************
+	 * Method                     getAllCarsbyBrandTest
+	 * Description                It is used to test getAllCarsByBrand method 
+	 * created by                 G Gagandeep reddy
+	 * created date               24-03-2021
+	 ***********************************************************************************/
 	
 	@Test
 	public void getCarsByBrandTest() {
