@@ -1,21 +1,38 @@
 package net.santosh.springboot.service;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.santosh.springboot.exception.*;
-import net.santosh.springboot.model.*;
-import net.santosh.springboot.repository.*;
+import net.santosh.springboot.exception.UserModuleException;
+import net.santosh.springboot.model.User;
+import net.santosh.springboot.repository.IUserRepository;
+
+/**********************************************************************************
+ * @author                 G.Pavan
+ * Description             It is a user service implementation class that defines the methods
+ *                         mentioned in its interface.
+ * Version                 1.0
+ * created date            24-03-2021
+ *
+ ****************************************************************************************/
 
 @Service
 public class IUserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserRepository userrepo;
-
+	
+	/************************************************************************************
+	 * Method                     signIn
+	 * Description                It is used to signIn into application
+	 * @param user                user's reference variable
+	 * @UserModuleException       It is raised due to invalid user details
+	 * created by                 G.Pavan
+	 * created date               24-03-2021
+	 ***********************************************************************************/
+	
 	@Override
 	public Boolean signIn(User user) {
 
@@ -24,17 +41,25 @@ public class IUserServiceImpl implements IUserService {
 		if ((resultUser != null) && (resultUser.get().getPassword().equals(user.getPassword()))) {
 			if (resultUser.get().getRole().equals(user.getRole())) {
 				status = true;
-			}
-			else {
+			} else {
 				throw new UserModuleException("role not found");
 			}
-		}
-		else {
+		} else {
 			throw new UserModuleException("invalid id,password");
 		}
 		return status;
 	}
-
+	
+	/*******************************************************************
+	 * Method                                     signOut
+	 * Description                                It is used to signOut from application
+	 * @param user                                user's reference variable
+	 * @UserModuleException                       It raised due to invalid user details
+	 * created by                                 G.Pavan
+	 * Created date                               24-03-2021
+	 ***********************************************************************/
+	
+    @Override
 	public Boolean signOut(User user) {
 
 		Boolean status = false;
@@ -52,7 +77,17 @@ public class IUserServiceImpl implements IUserService {
 		}
 		return status;
 	}
+    
+    /******************************************************************************
+	 * Method                                changePassword
+	 * Description                           It is used to change the password
+	 * @param user                           User's refernce variable
+	 * @UserModuleException                  It is raised due to invalid password
+	 * created by                            G.Pavan
+	 * created date                          24-03-2021
+	 ********************************************************************************/
 
+	@Override
 	public User changePassword(String id, String oldpassword, String newpassword) {
 
 		User changeUser = null;
@@ -60,37 +95,10 @@ public class IUserServiceImpl implements IUserService {
 		if ((resultUser != null) && (resultUser.get().getPassword().equals(oldpassword))) {
 			changeUser = new User(id, newpassword, resultUser.get().getRole());
 			userrepo.save(changeUser);
-		}
-		else {
+		} else {
 			throw new UserModuleException("password not matched");
 		}
 		return changeUser;
 	}
-
-	//getting all user record by using the method findaAll() of CrudRepository
-	public List<User> getAllUser() {
-		List<User> user = new ArrayList<User>();
-		userrepo.findAll().forEach(user1 -> user.add(user1));
-		return user;
-	}
-
-	// getting a specific record by using the method findById() of CrudRepository
-	public User getUserById(String userId) {
-		return userrepo.findById(userId).get();
-	}
-
-	// saving a specific record by using the method save() of CrudRepository
-	public void saveOrUpdate(User user) {
-		userrepo.saveAndFlush(user);
-	}
-
-	// deleting a specific record by using the method deleteById() of CrudRepository
-	public void delete(String userId) {
-		userrepo.deleteById(userId);
-	}
-
-	// updating a record
-	public void update(User user, String userId) {
-		userrepo.save(user);
-	}
 }
+

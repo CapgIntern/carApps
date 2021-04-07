@@ -1,6 +1,7 @@
 package net.santosh.springboot.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,15 +12,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.santosh.springboot.model.*;
-import net.santosh.springboot.repository.*;
-import net.santosh.springboot.service.*;
-
 import io.swagger.annotations.Api;
+import net.santosh.springboot.exception.UserModuleException;
+import net.santosh.springboot.model.User;
+import net.santosh.springboot.repository.IUserRepository;
+import net.santosh.springboot.service.IUserService;
+
+/***********************************************************
+ * @author              G.Pavan
+ * Description          It is a controller class that controls the data flow into model object 
+ *                      and updates the view whenever data changes
+ * Version              1.0
+ * created date         24-03-2021
+ ***********************************************************/
+
 @Api(value = "Swagger2DemoRestController")
 @RestController
 public class UserController {
@@ -27,67 +35,120 @@ public class UserController {
 	@Autowired
 	IUserRepository userrepo;
 
-	
 	@Autowired
 	IUserService userservice;
+	
+	/*****************************************************
+	 * Method              defaultResponse
+	 * Description         displays the website application name
+	 * @GetMapping         It is used to handle GET type of request method.
+	 * Created by:         G.Pavan
+	 * created date        24-03-2021
+	 *****************************************************/
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String Welcomepage() {
 		return "Welcome to Carapp";
 	}
+	
+	/*****************************************************
+	 * Method              adduser
+	 * Description         Displays the newly added user in database
+	 * @PostMapping        used to add user to database 
+	 * @Return             returns newly added user
+	 * Created by:         G.Pavan
+	 * created date        24-03-2021
+	 *****************************************************/
+	
+	@PostMapping("/addUser")
+	public User addUser(@RequestBody User user) {
+		userrepo.save(user);
+		return user;
+	}
+	
+	/*****************************************************
+	 * Method              getusers
+	 * Description         Displays all the users present in database
+	 * @GetMapping        used to get all users database 
+	 * @Return             returns all users
+	 * Created by:         G.Pavan
+	 * created date        24-03-2021
+	 *****************************************************/
+	
+	@GetMapping("/getallusers")
+	public List<User> getUsers() {
+		return userrepo.findAll();
+	}
 
+	/*****************************************************
+	 * Method              getuser
+	 * Description         Displays user bases on userid
+	 * @GetMapping         used to get user by userid 
+	 * @Return             returns user by id
+	 * Created by:         G.Pavan
+	 * created date        24-03-2021
+	 *****************************************************/
+	
+	@GetMapping("/getuserbyid/{userId}")
+	public Optional<User> getUser(@PathVariable("userId") String userId) {
+		return userrepo.findById(userId);
+	}
+	
+	/*****************************************************
+	 * Method              deleteuser
+	 * Description         Displays as deleted after deleting a particular user by userid
+	 * @DeleteMapping      used to delete user by userid 
+	 * @Return             returns string as deleted
+	 * Created by:         G.Pavan
+	 * created date        24-03-2021
+	 *****************************************************/
+	
+	
+	@DeleteMapping("user/{userId}")
+	public String deleteUser(@PathVariable String userId) {
+		User user = userrepo.getOne(userId);
+		userrepo.delete(user);
+		return "deleted";
+	}
+	
+	/****************************************************************************
+	 * Method                         loginUser
+	 * Description                    It is used to login into online application
+	 * @param user                    user reference variable
+	 * @return                        return true if user details is correct or else false
+	 * @throws UserModuleException    it is raises due to invalid user details
+	 *****************************************************************************/
+	
 	@PostMapping("/login")
 	public ResponseEntity<Boolean> loginUser(@RequestBody User user) {
 		return new ResponseEntity<Boolean>(userservice.signIn(user), HttpStatus.OK);
 	}
+	
+	/*******************************************************************************
+	 * Method                        logoutUser
+	 * Description                   It is used to logout from online application
+	 * @param user                   user reference variable
+	 * @return                       true if user details are correct
+	 * @throws UserModuleException   It raises due to invalid user details
+	  *****************************************************************************/
 
 	@PostMapping("/logout")
 	public ResponseEntity<Boolean> logoutUser(@RequestBody User user) {
 		return new ResponseEntity<Boolean>(userservice.signOut(user), HttpStatus.OK);
 	}
-
-	@PutMapping("/changepassword/{userid}/{oldpass}/{newpass}")
-	public ResponseEntity<User> updateoldPassword(@PathVariable("id") String id,
+	
+	/*******************************************************************************
+	 * Method                        updatePassword
+	 * Description                   It is used to update the password
+	 * @param user                   user reference variable
+	 * @return                       It will update the password by checking with old password
+	 * @throws UserModuleException   It raises due to invalid details
+	 *****************************************************************************/
+	
+	@PutMapping("/updatepassword/{id}/{oldpass}/{newpass}")
+	public ResponseEntity<User> updateeoldPassword(@PathVariable("id") String id,
 			@PathVariable("oldpass") String oldpass, @PathVariable("newpass") String newpass) {
 		return new ResponseEntity<User>(userservice.changePassword(id, oldpass, newpass), HttpStatus.OK);
-	}
-
-//creating a get mapping that retrieves all the user detail from the database
-	@RequestMapping(value = "/User", method = RequestMethod.GET)
-	@GetMapping("/User")
-	private List<User> getAllUser() {
-		return userservice.getAllUser();
-	}
-
-	// creating a get mapping that retrieves the detail of a specific user
-	@RequestMapping(value = "/User/{userId}", method = RequestMethod.GET)
-
-	@GetMapping("/User/{serId}")
-	private User getBooks(@PathVariable("userId") String userId) {
-		return userservice.getUserById(userId);
-	}
-
-	// creating a delete mapping that deletes a specified user
-	@RequestMapping(value = "/User/{userId}", method = RequestMethod.DELETE)
-	@DeleteMapping("/User/{userId}")
-	private void deleteBook(@PathVariable("userId") String userId) {
-		userservice.delete(userId);
-	}
-
-	// creating post mapping that post the user detail in the database
-	@RequestMapping(value = "/User", method = RequestMethod.POST)
-	@PostMapping("/User")
-	private String saveUser(@RequestBody User user) {
-		userservice.saveOrUpdate(user);
-		return user.getUserId();
-	}
-
-	// creating put mapping that updates the user 
-	@RequestMapping(value = "/User", method = RequestMethod.PUT)
-	@PutMapping("/User")
-	private User update(@RequestBody User user) {
-		userservice.saveOrUpdate(user);
-		return user;
 	}
 }
 

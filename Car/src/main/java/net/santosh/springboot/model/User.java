@@ -2,8 +2,6 @@ package net.santosh.springboot.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,16 +9,33 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String userId;
 	@Column(name = "password")
 	private String password;
 	@Column(name = "role")
 	private String role;
+	
+	/************************************************************************************
+	 * Method:                          User
+     *Description:                      It is used to initialize the empty constructor.
+     *Created By                        G.Pavan
+     *Created Date                      24-MARCH-2021  
+	*************************************************************************************/
 
 	public User() {
 		super();
 	}
+	
+	/************************************************************************************
+	 * Method:                                 User
+     *Description:                             It is used to initialize the parameterized constructor.
+     *@param userid:                           user id 
+     *@param password:                         user password 
+     *@param role:                             user role 
+     *Created By                               G.Pavan
+     *Created Date                             24-MARCH-2021                           
+	 
+	 ************************************************************************************/
 
 	public User(String userId, String password, String role) {
 		super();
@@ -28,11 +43,11 @@ public class User {
 		this.password = password;
 		this.role = role;
 	}
-
+		
 	public String getUserId() {
 		return userId;
 	}
-
+	
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
@@ -44,10 +59,11 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public String getRole() {
 		return role;
 	}
+	
 
 	public void setRole(String role) {
 		this.role = role;

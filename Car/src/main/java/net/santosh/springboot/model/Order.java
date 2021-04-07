@@ -1,62 +1,83 @@
 package net.santosh.springboot.model;
 
 import java.time.LocalDate;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 
 @Entity
-@Table(name="Norder")
+@Table(name = "O_R_D_E_R")
 
 public class Order {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long orderId;
 	@Column(name = "amount")
 	private double amount;
 	@Column(name = "billingdate")
 	private LocalDate billingDate;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
-	  private Customer customer;
-	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "payord_id")
-	
-	private Payment payment;
-	
+	@JoinColumn(name = "user_id", referencedColumnName = "userId")
+	private Customer customer;
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	/************************************************************************************
+	 * Method:                          Order 
+	 * Description:                     It is used to initialize the empty constructor.
+	 * Created By                       V Raghuveer
+	 * Created Date                     24-MARCH-2021
+	 *************************************************************************************/
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Order(double amount, LocalDate billingDate, Customer customer) {
+	/************************************************************************************
+	 * Method:                          Order
+     *Description:                      It is used to initialize the parameterized constructor.
+     *Created By                        V Raghuveer
+     *Created Date                      24-MARCH-2021  
+	*************************************************************************************/
+	public Order(long orderId, double amount, LocalDate billingDate) {
 		super();
 		this.amount = amount;
 		this.billingDate = billingDate;
-		this.customer = customer;
+		this.orderId = orderId;
 	}
+
 	public long getOrderId() {
 		return orderId;
 	}
+
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
+
 	public double getAmount() {
 		return amount;
 	}
+
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
 	public LocalDate getBillingDate() {
 		return billingDate;
 	}
+
 	public void setBillingDate(LocalDate billingDate) {
 		this.billingDate = billingDate;
-	}
-	public Customer getCustomer() {
-		return customer;
-	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 }

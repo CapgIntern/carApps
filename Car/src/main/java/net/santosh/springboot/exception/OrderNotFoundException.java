@@ -1,9 +1,12 @@
 package net.santosh.springboot.exception;
 
-public class ModelNotFoundException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class OrderNotFoundException extends Exception{
 	/**************************************************************************
-	 * @author                 R saisantosh kumar reddy
+	 * @author                 G.Sai Nikesh
 	 * Description             It is an exception class that handles the exception that occurs at 
 	 *                         service level
 	 * version                 1.0
@@ -12,9 +15,7 @@ public class ModelNotFoundException extends RuntimeException{
 	 ************************************************************************************/
 	private static final long serialVersionUID = 1L;
 
-	public ModelNotFoundException(String message) {
-		super(message);
-
+	public OrderNotFoundException(String msg) {
+		super(msg);
 	}
 }
-
