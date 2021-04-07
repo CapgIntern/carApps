@@ -27,7 +27,7 @@ import javax.persistence.Table;
 public class Appointment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long appointmentId;
 	@Column(name = "location")
 	private String location;
