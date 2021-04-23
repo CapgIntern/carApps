@@ -44,6 +44,10 @@ public class CarController {
 		return ResponseEntity.ok().body(carService.getAllCars());
 	}
 
+	@GetMapping("/carsbyuserid/{userId}")
+	public ResponseEntity<List<Car>> getCarsByUserId(@PathVariable("userId") String userId) {
+		return ResponseEntity.ok().body(carService.getCarsByUserId(userId));
+	}
 	/*****************************************************
 	 * Method              getCar
 	 * Description         Displays all the car by car id

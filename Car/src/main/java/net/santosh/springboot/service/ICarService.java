@@ -26,6 +26,8 @@ public interface ICarService {
 	public Car getCar(long id);
 
 	public List<Car> getAllCars();
+	
+	public List<Car> getCarsByUserId(String userId);
 
 	public List<Car> getCarsByModel(String model);
 

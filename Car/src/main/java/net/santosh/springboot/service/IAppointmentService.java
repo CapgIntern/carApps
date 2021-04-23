@@ -23,7 +23,7 @@ public interface IAppointmentService {
 
 	public List<Appointment> getAllAppointments();
 
-	public List<Appointment> getOpenAppointments();
+	public List<Appointment> getOpenAppointments(String userId);
 
 	public Appointment updateAppointment(Appointment appointment);
 }

@@ -28,7 +28,12 @@ public class Appointment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "appointmentId")
 	private long appointmentId;
+	@Column(name = "userId")
+	private long userId;
+	@Column(name = "carId")
+	private long carId;
 	@Column(name = "location")
 	private String location;
 	@Column(name = "inspectiontype")
@@ -37,15 +42,6 @@ public class Appointment {
 	private LocalDate preferredDate;
 	@Column(name = "preferredtime")
 	private LocalTime preferredTime;
-
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "a_id")
-
-	private Payment payment;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ppid", referencedColumnName = "userId")
-	private Customer customer;
 	
 	/************************************************************************************
 	 * Method:                          Appointment
@@ -53,6 +49,7 @@ public class Appointment {
      *Created By                        R saisantosh kumar reddy
      *Created Date                      24-MARCH-2021  
 	*************************************************************************************/
+	
 	public Appointment(String location, String inspectionType, LocalDate preferredDate) {
 		super();
 		this.location = location;
@@ -60,16 +57,16 @@ public class Appointment {
 		this.preferredDate = preferredDate;
 	}
 
-	public Appointment(long appointmentId, String location, String inspectionType, LocalDate preferredDate,
+	public Appointment(long userId, long carId, String location, String inspectionType, LocalDate preferredDate,
 			LocalTime preferredTime) {
 		super();
-		this.appointmentId = appointmentId;
+		this.userId = userId;
+		this.carId = carId;
 		this.location = location;
 		this.inspectionType = inspectionType;
 		this.preferredDate = preferredDate;
 		this.preferredTime = preferredTime;
 	}
-
 
 	/************************************************************************************
 	 * Method:                          Appointment
@@ -123,20 +120,21 @@ public class Appointment {
 		this.preferredTime = preferredTime;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
-	public Payment getPayment() {
-		return payment;
+	public long getCarId() {
+		return carId;
 	}
 
-	public void setPayment(Payment payment) {
-		this.payment = payment;
+	public void setCarId(long carId) {
+		this.carId = carId;
 	}
+
 
 }

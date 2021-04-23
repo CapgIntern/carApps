@@ -3,6 +3,7 @@ package net.santosh.springboot.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 /************************************************************************************
@@ -17,9 +18,12 @@ import javax.persistence.Table;
 public class Address {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long addressId;
+	@Column(name = "userId")
+	private String userId;
+	@Column(name = "doorno")
 	private String doorNo;
-
 	@Column(name = "street")
 	private String street;
 	@Column(name = "area")
@@ -48,15 +52,18 @@ public class Address {
      *Created Date                      24-MARCH-2021  
 	*************************************************************************************/
 
-	public Address(String street, String area, String city, String state, int pincode) {
+
+	public Address(String userId, String doorNo, String street, String area, String city, String state,
+			int pincode) {
 		super();
+		this.userId = userId;
+		this.doorNo = doorNo;
 		this.street = street;
 		this.area = area;
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
 	}
-	
 	public String getDoorNo() {
 		return doorNo;
 	}
@@ -65,6 +72,18 @@ public class Address {
 		this.doorNo = doorNo;
 	}
 
+	public long getAddressId() {
+		return addressId;
+	}
+	public void setAddressId(long addressId) {
+		this.addressId = addressId;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getStreet() {
 		return street;
 	}

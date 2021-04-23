@@ -86,12 +86,11 @@ public class IAppointmentServiceImpl implements IAppointmentService {
 		try {
 			if (appointmentDb.isPresent()) {
 				Appointment appointmentUpdate = appointmentDb.get();
-				appointmentUpdate.setAppointmentId(appointment.getAppointmentId());
 				appointmentUpdate.setLocation(appointment.getLocation());
 				appointmentUpdate.setPreferredDate(appointment.getPreferredDate());
 				appointmentUpdate.setPreferredTime(appointment.getPreferredTime());
-				appointmentUpdate.setCustomer(appointment.getCustomer());
-				appointmentUpdate.setPayment(appointment.getPayment());
+				appointmentUpdate.setUserId(appointment.getUserId());
+				appointmentUpdate.setCarId(appointment.getCarId());
 
 				IAppointmentRepository.save(appointmentUpdate);
 				return appointmentUpdate;
@@ -148,9 +147,15 @@ public class IAppointmentServiceImpl implements IAppointmentService {
 	}
 
 	@Override
-	public List<Appointment> getOpenAppointments() {
+	public List<Appointment> getOpenAppointments(String userId) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Appointment> appointmentList = this.IAppointmentRepository.findByUserId(userId);
+		if (appointmentList.isEmpty()) {
+			throw new ResourceNotFoundException("appointments not found with user :" + userId);
+			}
+		else {
+			return appointmentList;
+		}
 	}
 
 

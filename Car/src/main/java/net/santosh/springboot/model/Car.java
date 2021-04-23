@@ -11,13 +11,15 @@ import javax.persistence.Table;
 @Table(name = "car")
 public class Car {
 	@Id
+	@Column(name = "userId")
 	private long carId;
+	@Column(name = "userId")
+	private String userId;
 	@Column(name = "brand")
 	private String brand;
 	@Column(name = "model")
 	private String model;
 	@Column(name = "variant")
-
 	private String variant;
 	@Column(name = "registrationyear")
 	private LocalDate registrationYear;
@@ -40,10 +42,11 @@ public class Car {
      *Created By                        G Gagandeep Reddy
      *Created Date                      24-MARCH-2021  
 	*************************************************************************************/
-	public Car(long carId, String brand, String model, String variant, LocalDate registrationYear,
+	public Car(long carId, String userId, String brand, String model, String variant, LocalDate registrationYear,
 			String registrationState) {
 		super();
 		this.carId = carId;
+		this.userId = userId;
 		this.brand = brand;
 		this.model = model;
 		this.variant = variant;
@@ -57,6 +60,14 @@ public class Car {
 
 	public void setCarId(long carId) {
 		this.carId = carId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getBrand() {

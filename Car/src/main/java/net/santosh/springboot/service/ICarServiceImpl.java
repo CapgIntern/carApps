@@ -140,6 +140,16 @@ public class ICarServiceImpl implements ICarService {
 			throw new ModelEmptyListException("Error retriving cars...please try again");
 		}
 	}
+	
+	@Override
+	public List<Car> getCarsByUserId(String userId){
+		try {
+			return (List<Car>) ICarRepository.findByUserId(userId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new ModelEmptyListException("Error retriving cars...please try again");
+		}
+	}
 
 	/****************************
 	 * Method                     getCarsByModel

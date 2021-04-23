@@ -2,33 +2,24 @@ package net.santosh.springboot.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
 	@Id
+	@Column(name="userId")
 	private String userId;
+	@Column(name="name")
 	private String name;
+	@Column(name="email")
 	private String email;
+	@Column(name="contactNo")
 	private String contactNo;
+	@Column(name="dob")
 	private LocalDate dob;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "address_id")
-	Address address;
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 
 	/************************************************************************************
 	 * Method:                          Customer 
@@ -53,7 +44,6 @@ public class Customer {
 		this.email = email;
 		this.contactNo = contactNo;
 		this.dob = dob;
-		this.address = address;
 	}
 
 	public String getUserId() {
@@ -95,7 +85,7 @@ public class Customer {
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Customer [userId=" + userId + ", name=" + name + ", email=" + email + ", contactNo=" + contactNo

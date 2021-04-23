@@ -17,6 +17,8 @@ import net.santosh.springboot.model.*;
 public interface ICarRepository extends JpaRepository<Car, Long> {
 
 	List<Car> findAll();
+	
+	List<Car> findByUserId(String userId);
 
 	List<Car> findByModel(String model);
 

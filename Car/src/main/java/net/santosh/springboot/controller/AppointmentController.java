@@ -44,6 +44,12 @@ public class AppointmentController {
 	public ResponseEntity<List<Appointment>> getAllAppointments() {
 		return ResponseEntity.ok().body(iappointmentservice.getAllAppointments());
 	}
+	
+	@GetMapping("/appointments/{userId}")
+	public ResponseEntity<List<Appointment>> getOpenAppointments(@PathVariable String userId) {
+		return ResponseEntity.ok().body(iappointmentservice.getOpenAppointments(userId));
+	}
+	
 	/*****************************************************
 	 * Method              getappointmentbyid
 	 * Description         Displays all the appointments by appointment id
