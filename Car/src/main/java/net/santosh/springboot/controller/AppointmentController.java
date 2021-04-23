@@ -88,9 +88,15 @@ public class AppointmentController {
 	 *****************************************************/
 
 	@PutMapping("/appointments/{id}")
-	public ResponseEntity<Appointment> addAppointment(@PathVariable long id, @RequestBody Appointment appointment) {
+	public ResponseEntity<Appointment> updateAppointment(@PathVariable long id, @RequestBody Appointment appointment) {
 		appointment.setAppointmentId(id);
 		return ResponseEntity.ok().body(this.iappointmentservice.updateAppointment(appointment));
+	}
+	
+	@PutMapping("/addorderid/{id}/{orderid}")
+	public HttpStatus addOrderId(@PathVariable("id") long id, @PathVariable("orderid") long ordeId) {
+		this.iappointmentservice.addOrderId(id, ordeId);
+		return HttpStatus.OK;
 	}
 	/*****************************************************
 	 * Method              removeappointment

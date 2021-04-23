@@ -26,5 +26,7 @@ public interface IAppointmentService {
 	public List<Appointment> getOpenAppointments(String userId);
 
 	public Appointment updateAppointment(Appointment appointment);
+	
+	public void addOrderId(long id, long orderId);
 }
 

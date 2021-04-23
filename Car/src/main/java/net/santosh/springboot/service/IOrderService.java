@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import net.santosh.springboot.exception.OrderNotFoundException;
+import net.santosh.springboot.model.Appointment;
 import net.santosh.springboot.model.Order;
 
 /****************************************************************************
@@ -25,4 +26,5 @@ public interface IOrderService {
 
 	public Order updateOrder(long orderId, Order order) throws OrderNotFoundException;
 
+	public void addPaymentId(long orderId, long paymentId);
 }

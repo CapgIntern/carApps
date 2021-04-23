@@ -12,6 +12,8 @@ import javax.persistence.Table;
 public class Card {
 	@Id
 	private Long id;
+	@Column(name = "userid")
+	private String userId;
 	@Column(name = "card_name")
 	private String cardName;
 	@Column(name = "card_number")
@@ -35,13 +37,14 @@ public class Card {
 	 * constructor. Created By CHITTA YASWANTHSAI Created Date 24-MARCH-2021
 	 *****************************/
 
-	public Card(long id, String cardName, String cardNumber, LocalDate cardExpiry, int cvv) {
+	public Card(long id, String cardName, String cardNumber, LocalDate cardExpiry, int cvv, String userId) {
 		super();
 		this.id = id;
 		this.cardName = cardName;
 		this.cardNumber = cardNumber;
 		this.cardExpiry = cardExpiry;
 		this.cvv = cvv;
+		this.userId = userId;
 
 	}
 
@@ -83,6 +86,18 @@ public class Card {
 
 	public void setCvv(int cvv) {
 		this.cvv = cvv;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	@Override

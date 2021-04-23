@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "car")
 public class Car {
 	@Id
-	@Column(name = "userId")
+	@Column(name = "carId")
 	private long carId;
 	@Column(name = "userId")
 	private String userId;

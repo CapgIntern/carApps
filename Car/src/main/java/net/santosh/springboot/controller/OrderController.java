@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,7 @@ import io.swagger.annotations.Api;
 import net.santosh.springboot.exception.OrderNotFoundException;
 import net.santosh.springboot.model.Order;
 import net.santosh.springboot.service.IOrderService;
+import net.santosh.springboot.service.IPaymentService;
 
 @Api(value = "Swagger2DemoRestController")
 @RestController
@@ -31,6 +34,7 @@ public class OrderController {
 
 	@Autowired
 	private IOrderService iService;
+	
 	/*****************************************************
 	 * Method              addOrder
 	 * Description         Displays the newly added order details in database
@@ -95,5 +99,11 @@ public class OrderController {
 	@PostMapping("/order/{orderId}")
 	public Order updateOrder(@PathVariable long orderId, @RequestBody Order order) throws OrderNotFoundException {
 		return iService.updateOrder(orderId, order);
+	}
+	
+	@PutMapping("/addpaymentid/{orderid}/{paymentid}")
+	public HttpStatus addOrderId(@PathVariable("orderid") long orderId, @PathVariable("paymentid") long paymentId) {
+		this.iService.addPaymentId(orderId, paymentId);
+		return HttpStatus.OK;
 	}
 }

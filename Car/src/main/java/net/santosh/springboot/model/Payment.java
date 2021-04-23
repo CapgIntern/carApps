@@ -22,10 +22,8 @@ public class Payment {
 	private String type;
 	@Column(name = "status")
 	private String status;
-
-	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-	@JoinColumn(name = "card_id", referencedColumnName = "ID")
-	private Card card;
+	@Column(name = "cardid")
+	private long cardId;
 
 	/****************************
 	 * Method: Payment Description: It is used to initialize the empty constructor.
@@ -41,9 +39,9 @@ public class Payment {
 	 * constructor. Created By CHITTA YASWANTH SAI Created Date 24-MARCH-2021
 	 *****************************/
 
-	public Payment(long paymentId, String type, String status, Card card) {
+	public Payment(long paymentId, String type, String status, long cardId) {
 		super();
-		this.card = card;
+		this.cardId = cardId;
 		this.paymentId = paymentId;
 		this.type = type;
 		this.status = status;
@@ -74,17 +72,17 @@ public class Payment {
 		this.status = status;
 	}
 
-	public Card getCard() {
-		return card;
+	public long getCardId() {
+		return cardId;
 	}
 
-	public void setCard(Card card) {
-		this.card = card;
+	public void setCardId(long cardId) {
+		this.cardId = cardId;
 	}
 
 	@Override
 	public String toString() {
-		return "Payment [paymentId=" + paymentId + ", type=" + type + ", status=" + status + ", card=" + card + "]";
+		return "Payment [paymentId=" + paymentId + ", type=" + type + ", status=" + status + ", cardId=" + cardId + "]";
 	}
 
 }

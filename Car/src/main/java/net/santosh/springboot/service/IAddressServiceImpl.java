@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.santosh.springboot.exception.ModelAddException;
 import net.santosh.springboot.exception.ModelEmptyListException;
@@ -13,6 +15,8 @@ import net.santosh.springboot.model.Address;
 import net.santosh.springboot.model.Car;
 import net.santosh.springboot.repository.IAddressRepository;
 
+@Service
+@Transactional
 public class IAddressServiceImpl implements IAddressService{
 
 	@Autowired

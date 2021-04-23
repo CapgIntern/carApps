@@ -16,23 +16,14 @@ import javax.persistence.Table;
 
 public class Order {
 	@Id
+	@Column(name = "orderId")
 	private long orderId;
 	@Column(name = "amount")
 	private double amount;
 	@Column(name = "billingdate")
 	private LocalDate billingDate;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", referencedColumnName = "userId")
-	private Customer customer;
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
+	@Column(name = "paymentid")
+	private long paymentId;
 	/************************************************************************************
 	 * Method:                          Order 
 	 * Description:                     It is used to initialize the empty constructor.
@@ -49,11 +40,12 @@ public class Order {
      *Created By                        V Raghuveer
      *Created Date                      24-MARCH-2021  
 	*************************************************************************************/
-	public Order(long orderId, double amount, LocalDate billingDate) {
+	public Order(long orderId, double amount, LocalDate billingDate, long paymentId) {
 		super();
 		this.amount = amount;
 		this.billingDate = billingDate;
 		this.orderId = orderId;
+		this.paymentId = paymentId;
 	}
 
 	public long getOrderId() {
@@ -78,6 +70,12 @@ public class Order {
 
 	public void setBillingDate(LocalDate billingDate) {
 		this.billingDate = billingDate;
+	}
+	public long getPaymentId() {
+		return paymentId;
+	}
+	public void setPaymentId(long paymentId) {
+		this.paymentId = paymentId;
 	}
 
 }

@@ -15,15 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import net.santosh.springboot.model.Address;
-import net.santosh.springboot.model.Car;
-import net.santosh.springboot.service.IAddressService;
+import net.santosh.springboot.service.IAddressServiceImpl;
 
 @Api(value = "Swagger2DemoRestController")
 @RestController
 public class AddressController {
 
 	@Autowired
-	IAddressService iAddressService;
+	IAddressServiceImpl iAddressService;
 
 	@GetMapping("/addressbyuserid/{userId}")
 	public ResponseEntity<List<Address>> getAddressByUserId(@PathVariable("userId") String userId) {

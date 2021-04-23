@@ -42,6 +42,8 @@ public class Appointment {
 	private LocalDate preferredDate;
 	@Column(name = "preferredtime")
 	private LocalTime preferredTime;
+	@Column (name = "orderId")
+	private long orderId;
 	
 	/************************************************************************************
 	 * Method:                          Appointment
@@ -58,7 +60,7 @@ public class Appointment {
 	}
 
 	public Appointment(long userId, long carId, String location, String inspectionType, LocalDate preferredDate,
-			LocalTime preferredTime) {
+			LocalTime preferredTime, long orderId) {
 		super();
 		this.userId = userId;
 		this.carId = carId;
@@ -66,6 +68,7 @@ public class Appointment {
 		this.inspectionType = inspectionType;
 		this.preferredDate = preferredDate;
 		this.preferredTime = preferredTime;
+		this.orderId = orderId;
 	}
 
 	/************************************************************************************
@@ -134,6 +137,14 @@ public class Appointment {
 
 	public void setCarId(long carId) {
 		this.carId = carId;
+	}
+
+	public long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
 	}
 
 

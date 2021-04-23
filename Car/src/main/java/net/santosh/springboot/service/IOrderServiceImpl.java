@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 
 import net.santosh.springboot.exception.ModelAddException;
 import net.santosh.springboot.exception.ModelNotFoundException;
+import net.santosh.springboot.exception.ModelUpdateException;
 import net.santosh.springboot.exception.OrderNotFoundException;
+import net.santosh.springboot.exception.ResourceNotFoundException;
+import net.santosh.springboot.model.Appointment;
 import net.santosh.springboot.model.Order;
 import net.santosh.springboot.repository.IOrderRepository;
 /****************************************************************************
@@ -131,6 +134,23 @@ public class IOrderServiceImpl implements IOrderService {
 			throw new OrderNotFoundException("Record not found with id : " + orderId);
 		}
 
+	}
+
+	@Override
+	public void addPaymentId(long orderId, long paymentId) {
+		Optional<Order> order = iOrderRepo.findById(orderId);
+		try {
+			if (order.isPresent()) {
+				Order orderupdate = order.get();
+				orderupdate.setPaymentId(paymentId);
+				
+				iOrderRepo.save(orderupdate);
+			} else {
+				throw new ResourceNotFoundException("Record not found ");
+			}
+		} catch (Exception e) {
+			throw new ModelUpdateException("couldnt update the appointment details,please try again ");
+		}
 	}
 
 }
