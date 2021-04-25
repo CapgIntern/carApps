@@ -20,7 +20,6 @@ public class Customer {
 	@Column(name="dob")
 	private LocalDate dob;
 
-
 	/************************************************************************************
 	 * Method:                          Customer 
 	 * Description:                     It is used to initialize the empty constructor.
@@ -37,7 +36,7 @@ public class Customer {
      *Created Date                      24-MARCH-2021  
 	*************************************************************************************/
 
-	public Customer(String userId, String name, String email, String contactNo, LocalDate dob, Address address) {
+	public Customer(String userId, String name, String email, String contactNo, LocalDate dob) {
 		super();
 		this.userId = userId;
 		this.name = name;

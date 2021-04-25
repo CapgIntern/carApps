@@ -4,14 +4,18 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "c_a_r_d")
+@Table(name = "CARD")
 public class Card {
 	@Id
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="cardid")
+	private Long cardId;
 	@Column(name = "userid")
 	private String userId;
 	@Column(name = "card_name")
@@ -37,9 +41,9 @@ public class Card {
 	 * constructor. Created By CHITTA YASWANTHSAI Created Date 24-MARCH-2021
 	 *****************************/
 
-	public Card(long id, String cardName, String cardNumber, LocalDate cardExpiry, int cvv, String userId) {
+	public Card(long cardId, String cardName, String cardNumber, LocalDate cardExpiry, int cvv, String userId) {
 		super();
-		this.id = id;
+		this.cardId = cardId;
 		this.cardName = cardName;
 		this.cardNumber = cardNumber;
 		this.cardExpiry = cardExpiry;
@@ -48,12 +52,13 @@ public class Card {
 
 	}
 
-	public long getId() {
-		return id;
+
+	public Long getCardId() {
+		return cardId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setCardId(Long cardId) {
+		this.cardId = cardId;
 	}
 
 	public String getCardName() {
@@ -97,12 +102,12 @@ public class Card {
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.cardId = id;
 	}
 
 	@Override
 	public String toString() {
-		return "Card [id=" + id + ", cardName=" + cardName + ", cardNumber=" + cardNumber + ", expiryDate=" + cardExpiry
+		return "Card [id=" + cardId + ", cardName=" + cardName + ", cardNumber=" + cardNumber + ", expiryDate=" + cardExpiry
 				+ ", cvv=" + cvv + "]";
 	}
 

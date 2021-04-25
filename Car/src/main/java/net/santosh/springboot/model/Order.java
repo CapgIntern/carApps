@@ -2,28 +2,32 @@ package net.santosh.springboot.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "O_R_D_E_R")
+@Table(name = "ORDER_TABLE")
 
 public class Order {
 	@Id
-	@Column(name = "orderId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "orderid")
 	private long orderId;
 	@Column(name = "amount")
 	private double amount;
 	@Column(name = "billingdate")
 	private LocalDate billingDate;
-	@Column(name = "paymentid")
-	private long paymentId;
+	@Column(name = "userid")
+	private String userId;
+	@Column(name = "saleid")
+	private long saleId;
+	@Column(name = "appointmentid")
+	private long appointmentId;
 	/************************************************************************************
 	 * Method:                          Order 
 	 * Description:                     It is used to initialize the empty constructor.
@@ -40,12 +44,14 @@ public class Order {
      *Created By                        V Raghuveer
      *Created Date                      24-MARCH-2021  
 	*************************************************************************************/
-	public Order(long orderId, double amount, LocalDate billingDate, long paymentId) {
+	public Order(long orderId, double amount, LocalDate billingDate, String userId, long saleId, long appointmentId) {
 		super();
 		this.amount = amount;
 		this.billingDate = billingDate;
 		this.orderId = orderId;
-		this.paymentId = paymentId;
+		this.userId = userId;
+		this.saleId = saleId;
+		this.appointmentId = appointmentId;
 	}
 
 	public long getOrderId() {
@@ -71,11 +77,24 @@ public class Order {
 	public void setBillingDate(LocalDate billingDate) {
 		this.billingDate = billingDate;
 	}
-	public long getPaymentId() {
-		return paymentId;
+	public String getUserId() {
+		return userId;
 	}
-	public void setPaymentId(long paymentId) {
-		this.paymentId = paymentId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
+	public long getSaleId() {
+		return saleId;
+	}
+	public void setSaleId(long saleId) {
+		this.saleId = saleId;
+	}
+	public long getAppointmentId() {
+		return appointmentId;
+	}
+	public void setAppointmentId(long appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+	
 
 }

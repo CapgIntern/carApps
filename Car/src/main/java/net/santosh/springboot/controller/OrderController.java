@@ -101,9 +101,4 @@ public class OrderController {
 		return iService.updateOrder(orderId, order);
 	}
 	
-	@PutMapping("/addpaymentid/{orderid}/{paymentid}")
-	public HttpStatus addOrderId(@PathVariable("orderid") long orderId, @PathVariable("paymentid") long paymentId) {
-		this.iService.addPaymentId(orderId, paymentId);
-		return HttpStatus.OK;
-	}
 }

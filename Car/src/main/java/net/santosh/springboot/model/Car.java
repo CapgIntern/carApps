@@ -4,16 +4,19 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "car")
+@Table(name = "CAR")
 public class Car {
 	@Id
-	@Column(name = "carId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "carid")
 	private long carId;
-	@Column(name = "userId")
+	@Column(name = "userid")
 	private String userId;
 	@Column(name = "brand")
 	private String brand;

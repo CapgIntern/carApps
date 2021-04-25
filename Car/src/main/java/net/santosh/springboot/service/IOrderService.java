@@ -26,5 +26,4 @@ public interface IOrderService {
 
 	public Order updateOrder(long orderId, Order order) throws OrderNotFoundException;
 
-	public void addPaymentId(long orderId, long paymentId);
 }

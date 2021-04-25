@@ -1,23 +1,22 @@
 package net.santosh.springboot.model;
 
-
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "p_a_y_m_e_n_t")
+@Table(name = "PAYMENT")
 public class Payment {
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="paymentid")
 	private long paymentId;
+	@Column(name="orderid")
+	private long orderId;
 	@Column(name = "type")
 	private String type;
 	@Column(name = "status")
@@ -39,9 +38,10 @@ public class Payment {
 	 * constructor. Created By CHITTA YASWANTH SAI Created Date 24-MARCH-2021
 	 *****************************/
 
-	public Payment(long paymentId, String type, String status, long cardId) {
+	public Payment(long paymentId, long orderId,String type, String status, long cardId) {
 		super();
 		this.cardId = cardId;
+		this.orderId = orderId;
 		this.paymentId = paymentId;
 		this.type = type;
 		this.status = status;
@@ -78,6 +78,14 @@ public class Payment {
 
 	public void setCardId(long cardId) {
 		this.cardId = cardId;
+	}
+
+	public long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
 	}
 
 	@Override

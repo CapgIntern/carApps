@@ -14,13 +14,14 @@ import javax.persistence.Table;
  *Created Date                      24-MARCH-2021  
 *************************************************************************************/
 @Entity
-@Table(name = "address")
+@Table(name = "ADDRESS")
 public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "addressid")
 	private long addressId;
-	@Column(name = "userId")
+	@Column(name = "userid")
 	private String userId;
 	@Column(name = "doorno")
 	private String doorNo;

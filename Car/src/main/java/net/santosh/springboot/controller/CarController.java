@@ -112,6 +112,11 @@ public class CarController {
 	public ResponseEntity<Car> updateCar(@RequestBody Car car, @PathVariable("carid") long id) {
 		return ResponseEntity.ok().body(this.carService.updateCar(car, id));
 	}
+	
+	@PutMapping("/transferuser/{carid}/{userid}")
+	public ResponseEntity<Car> updateCar(@PathVariable("carid") long id, @PathVariable("userid") String userid) {
+		return ResponseEntity.ok().body(this.carService.transferUser(id, userid));
+	}
 
 	/*****************************************************
 	 * Method              removeCar

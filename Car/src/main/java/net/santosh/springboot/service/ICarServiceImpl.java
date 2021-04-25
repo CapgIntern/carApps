@@ -189,4 +189,22 @@ public class ICarServiceImpl implements ICarService {
 		}
 	}
 
+	@Override
+	public Car transferUser(long id, String userId) {
+		try {
+			Optional<Car> carList = this.ICarRepository.findById(id);
+			if (carList.isPresent()) {
+				Car carUpdate = carList.get();
+				carUpdate.setUserId(userId);
+
+				ICarRepository.save(carUpdate);
+				return carUpdate;
+			} else {
+				throw new ResourceNotFoundException("Car not found with ID :" + id);
+			}
+		} catch (Exception e) {
+			throw new ModelUpdateException("Couldn't update the car details, please try again ");
+		}
+	}
+
 }

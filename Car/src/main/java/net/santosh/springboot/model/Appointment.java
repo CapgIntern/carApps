@@ -3,16 +3,11 @@ package net.santosh.springboot.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /************************************************************************************
  *class:                            Appointment
@@ -28,9 +23,9 @@ public class Appointment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "appointmentId")
+	@Column(name = "appointmentid")
 	private long appointmentId;
-	@Column(name = "userId")
+	@Column(name = "userid")
 	private long userId;
 	@Column(name = "carId")
 	private long carId;
@@ -42,8 +37,6 @@ public class Appointment {
 	private LocalDate preferredDate;
 	@Column(name = "preferredtime")
 	private LocalTime preferredTime;
-	@Column (name = "orderId")
-	private long orderId;
 	
 	/************************************************************************************
 	 * Method:                          Appointment
@@ -60,7 +53,7 @@ public class Appointment {
 	}
 
 	public Appointment(long userId, long carId, String location, String inspectionType, LocalDate preferredDate,
-			LocalTime preferredTime, long orderId) {
+			LocalTime preferredTime) {
 		super();
 		this.userId = userId;
 		this.carId = carId;
@@ -68,7 +61,6 @@ public class Appointment {
 		this.inspectionType = inspectionType;
 		this.preferredDate = preferredDate;
 		this.preferredTime = preferredTime;
-		this.orderId = orderId;
 	}
 
 	/************************************************************************************
@@ -139,13 +131,6 @@ public class Appointment {
 		this.carId = carId;
 	}
 
-	public long getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(long orderId) {
-		this.orderId = orderId;
-	}
 
 
 }

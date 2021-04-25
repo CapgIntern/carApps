@@ -116,6 +116,22 @@ public class IPaymentServiceImpl implements IPaymentService {
 			}
 	}
 	
+	@Transactional
+	public Payment getPaymentByOrderId(long orderId) {
+		// TODO Auto-generated method stub
+		Optional<Payment> payment = paymentRepository.findByOrderId(orderId);
+		try {
+			if(payment.isPresent()) {
+				return payment.get();
+			}else {
+				throw new ResourceNotFoundException("Order not found with id : " + orderId);
+			}
+			}
+			catch(Exception e) {
+				throw new ModelNotFoundException("Couldnt find the order by id"+ orderId );
+			}
+	}
+	
 	/************************************************************************************
 	 * Method                     getAllpayments
 	 * Description                It is used to get all existing payments 

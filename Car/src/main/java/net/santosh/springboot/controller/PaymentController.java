@@ -92,6 +92,11 @@ public class PaymentController {
 		return new ResponseEntity<Payment>(resultPayment, HttpStatus.OK);
 	}
 
+	@GetMapping("/getPaymentDetailsByOrderId/{orderid}")
+	public ResponseEntity<Payment> GetPaymentDetailsByOrder(@PathVariable long orderId) {
+		Payment resultPayment = paymentService.getPaymentByOrderId(orderId);
+		return new ResponseEntity<Payment>(resultPayment, HttpStatus.OK);
+	}
 	/*****************************************************
 	 * Method              get all payments
 	 * Description         Displays all the payments

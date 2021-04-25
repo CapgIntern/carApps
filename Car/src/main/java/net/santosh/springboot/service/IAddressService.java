@@ -10,7 +10,7 @@ public interface IAddressService {
 
 	public void removeAddress(long addressId);
 	
-	public List<Address> getAllAddress(String addressId);
+	public List<Address> getAllAddress(String userId);
 	
 	public Address updateAddress(Address address, long addressId);
 }

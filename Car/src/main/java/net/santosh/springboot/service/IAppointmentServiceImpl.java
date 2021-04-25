@@ -158,22 +158,5 @@ public class IAppointmentServiceImpl implements IAppointmentService {
 		}
 	}
 
-	@Override
-	public void addOrderId(long id, long orderId) {
-		Optional<Appointment> appointmentDb = this.IAppointmentRepository.findById(id);
-		try {
-			if (appointmentDb.isPresent()) {
-				Appointment appointmentUpdate = appointmentDb.get();
-				appointmentUpdate.setOrderId(orderId);
-				
-				IAppointmentRepository.save(appointmentUpdate);
-			} else {
-				throw new ResourceNotFoundException("Record not found ");
-			}
-		} catch (Exception e) {
-			throw new ModelUpdateException("couldnt update the appointment details,please try again ");
-		}
-	}
-
 
 }

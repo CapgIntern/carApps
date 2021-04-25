@@ -40,12 +40,7 @@ public class IOrderServiceImpl implements IOrderService {
 	 * created date               24-03-2021
 	 ***********************************************************************************/
 	@Override
-	public Order addOrder(Order order) throws ModelAddException {
-		// TODO Auto-generated method stub
-		Optional<Order> result = iOrderRepo.findById(order.getOrderId());
-		if (result.isPresent()) {
-			throw new ModelAddException("orderId is already Exists");
-		}
+	public Order addOrder(Order order){
 		return iOrderRepo.save(order);
 	}
 	
@@ -136,21 +131,5 @@ public class IOrderServiceImpl implements IOrderService {
 
 	}
 
-	@Override
-	public void addPaymentId(long orderId, long paymentId) {
-		Optional<Order> order = iOrderRepo.findById(orderId);
-		try {
-			if (order.isPresent()) {
-				Order orderupdate = order.get();
-				orderupdate.setPaymentId(paymentId);
-				
-				iOrderRepo.save(orderupdate);
-			} else {
-				throw new ResourceNotFoundException("Record not found ");
-			}
-		} catch (Exception e) {
-			throw new ModelUpdateException("couldnt update the appointment details,please try again ");
-		}
-	}
 
 }
