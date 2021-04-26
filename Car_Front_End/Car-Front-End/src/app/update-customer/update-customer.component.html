@@ -1,1 +1,47 @@
-<p>update-customer works!</p>
+<div class="col-md-6 offset-md-3">
+    <h3> Update Customer </h3>
+    <form #form="ngForm" (ngSubmit) = "onSubmit()">
+        
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="Enter Your Name" name="name" [(ngModel)] = "customer.name"
+            #name="ngModel" pattern="^[a-zA-Z]*$" required
+            [ngClass]="{'is-invalid': name.errors && (name.touched || name.dirty), 'is-valid': name.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="name.errors?.required"> Name is required.</strong>
+                <strong *ngIf="name.errors?.pattern">Only Alphabets are allowed.</strong>
+            </div>
+        </div>
+        
+    
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" placeholder="Enter Email" name="email" [(ngModel)] = "customer.email"
+            #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required
+            [ngClass]="{'is-invalid': email.errors && (email.touched || email.dirty), 'is-valid': email.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="email.errors?.required"> Email is required.</strong>
+                <strong *ngIf="email.errors?.pattern">Invalid EmailId</strong>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label>ContactNo</label>
+            <input type="text" class="form-control" placeholder="Enter ContactNo" name="contactNo" [(ngModel)] = "customer.contactNo"
+            #contactNo="ngModel" pattern="^[0-9]*$" required
+            [ngClass]="{'is-invalid': contactNo.errors && (contactNo.touched || contactNo.dirty), 'is-valid': contactNo.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="contactNo.errors?.required">User Id is required.</strong>
+                <strong *ngIf="contactNo.errors?.pattern"> Only Numbers are Allowed.</strong>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>  DOB</label>
+            <input type="date" placeholder="Enter Date Of Birth" class ="form-control" id = "dob"
+                [(ngModel)] = "customer.dob" name = "dob">
+                </div>
+        <button class = "btn btn-success" [disabled]="!form.valid" type ="submit">Update</button>
+    
+    </form>
+    </div> 
+

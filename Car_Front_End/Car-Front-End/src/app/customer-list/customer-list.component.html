@@ -1,1 +1,31 @@
-<p>customer-list works!</p>
+
+<h2> Customer List</h2>
+
+
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th> id</th>
+            <th> name</th>
+            <th> email</th>
+            <th> contactNo</th>
+            <th>  DOB</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let customer of customers" >
+            <td> {{ customer.userId }} </td>
+            <td> {{ customer.name}} </td>
+            <td> {{ customer.email}} </td>
+            <td> {{ customer.contactNo}} </td>
+            <td> {{ customer.dob}} </td>
+            <td>
+                
+                <button (click) = "updateCustomer(customer.userId)" class = "btn btn-info"> Update</button>
+                <button (click) = "deleteCustomer(customer.userId)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "customerDetails(customer.userId)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

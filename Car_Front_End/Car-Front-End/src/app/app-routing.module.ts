@@ -9,6 +9,7 @@ import { CarListComponent } from './car-list/car-list.component';
 import { CreateCarComponent } from './create-car/create-car.component';
 import { UpdateCarComponent } from './update-car/update-car.component';
 import { CarDetailsComponent} from './car-details/car-details.component';
+import { CustomerDetailsComponent} from './customer-details/customer-details.component';
 
 const routes: Routes = [
   {path: 'appointments', component: AppointmentListComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'car-list', component:HomeCarappComponent},
   {path: 'add-cars', component: CreateCarComponent},
   {path: 'update-car/:id', component: UpdateCarComponent},
-  {path: 'car-details/:id', component: CarDetailsComponent}
+  {path: 'car-details/:id', component: CarDetailsComponent},
+  {path: 'customer-details', component: CustomerDetailsComponent}
   
 ];
 
