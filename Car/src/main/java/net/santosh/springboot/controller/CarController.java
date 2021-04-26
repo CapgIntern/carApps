@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -26,6 +27,7 @@ import net.santosh.springboot.service.ICarServiceImpl;
  ***********************************************************/
 @Api(value = "Swagger2DemoRestController")
 @RestController
+@RequestMapping("/cars")
 public class CarController {
 
 	@Autowired
@@ -39,7 +41,7 @@ public class CarController {
 	 * Created by:         G Gagandeep Reddy
 	 * created date        24-03-2021
 	 *****************************************************/
-	@GetMapping("/cars")
+	@GetMapping("/allcars")
 	public ResponseEntity<List<Car>> getAllCars() {
 		return ResponseEntity.ok().body(carService.getAllCars());
 	}
@@ -56,7 +58,7 @@ public class CarController {
 	 * Created by:         G Gagandeep Reddy
 	 * created date        24-03-2021
 	 *****************************************************/
-	@GetMapping("/carsbyid/{carid}")
+	@GetMapping("/carbycarid/{carid}")
 	public ResponseEntity<Car> getCar(@PathVariable("carid") long id) {
 		return ResponseEntity.ok().body(carService.getCar(id));
 	}
@@ -114,7 +116,7 @@ public class CarController {
 	}
 	
 	@PutMapping("/transferuser/{carid}/{userid}")
-	public ResponseEntity<Car> updateCar(@PathVariable("carid") long id, @PathVariable("userid") String userid) {
+	public ResponseEntity<Car> transferUser(@PathVariable("carid") long id, @PathVariable("userid") String userid) {
 		return ResponseEntity.ok().body(this.carService.transferUser(id, userid));
 	}
 
@@ -126,7 +128,7 @@ public class CarController {
 	 * Created by:         G Gagandeep Reddy
 	 * created date        24-03-2021
 	 *****************************************************/
-	@DeleteMapping("/cars/{carid}")
+	@DeleteMapping("/deletecar/{carid}")
 	public HttpStatus removeCar(@PathVariable("carid") long id) {
 		this.carService.removeCar(id);
 		return HttpStatus.OK;

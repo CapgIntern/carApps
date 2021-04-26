@@ -1,38 +1,18 @@
-List of Cars
-
-<table class = "table table-striped">
-    
-    <thead>
-        <tr>
-            <th> carid</th>
-            <th> brand</th>
-            <th> model</th>
-            <th> variant</th>
-            <th> Registration year</th>
-            <th>Registration State</th>
-        </tr>
-    </thead>
-    <tbody>
-       
-            
-       
-        <tr *ngFor = "let car of cars" >
-            <td> {{car.carId }} </td>
-            <td> {{car.brand }} </td>
-            <td> {{car.model}} </td>
-            <td> {{car.variant}} </td>
-            <td> {{car.registrationYear}} </td>
-            <td> {{car.registrationState}} </td>
-        
-            <td>
-              
-                <button (click) = "updateCar(car.carId)" class = "btn btn-info"> Update</button>
-                <button (click) = "deleteCar(car.carId)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
-                <button (click) = "carDetails(car.carId)" class = "btn btn-info" style="margin-left: 10px"> View</button>
-              
-                <button><a routerLink="add-appointments" routerLinkActive="active" class="nav-link" >Add Appointment</a></button>
-            </td>
-        </tr>
-     
-    </tbody>
-</table>
+<h1 style="text-align: center; margin: 10px;">Cars list</h1>
+<div class="row">
+    <div class="col-sm-4" *ngFor = "let car of cars">
+      <div class="card text-center" style="margin: 10px">
+        <div class="card-body">
+          <h4 class="card-title">{{car.model}}</h4>
+          <!-- <p class="card-text">Brand: {{car.brand}}<br>Variant: {{car.variant}}<br>Registration Year: {{car.registrationYear}}<br>Registration State: {{car.registrationState}}</p> -->
+          <p class="card-text">Brand: {{car.brand}}<br>Variant: {{car.variant}}</p>
+          <div>
+            <button (click) = "carDetails(car.carId)" class = "btn btn-outline-info" style="margin: 10px"> View</button>
+            <button (click) = "updateCar(car.carId)" class = "btn btn-outline-primary" style="margin: 10px"> Update</button>
+            <button (click) = "deleteCar(car.carId)" class = "btn btn-outline-danger" style="margin: 10px"> Delete</button>
+          </div>
+          <button routerLink="add-appointments" routerLinkActive="active" class="btn btn-outline-secondary" style="margin: 10px">Add Appointment</button>
+        </div>
+      </div>
+    </div>
+</div>  
