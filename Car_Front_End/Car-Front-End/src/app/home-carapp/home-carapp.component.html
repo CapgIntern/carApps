@@ -4,12 +4,53 @@
       <div class="card text-center" style="margin: 10px">
         <div class="card-body">
           <h4 class="card-title">{{car.model}}</h4>
-          <!-- <p class="card-text">Brand: {{car.brand}}<br>Variant: {{car.variant}}<br>Registration Year: {{car.registrationYear}}<br>Registration State: {{car.registrationState}}</p> -->
           <p class="card-text">Brand: {{car.brand}}<br>Variant: {{car.variant}}</p>
           <div>
-            <button (click) = "carDetails(car.carId)" class = "btn btn-outline-info" style="margin: 10px"> View</button>
+              <!-- Pop up form for view -->
+            <ng-template #viewcar let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Car Details</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text">CarId: {{car.carId}}<br>UserId: {{car.userId}}<br>Brand: {{car.brand}}<br>Model: {{car.model}}<br>Variant: {{car.variant}}<br>Registration Year: {{car.registrationYear}}<br>Registration State: {{car.registrationState}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary" (click)="d('Cross click')" style="margin: 10px">Ok</button>
+                </div>
+              </ng-template>
+            <!-- Pop up form for view end -->
+
+            <button (click) = "open(viewcar)" class = "btn btn-outline-info" style="margin: 10px"> View</button>
             <button (click) = "updateCar(car.carId)" class = "btn btn-outline-primary" style="margin: 10px"> Update</button>
-            <button (click) = "deleteCar(car.carId)" class = "btn btn-outline-danger" style="margin: 10px"> Delete</button>
+
+            <!-- Pop up form for delete start -->
+            <ng-template #deletecar let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Car Details</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Are you sure you want to delete car with<span class="text-primary"> "Car ID: {{car.carId}}"</span> ?</strong></p>
+                    
+                    <p class="card-text">Brand: {{car.brand}}<br>Model: {{car.model}}<br>Variant: {{car.variant}}<br>Registration Year: {{car.registrationYear}}<br>Registration State: {{car.registrationState}}</p>
+                </div>
+                <div class="modal-footer">
+                    <p>All information associated to this car will be permanently deleted.
+                        <span class="text-danger">This operation can not be undone.</span>
+                    </p>
+                <button type="button" class="btn btn-outline-secondary" (click)="d('Cross click')" style="margin: 10px">Cancel</button>
+                  <button type="button" ngbAutofocus class="btn btn-danger" (click)="deleteCar(car.carId)" style="margin: 10px">Ok</button>
+                </div>
+              </ng-template>
+            <!-- Pop up form for delete end -->
+
+            <button (click) = "open(deletecar)" class = "btn btn-outline-danger" style="margin: 10px"> Delete</button>
+            
           </div>
           <button routerLink="add-appointments" routerLinkActive="active" class="btn btn-outline-secondary" style="margin: 10px">Add Appointment</button>
         </div>

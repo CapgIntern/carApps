@@ -2,15 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Car} from '../car';
 import { CarService } from '../car.service';
 import { Router } from '@angular/router';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-home-carapp',
   templateUrl: './home-carapp.component.html',
-  styleUrls: ['./home-carapp.component.css']
+  styleUrls: ['./home-carapp.component.css'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class HomeCarappComponent implements OnInit {
   cars: Car[];
 
-  constructor(private carService: CarService, private router: Router) { }
+  constructor(private carService: CarService, private router: Router, config: NgbModalConfig, private modalService: NgbModal) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+   }
 
   ngOnInit(): void {
     this.getCars();
@@ -37,6 +42,10 @@ export class HomeCarappComponent implements OnInit {
       console.log(data);
       this.getCars();
     })
+  }
+
+  open(content) {
+    this.modalService.open(content, { centered: true });
   }
 
   

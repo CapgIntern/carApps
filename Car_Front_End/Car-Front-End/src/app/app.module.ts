@@ -29,6 +29,7 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { UpdateOrderComponent } from './update-order/update-order.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { UpdateOrderComponent } from './update-order/update-order.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
