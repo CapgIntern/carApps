@@ -1,0 +1,49 @@
+<div class="col-md-6 offset-md-3">
+    <h3> Add Appointment </h3>
+    <form #form="ngForm" (ngSubmit) = "onSubmit()">
+        
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" class="form-control" placeholder="Enter Location" name="location" [(ngModel)] = "appointment.location"
+            #location="ngModel" pattern="^[a-zA-Z]*$" required
+            [ngClass]="{'is-invalid': location.errors && (location.touched || location.dirty), 'is-valid': location.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="location.errors?.required">Location is required.</strong>
+                <strong *ngIf="location.errors?.pattern">Invalid Location.</strong>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="branch">Inspection Type</label>
+            <select id="inspectionType" name="inspectionType"  [(ngModel)] = "appointment.inspectionType" ngModel class="form-control">
+              <option value="to buy">To Buy</option>
+              <option value="to sell">To Sell</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Prefered Date</label>
+            <input type="date" class="form-control" placeholder="Enter Prefered Date" name="date" [(ngModel)] = "appointment.preferredDate"
+            #preferredDate="ngModel"  required
+            [ngClass]="{'is-invalid': preferredDate.errors && (preferredDate.touched || preferredDate.dirty), 'is-valid': preferredDate.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="preferredDate.errors?.required">Prefered Date is required.</strong>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>Prefered Time</label>
+            <input type="time" class="form-control" placeholder="Enter Prefered Time" name="preferredTime" [(ngModel)] = "appointment.preferredTime"
+            #preferredTime="ngModel" required
+            [ngClass]="{'is-invalid': preferredTime.errors && (preferredTime.touched || preferredTime.dirty), 'is-valid': preferredTime.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="preferredTime.errors?.required">Prefered Time is required.</strong>
+    
+            </div>
+        </div>
+    
+        <button class = "btn btn-success" [disabled]="!form.valid" type ="submit">Submit</button>
+    
+    </form>
+    </div> 

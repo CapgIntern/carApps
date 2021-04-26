@@ -1,0 +1,36 @@
+
+<html><head></head><body>
+    <script>
+        var video= document.getElementById("cookingvideo");
+        var btn =document.getElementById("myBtn");
+        console.log(video);
+        console.log(btn);
+        function pauseVideo() {
+          if(video.paused) {
+            video.play();
+            btn.innerHTML = "Pause";
+          } else {
+            video.pause();
+            btn.innerHTML = "Play";
+          }
+        }
+      </script>
+      <video autoplay="" [muted]="'muted'" controls="" loop="" id="cookingvideo">
+        <source src="\assets\carvideo.mp4" type="video/mp4">
+      </video>
+      <div class="jumbotron jumbotron-fluid content">
+        <div class="container ">
+          <h1 class="display-3">Car App</h1>
+          <p class="lead">Buy and sell Cars online</p>
+          <hr class="my-2">
+         
+           
+
+         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link"  routerLink="car-list" routerLinkActive="active">See cars>>>></a>
+            </li>
+        </ul>
+    <!--       <button id="myBtn" (Click)="pauseVideo()">Pause</button>
+     -->    </div>
+      </div></body></html>

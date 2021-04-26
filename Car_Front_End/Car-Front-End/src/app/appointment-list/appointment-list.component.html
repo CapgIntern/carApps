@@ -1,0 +1,32 @@
+
+<h2> Appointment List</h2>
+
+
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th> id</th>
+            <th> location</th>
+            <th> inspection type</th>
+            <th> preferred Date</th>
+            <th> preferred Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let appointment of appointments" >
+            <td> {{ appointment.appointmentId }} </td>
+            <td> {{ appointment.location}} </td>
+            <td> {{ appointment.inspectionType}} </td>
+            <td> {{ appointment.preferredDate}} </td>
+            <td> {{ appointment.preferredTime}} </td>
+            
+            <td>
+                
+                <button (click) = "updateAppointment(appointment.appointmentId)" class = "btn btn-info"> Update</button>
+                <button (click) = "deleteAppointment(appointment.appointmentId)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "appointmentDetails(appointment.appointmentId)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

@@ -1,0 +1,38 @@
+List of Cars
+
+<table class = "table table-striped">
+    
+    <thead>
+        <tr>
+            <th> carid</th>
+            <th> brand</th>
+            <th> model</th>
+            <th> variant</th>
+            <th> Registration year</th>
+            <th>Registration State</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+            
+       
+        <tr *ngFor = "let car of cars" >
+            <td> {{car.carId }} </td>
+            <td> {{car.brand }} </td>
+            <td> {{car.model}} </td>
+            <td> {{car.variant}} </td>
+            <td> {{car.registrationYear}} </td>
+            <td> {{car.registrationState}} </td>
+        
+            <td>
+              
+                <button (click) = "updateCar(car.carId)" class = "btn btn-info"> Update</button>
+                <button (click) = "deleteCar(car.carId)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "carDetails(car.carId)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+              
+                <button><a routerLink="add-appointments" routerLinkActive="active" class="nav-link" >Add Appointment</a></button>
+            </td>
+        </tr>
+     
+    </tbody>
+</table>
