@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from '../customer';
+import { Router } from '@angular/router';
 import { CustomerService } from '../customer.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { CustomerService } from '../customer.service';
 export class CustomerDetailsComponent implements OnInit {
   id:string
    customer : Customer
-  constructor(private route: ActivatedRoute, private customerService: CustomerService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService) { }
   
   ngOnInit(): void {
 
@@ -25,6 +26,10 @@ export class CustomerDetailsComponent implements OnInit {
     this.customerService.getCustomerById(this.id).subscribe( data => {
       this.customer = data;
     });
+  }
+
+  updateCustomer(userId: string){
+    this.router.navigate(['update-customer', userId]);
   }
 
 }

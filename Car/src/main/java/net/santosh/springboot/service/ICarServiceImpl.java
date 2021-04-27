@@ -13,7 +13,9 @@ import net.santosh.springboot.exception.ModelNotFoundException;
 import net.santosh.springboot.exception.ModelUpdateException;
 import net.santosh.springboot.exception.ResourceNotFoundException;
 import net.santosh.springboot.model.Car;
+import net.santosh.springboot.model.ForSale;
 import net.santosh.springboot.repository.ICarRepository;
+import net.santosh.springboot.repository.IForSaleRepository;
 
 /**************************
  * @author               G Gagandeep Reddy
@@ -29,6 +31,9 @@ public class ICarServiceImpl implements ICarService {
 
 	@Autowired
 	private ICarRepository ICarRepository;
+	
+	@Autowired
+	private IForSaleRepository IForSaleRepository;
 
 	/****************************
 	 * Method                     addCar
@@ -58,9 +63,10 @@ public class ICarServiceImpl implements ICarService {
 	@Override
 	public void removeCar(long id) {
 		Optional<Car> carList = this.ICarRepository.findById(id);
-
+		Optional<ForSale> saleList = this.IForSaleRepository.findByCarId(id);
 		if (carList.isPresent()) {
 			this.ICarRepository.delete(carList.get());
+			this.IForSaleRepository.delete(saleList.get());
 		} else {
 			throw new ResourceNotFoundException("Car not found with ID :" + id);
 		}
@@ -206,5 +212,6 @@ public class ICarServiceImpl implements ICarService {
 			throw new ModelUpdateException("Couldn't update the car details, please try again ");
 		}
 	}
+
 
 }

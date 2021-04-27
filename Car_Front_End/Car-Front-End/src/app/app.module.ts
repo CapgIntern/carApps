@@ -30,6 +30,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { UpdateOrderComponent } from './update-order/update-order.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddressDetailsComponent } from './address-details/address-details.component';
+import { MycarsDetailsComponent } from './mycars-details/mycars-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +59,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     OrderListComponent,
     OrderDetailsComponent,
     CreateOrderComponent,
-    UpdateOrderComponent
+    UpdateOrderComponent,
+    AddressDetailsComponent,
+    MycarsDetailsComponent,
   ],
   imports: [
     BrowserModule,

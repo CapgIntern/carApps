@@ -10,6 +10,9 @@ import { CreateCarComponent } from './create-car/create-car.component';
 import { UpdateCarComponent } from './update-car/update-car.component';
 import { CarDetailsComponent} from './car-details/car-details.component';
 import { CustomerDetailsComponent} from './customer-details/customer-details.component';
+import { AddressDetailsComponent } from './address-details/address-details.component';
+import { UpdateCustomerComponent} from './update-customer/update-customer.component';
+import { MycarsDetailsComponent } from './mycars-details/mycars-details.component';
 
 const routes: Routes = [
   {path: 'appointments', component: AppointmentListComponent},
@@ -17,11 +20,13 @@ const routes: Routes = [
   {path: '',component:CarListComponent},
   {path: 'update-appointment/:id', component: UpdateAppointmentComponent},
   {path: 'appointment-details/:id', component: AppointmentDetailsComponent},
-  {path: 'car-list', component:HomeCarappComponent},
+  {path: 'car-list', component:MycarsDetailsComponent},
   {path: 'add-cars', component: CreateCarComponent},
   {path: 'update-car/:id', component: UpdateCarComponent},
   {path: 'car-details/:id', component: CarDetailsComponent},
-  {path: 'customer-details', component: CustomerDetailsComponent}
+  {path: 'customer-details', component: CustomerDetailsComponent},
+  {path: 'address-details', component: AddressDetailsComponent},
+  {path: 'update-customer/:id', component: UpdateCustomerComponent}
   
 ];
 

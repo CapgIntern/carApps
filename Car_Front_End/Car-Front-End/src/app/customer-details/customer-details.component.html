@@ -16,35 +16,56 @@
         <label> <b>  DOB </b></label> {{customer.dob}}
     </div>
 </div> -->
-<div class="page-content page-container" id="page-content" style="margin-top: 30px;">
-    <div class="padding">
-        <div class="row container d-flex justify-content-Right">
-            <div class="col-md-5">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div> <img src="https://img.icons8.com/bubbles/100/000000/administrator-male.png" class="img-lg rounded-circle mb-4" alt="profile image">
-                            <h4>{{customer.name}}</h4>
-                            <p class="text-muted mb-0">{{customer.userId}}</p>
-                        </div>
-                        <div class="border-top pt-3">
-                            <div class="row">
-                                <p>Date Of Birth: {{customer.dob}}</p>
+
+  <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-5">
+			<div class="row" >
+				<div class="col-md-12" style="padding-top: 100px;">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div> <img src="https://img.icons8.com/bubbles/100/000000/administrator-male.png" class="img-lg rounded-circle mb-4" alt="profile image">
+                                <h4>{{customer.name}}</h4>
+                                <p class="text-muted mb-0">{{customer.userId}}</p>
                             </div>
-                        </div>
-                        <div class="border-top pt-3">
-                            <div class="row">
-                                <p>Email ID: {{customer.email}}</p>
+                            <div class="border-top pt-3">
+                                <div class="row justify-content-center">
+                                    <p>Date Of Birth: {{customer.dob}}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="border-top pt-3">
-                            <div class="row">
-                                <p>Contact No: {{customer.contactNo}}</p>
+                            <div class="border-top pt-3">
+                                <div class="row justify-content-center">
+                                    <p>Email ID: {{customer.email}}</p>
+                                </div>
+                            </div>
+                            <div class="border-top pt-3">
+                                <div class="row justify-content-center">
+                                    <p>Contact No: {{customer.contactNo}}</p>
+                                </div>
+                            </div>
+                            <div class="border-top pt-3">
+                                <div class="row justify-content-center">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12 text-right">
+                                                <button type="button" (click) = "updateCustomer(customer.userId)" class="btn btn-secondary" style="float: left;">Update Details</button>
+                                                <button type="button" class="btn btn-primary ml-2">Add Address</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-7">
+			<div class="row">
+				<div class="col-md-12" style="padding-top: 100px;">
+                    <app-address-details></app-address-details>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<app-home-carapp></app-home-carapp>

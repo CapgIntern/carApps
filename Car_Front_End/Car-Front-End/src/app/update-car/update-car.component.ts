@@ -41,6 +41,6 @@ export class UpdateCarComponent implements OnInit {
   }
 
   goToCarList(){
-    this.router.navigate(['/']);
+    this.router.navigate(['./car-list']);
   }
 }

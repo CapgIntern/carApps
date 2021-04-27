@@ -28,6 +28,8 @@ public class Car {
 	private LocalDate registrationYear;
 	@Column(name = "registrationstate")
 	private String registrationState;
+	@Column( name = "onsale")
+	private Boolean onSale = false;
 
 	/************************************************************************************
 	 * Method:                          Car
@@ -46,7 +48,7 @@ public class Car {
      *Created Date                      24-MARCH-2021  
 	*************************************************************************************/
 	public Car(long carId, String userId, String brand, String model, String variant, LocalDate registrationYear,
-			String registrationState) {
+			String registrationState, Boolean onSale) {
 		super();
 		this.carId = carId;
 		this.userId = userId;
@@ -55,6 +57,7 @@ public class Car {
 		this.variant = variant;
 		this.registrationYear = registrationYear;
 		this.registrationState = registrationState;
+		this.onSale = onSale;
 	}
 
 	public long getCarId() {
@@ -111,6 +114,14 @@ public class Car {
 
 	public void setRegistrationState(String registrationState) {
 		this.registrationState = registrationState;
+	}
+
+	public Boolean getOnSale() {
+		return onSale;
+	}
+
+	public void setOnSale(Boolean onSale) {
+		this.onSale = onSale;
 	}
 
 }

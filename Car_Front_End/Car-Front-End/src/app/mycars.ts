@@ -1,5 +1,4 @@
-
-export class Car {
+export class Mycars {
     carId: number;
     userId: string;
     brand:string;
@@ -7,6 +6,5 @@ export class Car {
     variant:string;
     registrationYear:string;
     registrationState:string;
-
+    onSale: Boolean;
 }
-

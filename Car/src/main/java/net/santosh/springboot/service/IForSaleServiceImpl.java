@@ -14,6 +14,8 @@ import net.santosh.springboot.exception.ModelUpdateException;
 import net.santosh.springboot.exception.ResourceNotFoundException;
 import net.santosh.springboot.model.Car;
 import net.santosh.springboot.model.ForSale;
+import net.santosh.springboot.repository.ICarRepository;
+import net.santosh.springboot.repository.ICardRepository;
 import net.santosh.springboot.repository.IForSaleRepository;
 
 @Service
@@ -23,10 +25,23 @@ public class IForSaleServiceImpl implements IForSaleService {
 	@Autowired
 	private IForSaleRepository iForSaleRepository;
 	
+	@Autowired
+	private ICarRepository ICarRepository;
+	
 	@Override
 	public ForSale addSale(ForSale forSale) {
 		try {
-			return iForSaleRepository.save(forSale);
+			ForSale sale_details = iForSaleRepository.save(forSale);
+			Optional<Car> carList = this.ICarRepository.findById(sale_details.getCarId());
+			if (carList.isPresent()) {
+				Car carUpdate = carList.get();
+				carUpdate.setOnSale(true);
+				ICarRepository.save(carUpdate);
+				return sale_details;
+			}
+			else {
+				throw new ResourceNotFoundException("Car not found ");
+			}
 		} catch (Exception e) {
 			throw new ModelAddException("Can't add the model for sale");
 		}
