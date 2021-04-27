@@ -14,4 +14,5 @@ public interface IForSaleRepository extends JpaRepository<ForSale, Long> {
 
 	List<ForSale> findAll();
 	Optional<ForSale> findByCarId(long carId);
+	
 }

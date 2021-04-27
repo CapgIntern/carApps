@@ -91,11 +91,26 @@ public class IForSaleServiceImpl implements IForSaleService {
 	}
 
 	@Override
-	public List<ForSale> getAllSales() {
+	public List<Car> getAllSales() {
 		try {
-			return (List<ForSale>) iForSaleRepository.findAll();
+			return (List<Car>) ICarRepository.findByOnSaleTrue();
 		} catch (Exception e) {
-			throw new ModelEmptyListException("Error retriving Sales...please try again");
+			// TODO Auto-generated catch block
+			throw new ModelEmptyListException("Error retriving cars...please try again");
+		}
+	}
+
+	@Override
+	public ForSale getSaleByCarId(long carId) {
+		Optional<ForSale> saleItem = this.iForSaleRepository.findByCarId(carId);
+		try {
+			if (saleItem.isPresent()) {
+				return saleItem.get();
+			} else {
+				throw new ResourceNotFoundException("sale not found with ID :" + carId);
+			}
+		} catch (Exception e) {
+			throw new ModelNotFoundException("Couldn't find the sale by id" + carId);
 		}
 	}
 

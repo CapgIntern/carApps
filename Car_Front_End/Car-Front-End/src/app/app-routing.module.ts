@@ -13,6 +13,8 @@ import { CustomerDetailsComponent} from './customer-details/customer-details.com
 import { AddressDetailsComponent } from './address-details/address-details.component';
 import { UpdateCustomerComponent} from './update-customer/update-customer.component';
 import { MycarsDetailsComponent } from './mycars-details/mycars-details.component';
+import { SaleDetailsComponent } from './sale-details/sale-details.component'
+import { AddSaleComponent } from './add-sale/add-sale.component';
 
 const routes: Routes = [
   {path: 'appointments', component: AppointmentListComponent},
@@ -26,8 +28,10 @@ const routes: Routes = [
   {path: 'car-details/:id', component: CarDetailsComponent},
   {path: 'customer-details', component: CustomerDetailsComponent},
   {path: 'address-details', component: AddressDetailsComponent},
-  {path: 'update-customer/:id', component: UpdateCustomerComponent}
-  
+  {path: 'update-customer/:id', component: UpdateCustomerComponent},
+  {path: 'sale-details', component: SaleDetailsComponent},
+  {path: 'car-list/add-sale', component: AddSaleComponent},
+
 ];
 
 @NgModule({

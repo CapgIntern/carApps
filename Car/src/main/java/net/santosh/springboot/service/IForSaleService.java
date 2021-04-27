@@ -2,6 +2,7 @@ package net.santosh.springboot.service;
 
 import java.util.List;
 
+import net.santosh.springboot.model.Car;
 import net.santosh.springboot.model.ForSale;
 
 public interface IForSaleService {
@@ -14,5 +15,7 @@ public interface IForSaleService {
 
 	public ForSale getSale(long saleId);
 
-	public List<ForSale> getAllSales();
+	public List<Car> getAllSales();
+	
+	public ForSale getSaleByCarId(long carId);
 }

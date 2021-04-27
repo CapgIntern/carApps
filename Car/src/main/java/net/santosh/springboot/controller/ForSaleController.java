@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import net.santosh.springboot.model.Car;
 import net.santosh.springboot.model.ForSale;
 import net.santosh.springboot.service.IForSaleServiceImpl;
 
@@ -27,13 +28,18 @@ public class ForSaleController {
 	private IForSaleServiceImpl iForSaleService;
 	
 	@GetMapping("/onsale")
-	public ResponseEntity<List<ForSale>> getAllSales() {
+	public ResponseEntity<List<Car>> getAllSales() {
 		return ResponseEntity.ok().body(iForSaleService.getAllSales());
 	}
 	
 	@GetMapping("/salebyid/{saleId}")
 	public ResponseEntity<ForSale> getSaleById(@PathVariable("saleId") long saleId) {
 		return ResponseEntity.ok().body(iForSaleService.getSale(saleId));
+	}
+	
+	@GetMapping("/salebycarid/{carId}")
+	public ResponseEntity<ForSale> getSaleByCarId(@PathVariable("carId") long carId) {
+		return ResponseEntity.ok().body(iForSaleService.getSaleByCarId(carId));
 	}
 	
 	@PostMapping("/addsale")

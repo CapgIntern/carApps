@@ -1,0 +1,33 @@
+<h1 style="text-align: center; margin: 10px;">Buy Cars</h1>
+<div class="row" style="margin-bottom: 90px;">
+    <div class="col-sm-4" *ngFor = "let car of mycar">
+      <div class="card text-center" style="margin: 10px;">
+        <div class="card-body">
+          <h4 class="card-title">{{car.model}}<br></h4>
+          <p class="card-text">Brand: {{car.brand}}<br>Variant: {{car.variant}}</p>
+          <div>
+            <ng-template #viewcar let-c="close" let-d="dismiss">
+
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Car Details</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text">Brand: {{car.brand}}<br>Model: {{car.model}}<br>Variant: {{car.variant}}<br>Registration Year: {{car.registrationYear}}<br>Registration State: {{car.registrationState}}</p>
+                    <h3>Cost: {{sale.cost}}</h3>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary" (click)="d('Cross click')" style="margin: 10px;">Ok</button>
+                </div>
+              </ng-template>
+            <!-- Pop up form for view end -->
+
+            <button (click) = "open(viewcar); getSale(car.carId)" class = "btn btn-outline-info" style="margin: 10px"> View Car</button>
+            <button class = "btn btn-outline-success" style="margin: 10px"> Buy Car </button>
+        </div>
+        
+      </div>
+    </div>
+</div>

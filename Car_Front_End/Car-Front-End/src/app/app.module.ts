@@ -32,6 +32,8 @@ import { UpdateOrderComponent } from './update-order/update-order.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddressDetailsComponent } from './address-details/address-details.component';
 import { MycarsDetailsComponent } from './mycars-details/mycars-details.component';
+import { SaleDetailsComponent } from './sale-details/sale-details.component';
+import { AddSaleComponent } from './add-sale/add-sale.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +64,8 @@ import { MycarsDetailsComponent } from './mycars-details/mycars-details.componen
     UpdateOrderComponent,
     AddressDetailsComponent,
     MycarsDetailsComponent,
+    SaleDetailsComponent,
+    AddSaleComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,5 +23,7 @@ public interface ICarRepository extends JpaRepository<Car, Long> {
 	List<Car> findByModel(String model);
 
 	List<Car> findByBrand(String brand);
+	
+	List<Car> findByOnSaleTrue();
 
 }
