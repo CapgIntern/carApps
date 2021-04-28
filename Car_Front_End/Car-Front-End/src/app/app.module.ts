@@ -36,6 +36,9 @@ import { SaleDetailsComponent } from './sale-details/sale-details.component';
 import { AddAddressComponent } from './add-address/add-address.component';
 import { UpdateAddressComponent } from './update-address/update-address.component';
 import { AddSaleComponent } from './add-sale/add-sale.component';
+import { LoginComponent } from './login/login.component';
+import { LoginDetailsComponent } from './login-details/login-details.component';
+import { AdminDetailsComponent } from './admin-details/admin-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +73,9 @@ import { AddSaleComponent } from './add-sale/add-sale.component';
     AddAddressComponent,
     UpdateAddressComponent,
     AddSaleComponent,
+    LoginComponent,
+    LoginDetailsComponent,
+    AdminDetailsComponent,
   ],
   imports: [
     BrowserModule,

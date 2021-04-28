@@ -23,7 +23,6 @@ export class AddressDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    localStorage.setItem("userId","raju007");
     this.getAddress();
   }
 

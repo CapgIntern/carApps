@@ -17,7 +17,13 @@ import { SaleDetailsComponent } from './sale-details/sale-details.component';
 import { AddAddressComponent } from './add-address/add-address.component';
 import { UpdateAddressComponent } from './update-address/update-address.component';
 import { AddSaleComponent } from './add-sale/add-sale.component';
-
+import { UserListComponent } from './user-list/user-list.component';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { UserDetailsComponent} from './user-details/user-details.component';
+import { LoginComponent} from './login/login.component';
+import { LoginDetailsComponent } from './login-details/login-details.component';
+import { AdminDetailsComponent } from './admin-details/admin-details.component';
 const routes: Routes = [
   {path: 'appointments', component: AppointmentListComponent},
   {path: 'sale-details/add-appointments', component: CreateAppointmentComponent},
@@ -35,6 +41,13 @@ const routes: Routes = [
   {path: 'customer-details/add-address', component: AddAddressComponent},
   {path: 'update-address/:id', component: UpdateAddressComponent},
   {path: 'car-list/add-sale', component: AddSaleComponent},
+  {path: 'users', component:UserListComponent},
+  {path: 'add-user', component: CreateUserComponent},
+  {path: 'update-user/:id', component: UpdateUserComponent},
+  {path: 'user-details/:id', component: UserDetailsComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'logindetails/:id', component:LoginDetailsComponent},
+  {path: 'admindetails/:id', component:AdminDetailsComponent}
 
 ];
 

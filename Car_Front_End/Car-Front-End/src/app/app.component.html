@@ -6,25 +6,29 @@
         </li>
 
         <li class = "nav-item">
-          <a routerLink="sale-details" routerLinkActive="active" class="nav-link" >On Sale</a>
+          <a *ngIf="checkUser();" routerLink="sale-details" routerLinkActive="active" class="nav-link" >On Sale</a>
         </li>
         <li class = "nav-item">
-          <a routerLink="car-list" routerLinkActive="active" class="nav-link" >My Cars</a>
+          <a *ngIf="checkUser();" routerLink="car-list" routerLinkActive="active" class="nav-link" >My Cars</a>
        </li>
 
         <li class = "nav-item">
-            <a routerLink="appointments" routerLinkActive="active" class="nav-link" >Appointments</a>
+            <a *ngIf="checkUser();" routerLink="appointments" routerLinkActive="active" class="nav-link" >Appointments</a>
         </li>
         
       
-      <!-- <li class = "nav-item">
-        <a routerLink="login" routerLinkActive="active" class="nav-link" >Log in</a>
-      </li> -->
+        <!-- <li class = "nav-item">
+          <a *ngIf="checkUser();" routerLink="users" routerLinkActive="active" class="nav-link" >Users</a>
+        </li> -->
+        <li class = "nav-item">
+          <a *ngIf="checkUser() else reg;" routerLink="customer-details" routerLinkActive="active" class="nav-link" >Profile</a>
+          <ng-template #reg><a routerLink="add-user" routerLinkActive="active" class="nav-link">Register</a></ng-template>
+        </li>
 
       <li class = "nav-item">
-        <a routerLink="customer-details" routerLinkActive="active" class="nav-link" >Profile</a>
+        <a *ngIf="checkUser(); else login" (click)="logOut()" routerLink="" routerLinkActive="active" class="nav-link" style="cursor: pointer;" >Log Out</a>
+        <ng-template #login><a routerLink="login" routerLinkActive="active" class="nav-link">Log In</a></ng-template>
       </li>
-      
     </ul>
   </nav>
 

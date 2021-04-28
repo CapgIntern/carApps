@@ -1,1 +1,19 @@
-<p>update-user works!</p>
+<div class="col-md-6 offset-md-3">
+    <h3> Update User Password </h3>
+    <form (ngSubmit) = "onSubmit()" #form="ngForm">
+
+        <div class="form-group">
+            <label> userid </label>
+            <input type="text" class ="form-control" id = "userId"
+                [(ngModel)] = "userId" name = "userId">
+        </div>
+        
+        <div class="form-group">
+            <label> password </label>
+            <input type="text" class ="form-control" id = "password"
+                [(ngModel)] = "password" name = "password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" required>
+                
+        </div>
+        <button class = "btn btn-success" type ="submit" onclick="alert('password has updated succesfully')" [disabled]="!form.valid" >Submit</button>
+    </form>
+    </div> 

@@ -16,12 +16,13 @@ export class CustomerDetailsComponent implements OnInit {
   
   ngOnInit(): void {
 
+
     this.getCustomer();
   }
 
   private getCustomer(){
     // this.id= this.route.snapshot.params['id'];
-    this.id = "raju007";
+    this.id = localStorage.getItem("userId");
     this.customer = new Customer();
     this.customerService.getCustomerById(this.id).subscribe( data => {
       this.customer = data;

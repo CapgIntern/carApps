@@ -23,7 +23,6 @@ export class SaleDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOnSaleCars();
-    localStorage.setItem("userId", "raju007")
   }
 
   private getOnSaleCars(){
