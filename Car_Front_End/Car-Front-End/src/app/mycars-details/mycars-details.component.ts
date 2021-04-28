@@ -59,4 +59,7 @@ export class MycarsDetailsComponent implements OnInit {
     return 'gold';
   }
 
+  setCarId(id : number){
+    localStorage.setItem("carId", JSON.stringify(id));
+  }
 }

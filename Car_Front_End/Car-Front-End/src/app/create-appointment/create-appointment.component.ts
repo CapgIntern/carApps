@@ -25,10 +25,12 @@ export class CreateAppointmentComponent implements OnInit {
 
   goToAppointmentList(){
     this.router.navigate(['/appointments']);
+    localStorage.removeItem("carId");
     alert("Appointment Added succesfully")
   }
   
   onSubmit(){
+    this.appointment.carId = +localStorage.getItem("carId");
     console.log(this.appointment);
     this.saveAppointment();
   }
