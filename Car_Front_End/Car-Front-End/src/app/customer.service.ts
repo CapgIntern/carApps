@@ -8,6 +8,7 @@ import { Customer } from './customer';
 })
 export class CustomerService {
   private baseURL = "http://localhost:8800/c1/customer";
+  private uUrl = "http://localhost:8800/c1/updatecustomer";
 
   constructor(private httpClient: HttpClient) { }
   
@@ -24,7 +25,7 @@ export class CustomerService {
   }
 
   updateCustomer(userId: string, customer: Customer): Observable<any>{
-    return this.httpClient.put(`${this.baseURL}/${userId}`, customer);
+    return this.httpClient.put(`${this.uUrl}/${userId}`, customer);
   }
  
   deleteCustomer(userId: string): Observable<any>{

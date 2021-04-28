@@ -28,4 +28,7 @@ export class AddressService {
   deleteAddress(addressId: number): Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${"address"}/${addressId}`);
   }
+  getAddressById(addressId: number): Observable<Address>{
+    return this.httpClient.get<Address>(`${this.baseURL}/${"addressbyid"}/${addressId}`);
+  }
 }

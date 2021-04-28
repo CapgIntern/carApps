@@ -13,23 +13,27 @@ import { CustomerDetailsComponent} from './customer-details/customer-details.com
 import { AddressDetailsComponent } from './address-details/address-details.component';
 import { UpdateCustomerComponent} from './update-customer/update-customer.component';
 import { MycarsDetailsComponent } from './mycars-details/mycars-details.component';
-import { SaleDetailsComponent } from './sale-details/sale-details.component'
+import { SaleDetailsComponent } from './sale-details/sale-details.component';
+import { AddAddressComponent } from './add-address/add-address.component';
+import { UpdateAddressComponent } from './update-address/update-address.component';
 import { AddSaleComponent } from './add-sale/add-sale.component';
 
 const routes: Routes = [
   {path: 'appointments', component: AppointmentListComponent},
-  {path: 'car-list/add-appointments', component: CreateAppointmentComponent},
+  {path: 'sale-details/add-appointments', component: CreateAppointmentComponent},
   {path: '',component:CarListComponent},
   {path: 'update-appointment/:id', component: UpdateAppointmentComponent},
   {path: 'appointment-details/:id', component: AppointmentDetailsComponent},
   {path: 'car-list', component:MycarsDetailsComponent},
-  {path: 'add-cars', component: CreateCarComponent},
+  {path: 'car-list/add-cars', component: CreateCarComponent},
   {path: 'update-car/:id', component: UpdateCarComponent},
   {path: 'car-details/:id', component: CarDetailsComponent},
   {path: 'customer-details', component: CustomerDetailsComponent},
   {path: 'address-details', component: AddressDetailsComponent},
   {path: 'update-customer/:id', component: UpdateCustomerComponent},
   {path: 'sale-details', component: SaleDetailsComponent},
+  {path: 'customer-details/add-address', component: AddAddressComponent},
+  {path: 'update-address/:id', component: UpdateAddressComponent},
   {path: 'car-list/add-sale', component: AddSaleComponent},
 
 ];

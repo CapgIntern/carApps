@@ -52,7 +52,7 @@ public class ForSaleController {
 		return ResponseEntity.ok().body(this.iForSaleService.updateSale(cost, saleId));
 	}
 	
-	@DeleteMapping("/sale/{salId}")
+	@DeleteMapping("/deletesale/{saleId}")
 	public HttpStatus removeCar(@PathVariable("saleId") long saleId) {
 		this.iForSaleService.removeSale(saleId);
 		return HttpStatus.OK;

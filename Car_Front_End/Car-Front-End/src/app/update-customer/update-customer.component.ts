@@ -16,7 +16,7 @@ export class UpdateCustomerComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this.id = localStorage.getItem("userId");
 
     this.customerService.getCustomerById(this.id).subscribe(data => {
       this.customer = data;
@@ -34,14 +34,13 @@ export class UpdateCustomerComponent implements OnInit {
 
   onSubmit(){
     this.customerService.updateCustomer(this.id, this.customer).subscribe( data =>{
-      this.goToCustomerList();
       this.saveCustomer();
     }
     , error => console.log(error));
   }
 
   goToCustomerList(){
-    this.router.navigate(['/customers']);
+    this.router.navigate(['/customer-details']);
     alert("Details Updated Successfully")
   }
 }

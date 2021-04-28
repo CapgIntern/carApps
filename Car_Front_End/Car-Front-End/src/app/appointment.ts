@@ -8,4 +8,5 @@ export class Appointment {
     preferredDate:string;
     preferredTime:string;
     carId:number;
+    userId:string;
 }

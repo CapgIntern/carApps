@@ -3,11 +3,23 @@
     <form (ngSubmit) = "onSubmit()">
         
         <div class="form-group">
-            <label> Cost</label>
-            <input type="text" class ="form-control" id = "location"
-                [(ngModel)] = "sale.cost" name = "carid">
+            <label> Car ID</label>
+            <input type="text" [disabled]="true" class ="form-control" id = "carid"
+                name = "carid" value="{{carId}}">
         </div>
     
+        <div class="form-group">
+            <label> User Id</label>
+            <input type="text" [disabled]="true" class ="form-control" id = "userid"
+                name = "userid" value="{{userId}}">
+        </div>
+    
+        <div class="form-group">
+            <label> Cost</label>
+            <input type="text" class ="form-control" id = "cost"
+                [(ngModel)] = "sale.cost" name = "cost">
+        </div>
+
         <button class = "btn btn-success" type ="submit">Submit</button>
 
 </form>

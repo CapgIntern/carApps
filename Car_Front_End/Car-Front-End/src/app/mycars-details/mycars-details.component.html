@@ -1,5 +1,10 @@
 <h1 style="text-align: center; margin: 10px;">My Cars</h1>
 <div class="row" style="margin-bottom: 90px;">
+  <div class="col-md-12" style="margin-top: 30px; margin-bottom: 30px;">
+    <div class="col-md-6 offset-md-3">
+    <button class=" col-md-12 btn btn-success" routerLink="add-cars" routerLinkActive="active">Add Car</button>
+  </div>
+</div>
     <div class="col-sm-4" *ngFor = "let car of cars">
       <div [ngClass]="car.onSale == true ? 'card border-warning text-center' : 'card border-primary text-center' " style="margin: 10px;">
         <div class="card-body">
@@ -10,7 +15,7 @@
             <ng-template #viewcar let-c="close" let-d="dismiss">
 
                 <div class="modal-header">
-                  <h4 class="modal-title" id="modal-basic-title">Car Details</h4>
+                  <h4 class="modal-title" id="modal-basic-title"><span class="text-info">Car Details</span></h4>
                   <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -31,7 +36,7 @@
             <!-- Pop up form for delete start -->
             <ng-template #deletecar let-c="close" let-d="dismiss">
                 <div class="modal-header">
-                  <h4 class="modal-title" id="modal-basic-title">Car Details</h4>
+                  <h4 class="modal-title" id="modal-basic-title"><span class="text-danger">Delete Car ?</span></h4>
                   <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -54,9 +59,29 @@
             <button (click) = "open(deletecar)" class = "btn btn-outline-danger" style="margin: 10px"> Delete</button>
 
           </div>
-          <button class="btn btn-warning" *ngIf="car.onSale; else notsale" style="margin: 10px">End Sale</button>
-          <ng-template #notsale><button routerLink="add-sale" routerLinkActive="active" class="btn btn-warning" style="margin: 10px">Sell Car</button></ng-template>
-          <button (click) = "setCarId(car.carId)" routerLink="add-appointments" routerLinkActive="active" class="btn btn-secondary" style="margin: 10px">Add Appointment</button>
+           <!-- Pop up form for end sale start -->
+           <ng-template #endsale let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title"><span class="text-warning">End Sale ?</span></h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Are you sure you want to end sale for car with<span class="text-primary"> "Car ID: {{car.carId}}"</span> ?</strong></p>
+                
+                <p class="card-text">Brand: {{car.brand}}<br>Model: {{car.model}}<br>Variant: {{car.variant}}<br>Registration Year: {{car.registrationYear}}<br>Registration State: {{car.registrationState}}</p>
+                <h3>Cost: {{sale.cost}}</h3>
+              </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" (click)="d('Cross click')" style="margin: 10px">Cancel</button>
+              <button type="button" ngbAutofocus class="btn btn-danger" (click)="d('Cross click');deleteSale(sale.saleId)" style="margin: 10px">Ok</button>
+            </div>
+          </ng-template>
+        <!-- Pop up form for end sale end -->
+
+          <button (click) = "getSale(endsale, car.carId)" class="btn btn-warning" *ngIf="car.onSale; else notsale" style="margin: 10px">End Sale</button>
+          <ng-template #notsale><button (click) = "setCarId(car.carId)" routerLink="add-sale" routerLinkActive="active" class="btn btn-warning" style="margin: 10px">Sell Car</button></ng-template>
         </div>
         
       </div>

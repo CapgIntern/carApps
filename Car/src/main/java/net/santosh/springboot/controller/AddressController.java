@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import net.santosh.springboot.model.Address;
+import net.santosh.springboot.model.Car;
 import net.santosh.springboot.service.IAddressServiceImpl;
 
 @Api(value = "Swagger2DemoRestController")
@@ -35,6 +36,12 @@ public class AddressController {
 	public ResponseEntity<Address> addAddress(@RequestBody Address address) {
 		return ResponseEntity.ok().body(this.iAddressService.addAddress(address));
 	}
+	
+	@GetMapping("/addressbyid/{addressid}")
+	public ResponseEntity<Address> getCar(@PathVariable("addressid") long id) {
+		return ResponseEntity.ok().body(iAddressService.getAddress(id));
+	}
+
 	
 	@PutMapping("/updateaddress/{addressid}")
 	public ResponseEntity<Address> updateAddress(@RequestBody Address address, @PathVariable("addressid") long addressId) {

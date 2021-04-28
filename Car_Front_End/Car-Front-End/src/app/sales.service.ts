@@ -22,4 +22,8 @@ export class SalesService {
   createSale(sale: Sales): Observable<Object>{
     return this.httpClient.post(`${this.baseURL}/${"addsale"}`, sale);
   }
+
+  deleteSale(saleId: number): Observable<Object>{
+    return this.httpClient.delete(`${this.baseURL}/${"deletesale"}/${saleId}`);
+  }
 }

@@ -52,6 +52,19 @@ public class IForSaleServiceImpl implements IForSaleService {
 		Optional<ForSale> saleList = this.iForSaleRepository.findById(saleId);
 
 		if (saleList.isPresent()) {
+			try {
+				Optional<Car> carList = this.ICarRepository.findById(saleList.get().getCarId());
+				if (carList.isPresent()) {
+					Car carUpdate = carList.get();
+					carUpdate.setOnSale(false);
+					ICarRepository.save(carUpdate);
+				}
+				else {
+					throw new ResourceNotFoundException("Car not found ");
+				}
+			} catch (Exception e) {
+				throw new ModelAddException("Can't remove the model from sale");
+			}
 			this.iForSaleRepository.delete(saleList.get());
 		} else {
 			throw new ResourceNotFoundException("sale not found with ID :" + saleId);

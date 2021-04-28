@@ -33,6 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddressDetailsComponent } from './address-details/address-details.component';
 import { MycarsDetailsComponent } from './mycars-details/mycars-details.component';
 import { SaleDetailsComponent } from './sale-details/sale-details.component';
+import { AddAddressComponent } from './add-address/add-address.component';
+import { UpdateAddressComponent } from './update-address/update-address.component';
 import { AddSaleComponent } from './add-sale/add-sale.component';
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { AddSaleComponent } from './add-sale/add-sale.component';
     AddressDetailsComponent,
     MycarsDetailsComponent,
     SaleDetailsComponent,
+    AddAddressComponent,
+    UpdateAddressComponent,
     AddSaleComponent,
   ],
   imports: [

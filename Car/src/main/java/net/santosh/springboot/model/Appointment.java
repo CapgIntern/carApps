@@ -26,7 +26,7 @@ public class Appointment {
 	@Column(name = "appointmentid")
 	private long appointmentId;
 	@Column(name = "userid")
-	private long userId;
+	private String userId;
 	@Column(name = "carId")
 	private long carId;
 	@Column(name = "location")
@@ -52,7 +52,7 @@ public class Appointment {
 		this.preferredDate = preferredDate;
 	}
 
-	public Appointment(long userId, long carId, String location, String inspectionType, LocalDate preferredDate,
+	public Appointment(String userId, long carId, String location, String inspectionType, LocalDate preferredDate,
 			LocalTime preferredTime) {
 		super();
 		this.userId = userId;
@@ -115,11 +115,11 @@ public class Appointment {
 		this.preferredTime = preferredTime;
 	}
 
-	public long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

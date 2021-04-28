@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import net.santosh.springboot.exception.ModelAddException;
 import net.santosh.springboot.exception.ModelEmptyListException;
+import net.santosh.springboot.exception.ModelNotFoundException;
 import net.santosh.springboot.exception.ModelUpdateException;
 import net.santosh.springboot.exception.ResourceNotFoundException;
 import net.santosh.springboot.model.Address;
@@ -71,6 +72,20 @@ public class IAddressServiceImpl implements IAddressService{
 			}
 		} catch (Exception e) {
 			throw new ModelUpdateException("Couldn't update the the address, please try again ");
+		}
+	}
+
+	@Override
+	public Address getAddress(long id) {
+		Optional<Address> addressList = this.iAddressRepository.findById(id);
+		try {
+			if (addressList.isPresent()) {
+				return addressList.get();
+			} else {
+				throw new ResourceNotFoundException("Car not found with ID :" + id);
+			}
+		} catch (Exception e) {
+			throw new ModelNotFoundException("Couldn't find the car by id" + id);
 		}
 	}
 

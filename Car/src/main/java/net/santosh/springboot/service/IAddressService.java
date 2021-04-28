@@ -3,6 +3,7 @@ package net.santosh.springboot.service;
 import java.util.List;
 
 import net.santosh.springboot.model.Address;
+import net.santosh.springboot.model.Car;
 
 public interface IAddressService {
 	
@@ -13,4 +14,6 @@ public interface IAddressService {
 	public List<Address> getAllAddress(String userId);
 	
 	public Address updateAddress(Address address, long addressId);
+	
+	public Address getAddress(long id);
 }

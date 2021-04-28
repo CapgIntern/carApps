@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Mycars} from '../mycars';
 import { MycarsService } from '../mycars.service';
+import { Sales } from '../sales';
+import { SalesService } from '../sales.service';
 import { Router } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,9 +15,10 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class MycarsDetailsComponent implements OnInit {
 
   cars: Mycars[];
+  sale: Sales;
   userId: string;
   onSale: Boolean;
-  constructor(private carService: MycarsService, private router: Router, config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(private salesService: SalesService, private carService: MycarsService, private router: Router, config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
    }
@@ -37,9 +40,9 @@ export class MycarsDetailsComponent implements OnInit {
 
 
 
-  carDetails(carId: number){
-    this.router.navigate(['car-details', carId]);
-  }
+  // carDetails(carId: number){
+  //   this.router.navigate(['car-details', carId]);
+  // }
 
   deleteCar(carId: number){
     this.carService.deleteCar(carId).subscribe( data => {
@@ -51,6 +54,21 @@ export class MycarsDetailsComponent implements OnInit {
   open(content) {
     this.modalService.open(content, { centered: true });
   }
+
+  getSale(content, carid: number){
+    this.salesService.getSaleByCarId(carid).subscribe(data => {
+      this.sale = data;
+    });
+    this.open(content);
+  }
+
+  deleteSale(saleId: number){
+    this.salesService.deleteSale(saleId).subscribe( data => {
+      console.log(data);
+      this.getCarsByUserId(this.userId);
+    });
+  }
+
   function1() : Boolean{
     return true;
   }
@@ -62,4 +80,5 @@ export class MycarsDetailsComponent implements OnInit {
   setCarId(id : number){
     localStorage.setItem("carId", JSON.stringify(id));
   }
+
 }

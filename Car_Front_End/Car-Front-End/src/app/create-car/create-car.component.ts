@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Car} from '../car';
-import { CarService } from '../car.service';
+import { Mycars} from '../mycars';
+import { MycarsService } from '../mycars.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-car',
@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class CreateCarComponent implements OnInit {
 
-  car: Car = new Car();
-  constructor(private carService: CarService,
+  car: Mycars = new Mycars();
+  constructor(private carService: MycarsService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -25,10 +25,11 @@ export class CreateCarComponent implements OnInit {
   }
 
   goToCarList(){
-    this.router.navigate(['']);
+    this.router.navigate(['./car-list']);
   }
   
   onSubmit(){
+    this.car.userId = localStorage.getItem("userId");
     console.log(this.car);
     this.saveCar();
   }

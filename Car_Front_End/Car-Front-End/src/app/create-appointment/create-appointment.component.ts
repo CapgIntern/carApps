@@ -31,6 +31,7 @@ export class CreateAppointmentComponent implements OnInit {
   
   onSubmit(){
     this.appointment.carId = +localStorage.getItem("carId");
+    this.appointment.userId = localStorage.getItem("userId");
     console.log(this.appointment);
     this.saveAppointment();
   }

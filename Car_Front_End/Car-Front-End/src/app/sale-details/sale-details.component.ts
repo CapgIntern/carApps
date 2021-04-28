@@ -23,6 +23,7 @@ export class SaleDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOnSaleCars();
+    localStorage.setItem("userId", "raju007")
   }
 
   private getOnSaleCars(){
@@ -39,5 +40,8 @@ export class SaleDetailsComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content, { centered: true });
+  }
+  setCarId(id : number){
+    localStorage.setItem("carId", JSON.stringify(id));
   }
 }

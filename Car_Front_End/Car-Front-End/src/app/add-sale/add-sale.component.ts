@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
 import { Sales } from '../sales';
 import { SalesService } from '../sales.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-sale',
@@ -10,27 +10,35 @@ import { SalesService } from '../sales.service';
 })
 export class AddSaleComponent implements OnInit {
 
+  userId: string;
+  carId: number;
+
   sale: Sales = new Sales();
-  constructor(private saleService: SalesService, private router: Router) { }
+  constructor(private salesService: SalesService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem("userId");
+    this.carId = +localStorage.getItem("carId");
   }
 
-  saveSale(){
-    this.saleService.createSale(this.sale).subscribe( data =>{
+  saveCar(){
+    this.salesService.createSale(this.sale).subscribe( data =>{
       console.log(data);
-      this.goToMyCarList();
+      this.goToCarList();
     },
     error => console.log(error));
   }
 
-  goToMyCarList(){
-    this.router.navigate(['/car-list']);
-    alert("Sale Added succesfully")
+  goToCarList(){
+    this.router.navigate(['./car-list']);
   }
   
   onSubmit(){
+    this.sale.userId = this.userId;
+    this.sale.carId = this.carId;
     console.log(this.sale);
-    this.saveSale();
+    this.saveCar();
   }
+
 }
