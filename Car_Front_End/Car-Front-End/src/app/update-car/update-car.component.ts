@@ -28,7 +28,8 @@ export class UpdateCarComponent implements OnInit {
       console.log(data);
       this.goToCarList();
     },
-    error => console.log(error));
+    error => console.log(error))
+    alert("Car details updated successfully");
   }
 
 

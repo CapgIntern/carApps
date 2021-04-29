@@ -1,1 +1,62 @@
-<p>order-list works!</p>
+<h1 style="text-align: center; margin: 10px;">My Orders</h1>
+<div class="row" style="margin-bottom: 90px;">
+    <div class="col-sm-4" *ngFor = "let order of orders">
+        <div *ngIf ="checkUser(order.userId)">
+      <div class="card text-center" style="margin: 10px;">
+        <div class="card-body">
+          <h4 class="card-title">{{order.orderId}}<br></h4>
+          <p class="card-text">Amount: {{order.amount}}<br>BillingDate: {{order.billingDate}}</p>
+          <div>
+            <ng-template #vieworder let-c="close" let-d="dismiss">
+
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text">Amount: {{order.amount}}<br>BillingDate: {{order.billingDate}}<br>userId: {{order.userId}}<br>AppointmentId: {{order.appointmentId}}<br>Sale Id: {{order.saleId}}</p>
+        
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary" (click)="d('Cross click')" style="margin: 10px;">Ok</button>
+                </div>
+              </ng-template>
+            <!-- Pop up form for view end -->
+
+            <button (click) = "open(vieworder)" class = "btn btn-outline-info" style="margin: 10px"> View Order</button>
+            <button (click) = "updateOrder(order.orderId)" class = "btn btn-outline-primary" style="margin: 10px"> Update</button>
+
+            <!-- Pop up form for delete start -->
+            <ng-template #deleteOrder let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title"><span class="text-danger">Delete Order ?</span></h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Are you sure you want to delete order with<span class="text-primary"> "Order ID: {{order.orderId}}"</span> ?</strong></p>
+                    
+                    <p class="card-text">Amount: {{order.amount}}<br>BillingDate: {{order.billingDate}}<br>userId: {{order.userId}}<br>AppointmentId: {{order.appointmentId}}<br>Sale Id: {{order.saleId}}</p>      </div>
+                <div class="modal-footer">
+                    <p>All information associated to this order will be permanently deleted.
+                        <span class="text-danger">This operation can not be undone.</span>
+                    </p>
+                <button type="button" class="btn btn-outline-secondary" (click)="d('Cross click')" style="margin: 10px">Cancel</button>
+                  <button type="button" ngbAutofocus class="btn btn-danger" (click)="d('Cross click');deleteorder(order.orderId)" style="margin: 10px">Ok</button>
+                </div>
+              </ng-template>
+            <!-- Pop up form for delete end -->
+
+            <button (click) = "open(deleteOrder)" class = "btn btn-outline-danger" style="margin: 10px"> Delete</button>
+
+
+            <!-- <button (click) = "setCarId(car.carId)" routerLink="add-appointments" routerLinkActive="active" class="btn btn-secondary" style="margin: 10px">Add Appointment</button>
+         -->
+        </div>
+      </div>
+      </div>
+    </div>
+</div>

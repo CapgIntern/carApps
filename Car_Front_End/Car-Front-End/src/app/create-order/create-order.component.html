@@ -1,1 +1,38 @@
-<p>create-order works!</p>
+<div class="col-md-6 offset-md-3">
+    <h3> Add Order </h3>
+    <form (ngSubmit) = "onSubmit()">
+        
+        
+        <div class="form-group">
+            <label>Amount</label>
+            <input type="text" class="form-control" placeholder="Enter amount" name="amount" [(ngModel)] = "order.amount"
+            #amount="ngModel" pattern="^[0-9]*$" required
+            [ngClass]="{'is-invalid': amount.errors && (amount.touched || amount.dirty), 'is-valid': amount.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="amount.errors?.required">Amount is required.</strong>
+                <strong *ngIf="amount.errors?.pattern">Invalid amount.</strong>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label>Billing Date</label>
+            <input type="date"  class="form-control" placeholder="Enter billingDate" name="billingDate" [(ngModel)] = "order.billingDate"
+            #billingDate="ngModel" required
+            [ngClass]="{'is-invalid': billingDate.errors && (billingDate.touched || billingDate.dirty), 'is-valid': billingDate.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="billingDate.errors?.required"> BillingDate is required.</strong>
+                <strong *ngIf="billingDate.errors?.pattern">Invalid billingDate.</strong>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label> User Id</label>
+            <input type="text" [disabled]="true" class ="form-control" id = "userid"
+                name = "userid" value="{{userId}}">
+        </div>
+
+        
+        <button class = "btn btn-success" type ="submit">Submit</button>
+    
+    </form>
+    </div> 

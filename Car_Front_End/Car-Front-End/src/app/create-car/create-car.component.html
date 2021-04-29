@@ -1,37 +1,60 @@
 <div class="col-md-6 offset-md-3">
     <h3> Add Car</h3>
-    <form (ngSubmit) = "onSubmit()">
+    <form #form="ngForm" style = "margin-bottom:200px" (ngSubmit) = "onSubmit()">
         
         <div class="form-group">
             <label> Model</label>
-            <input type="text" class ="form-control" id = "location"
-                [(ngModel)] = "car.model" name = "model">
+            <input type="text" class ="form-control" id = "model" placeholder="Enter Car Model"
+                [(ngModel)] = "car.model" name = "model"   #model="ngModel"  required
+                [ngClass]="{'is-invalid': model.errors && (model.touched || model.dirty), 'is-valid': model.valid}"/>
+                <div class="invalid-feedback">
+                    <strong *ngIf="model.errors?.required">Model is required.</strong>
+                </div>
         </div>
     
         <div class="form-group">
             <label> Brand</label>
-            <input type="text" class ="form-control" id = "inspectionType"
-                [(ngModel)] = "car.brand" name = "brand">
+            <input type="text" class ="form-control" id = "brand" placeholder="Enter Brand"
+                [(ngModel)] = "car.brand" name = "brand" #brand="ngModel" required
+                [ngClass]="{'is-invalid': brand.errors && (brand.touched || brand.dirty), 'is-valid': brand.valid}"/>
+                <div class="invalid-feedback">
+                    <strong *ngIf="brand.errors?.required"> Brand is required.</strong>
+                </div>
         </div>
     
         <div class="form-group">
             <label> Variant</label>
-            <input type="text" class ="form-control" id = "preferredDate"
-                [(ngModel)] = "car.variant" name = "variant">
+            <input type="text" class ="form-control" id = "preferredDate" placeholder="Enter Car Variant"
+                [(ngModel)] = "car.variant" name = "variant" #variant="ngModel" required
+                [ngClass]="{'is-invalid': variant.errors && (variant.touched || variant.dirty), 'is-valid': variant.valid}"/>
+                <div class="invalid-feedback">
+                    <strong *ngIf="variant.errors?.required"> Variant is required.</strong>
+                </div>
         </div>
+
+
         <div class="form-group">
             <label> Registration Year</label>
-            <input type="text" class ="form-control" id = "preferredTime"
-                [(ngModel)] = "car.registrationYear" name = "preferredTime">
+            <input type="date" max="2021-04-29" class="form-control" placeholder="Enter Registration Year" name="date" [(ngModel)] = "car.registrationYear"
+            #registrationYear="ngModel"  required
+            [ngClass]="{'is-invalid': registrationYear.errors && (registrationYear.touched || registrationYear.dirty), 'is-valid': registrationYear.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="registrationYear.errors?.required"> Registration Year is required.</strong>
+            </div>
         </div>
 
         <div class="form-group">
             <label> Registration State</label>
-            <input type="text" class ="form-control" id = "preferredTime"
-                [(ngModel)] = "car.registrationState" name = "preferredTime">
+            <input type="text" class ="form-control" id = "registrationState" placeholder="Enter Registration State"
+                [(ngModel)] = "car.registrationState" name = "registrationState" #registrationState="ngModel" required
+                [ngClass]="{'is-invalid': registrationState.errors && (registrationState.touched || registrationState.dirty), 'is-valid': registrationState.valid}"/>
+                <div class="invalid-feedback">
+                    <strong *ngIf="registrationState.errors?.required"> Registration State is required.</strong>
+                </div>
         </div>
+
     
-        <button class = "btn btn-success" type ="submit">Submit</button>
+        <button class = "btn btn-success" [disabled]="!form.valid" type ="submit">Submit</button>
 
 </form>
 </div> 

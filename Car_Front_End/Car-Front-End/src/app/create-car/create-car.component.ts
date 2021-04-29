@@ -22,6 +22,7 @@ export class CreateCarComponent implements OnInit {
       this.goToCarList();
     },
     error => console.log(error));
+    alert("Car added sucessfully")
   }
 
   goToCarList(){

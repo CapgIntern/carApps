@@ -24,6 +24,10 @@ import { UserDetailsComponent} from './user-details/user-details.component';
 import { LoginComponent} from './login/login.component';
 import { LoginDetailsComponent } from './login-details/login-details.component';
 import { AdminDetailsComponent } from './admin-details/admin-details.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { CreateOrderComponent } from './create-order/create-order.component';
+import { OrderListComponent } from './order-list/order-list.component';
+import { UpdateOrderComponent } from './update-order/update-order.component';
 const routes: Routes = [
   {path: 'appointments', component: AppointmentListComponent},
   {path: 'sale-details/add-appointments', component: CreateAppointmentComponent},
@@ -47,7 +51,12 @@ const routes: Routes = [
   {path: 'user-details/:id', component: UserDetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logindetails/:id', component:LoginDetailsComponent},
-  {path: 'admindetails/:id', component:AdminDetailsComponent}
+  {path: 'admindetails/:id', component:AdminDetailsComponent},
+  {path: 'add-orders/:appid', component: CreateOrderComponent},
+  {path: 'orders', component: OrderListComponent},
+  {path: 'order-details/:id', component: OrderDetailsComponent},
+  {path: 'update-order/:id', component: UpdateOrderComponent},
+
 
 ];
 

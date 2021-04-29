@@ -43,7 +43,7 @@ public class OrderController {
 	 * Created by:         V Raghuveer
 	 * created date        24-03-2021
 	 *****************************************************/
-	@PostMapping("/order")
+	@PostMapping("/addorder")
 	public Order addOrder(@RequestBody Order order) {
 		return iService.addOrder(order);
 	}
@@ -55,7 +55,7 @@ public class OrderController {
 	 * Created by:         V Raghuveer
 	 * created date        24-03-2021
 	 *****************************************************/
-	@DeleteMapping("/order/{orderId}")
+	@DeleteMapping("/deleteorder/{orderId}")
 	public Optional<Order> removeOrder(@PathVariable Long orderId) {
 		return iService.removeOrder(orderId);
 	}
@@ -96,7 +96,7 @@ public class OrderController {
 	 * Created by:         V Raghuveer
 	 * created date        24-03-2021
 	 *****************************************************/
-	@PostMapping("/order/{orderId}")
+	@PutMapping("/updateorder/{orderId}")
 	public Order updateOrder(@PathVariable long orderId, @RequestBody Order order) throws OrderNotFoundException {
 		return iService.updateOrder(orderId, order);
 	}

@@ -10,13 +10,17 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./customer-details.component.css']
 })
 export class CustomerDetailsComponent implements OnInit {
-  id:string
-   customer : Customer
+  id:string;
+   customer : Customer;
+   msg: string;
   constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService) { }
   
   ngOnInit(): void {
 
-
+    if(localStorage.getItem("custMsg")!==null){
+      this.msg=localStorage.getItem("custMsg");
+      localStorage.removeItem("custMsg");
+    }
     this.getCustomer();
   }
 

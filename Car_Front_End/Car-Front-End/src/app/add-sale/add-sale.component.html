@@ -16,8 +16,9 @@
     
         <div class="form-group">
             <label> Cost</label>
-            <input type="text" class ="form-control" id = "cost"
-                [(ngModel)] = "sale.cost" name = "cost">
+            <input type="text" placeholder="Enter Cost" class ="form-control" id = "cost" #cost="ngModel"
+                [(ngModel)] = "sale.cost" name = "cost" pattern="^[0-9]*$" required 
+                [ngClass]="{'is-invalid': cost.errors && (cost.touched || cost.dirty), 'is-valid': cost.valid}"/>
         </div>
 
         <button class = "btn btn-success" type ="submit">Submit</button>

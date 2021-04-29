@@ -38,6 +38,7 @@ export class AddressDetailsComponent implements OnInit {
       console.log(data);
       this.getAddress();
     });
+    this.msg="Address deleted Sucessfully";
   }
 
   updateAddress(addressId: number){

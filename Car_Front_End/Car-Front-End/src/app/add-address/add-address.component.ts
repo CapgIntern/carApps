@@ -26,8 +26,9 @@ export class AddAddressComponent implements OnInit {
   }
 
   goToCustomerList(){
+    localStorage.setItem("custMsg","Address Added Sucessfully");
     this.router.navigate(['/customer-details']);
-    alert("Address Updated Successfully")
+    alert("Address Added Successfully")
   }
   
   onSubmit(){

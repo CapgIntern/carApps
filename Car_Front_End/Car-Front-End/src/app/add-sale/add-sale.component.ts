@@ -28,6 +28,7 @@ export class AddSaleComponent implements OnInit {
       this.goToCarList();
     },
     error => console.log(error));
+    alert("Sale added Sucessfully");
   }
 
   goToCarList(){

@@ -29,6 +29,7 @@ export class UpdateAddressComponent implements OnInit {
       this.goToCustomerList();
     },
     error => console.log(error));
+    alert("Address Updated Successfully")
   }
 
 
@@ -42,6 +43,5 @@ export class UpdateAddressComponent implements OnInit {
 
   goToCustomerList(){
     this.router.navigate(['/customer-details']);
-    alert("Address Updated Successfully")
   }
 }
