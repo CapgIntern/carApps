@@ -1,6 +1,42 @@
 <h1 style="text-align: center; margin: 10px;">Buy Cars</h1>
 <div class="row" style="margin-bottom: 90px;">
+  <div class="col-md-12" style="margin-top: 30px; margin-bottom: 30px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-3">
+          <button class=" col-md-12 btn btn-info" (click)="viewAll();" style="float: right;margin-right: 30px;">View All Cars</button>
+        </div>
+      </div>
+      <div class="row" style="padding-top: 20px">
+        <div class="col-md-12">
+          <form #form="ngForm" (ngSubmit) = "onSubmit()"> 
+            <div class="form-row">  
+            <div class="col"> 
+              <div class="form-group">
+                  <select id="filtertype" name="filtertype" [(ngModel)] = "filter.filterType" ngModel class="form-control" required>
+                    <option value="Model">Model</option>
+                    <option value="Brand">Brand</option>
+                  </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enter Search Value" name="value" [(ngModel)] = "filter.filterValue"
+                #filterValue="ngModel"  required
+                [ngClass]="{'is-invalid': filterValue.errors && (filterValue.touched || filterValue.dirty), 'is-valid': filterValue.valid}"/> 
+              </div>
+            </div>
+            <div class="col">
+              <button class = "col btn btn-success" [disabled]="!form.valid" type ="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
     <div class="col-sm-4" *ngFor = "let car of mycar">
+      <div>
       <div class="card text-center" style="margin: 10px;">
         <div class="card-body">
           <h4 class="card-title">{{car.model}}<br></h4>

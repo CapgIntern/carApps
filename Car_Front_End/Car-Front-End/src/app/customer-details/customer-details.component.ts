@@ -33,4 +33,8 @@ export class CustomerDetailsComponent implements OnInit {
     this.router.navigate(['update-customer', userId]);
   }
 
+  updateUser(userId: string){
+    this.router.navigate(['update-user', userId]);
+  }
+
 }

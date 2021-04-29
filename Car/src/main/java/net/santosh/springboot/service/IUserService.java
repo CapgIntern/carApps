@@ -17,5 +17,5 @@ public interface IUserService {
 
 	public Boolean signOut(User user);
 
-	public User changePassword(String id, String oldpassword, String newpassword);	
+	public User changePassword(String id, String newpassword);	
 }

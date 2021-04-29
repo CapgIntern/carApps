@@ -7,4 +7,5 @@ export class Mycars {
     registrationYear:string;
     registrationState:string;
     onSale: Boolean;
+    filterType:string;
 }

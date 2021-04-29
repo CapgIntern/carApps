@@ -1,5 +1,6 @@
 package net.santosh.springboot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,10 +64,12 @@ public class ICarServiceImpl implements ICarService {
 	@Override
 	public void removeCar(long id) {
 		Optional<Car> carList = this.ICarRepository.findById(id);
-		Optional<ForSale> saleList = this.IForSaleRepository.findByCarId(id);
 		if (carList.isPresent()) {
 			this.ICarRepository.delete(carList.get());
-			this.IForSaleRepository.delete(saleList.get());
+			if(carList.get().getOnSale()==true) {
+				Optional<ForSale> saleList = this.IForSaleRepository.findByCarId(id);
+				this.IForSaleRepository.delete(saleList.get());
+			}
 		} else {
 			throw new ResourceNotFoundException("Car not found with ID :" + id);
 		}
@@ -169,7 +172,14 @@ public class ICarServiceImpl implements ICarService {
 	@Override
 	public List<Car> getCarsByModel(String model) {
 		try {
-			return (List<Car>) ICarRepository.findByModel(model);
+			List<Car> carList = ICarRepository.findByModel(model);
+			List<Car> finalList = new ArrayList<Car>();
+			carList.stream().forEach(cars ->{
+				if(cars.getOnSale()==true) {
+					finalList.add(cars);
+				}
+			});
+			return finalList;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new ModelEmptyListException("Error retriving cars...please try again");
@@ -188,7 +198,14 @@ public class ICarServiceImpl implements ICarService {
 	@Override
 	public List<Car> getCarsByBrand(String brand) {
 		try {
-			return (List<Car>) ICarRepository.findByBrand(brand);
+			List<Car> carList = (List<Car>) ICarRepository.findByBrand(brand);
+			List<Car> finalList = new ArrayList<Car>();
+			carList.stream().forEach(cars ->{
+				if(cars.getOnSale()==true) {
+					finalList.add(cars);
+				}
+			});
+			return finalList;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new ModelEmptyListException("Error retriving cars...please try again");

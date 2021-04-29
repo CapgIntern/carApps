@@ -2,24 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { Appointment } from '../appointment';
 import { AppointmentService } from '../appointment.service';
 import { Router } from '@angular/router';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-appointment-list',
   templateUrl: './appointment-list.component.html',
-  styleUrls: ['./appointment-list.component.css']
+  styleUrls: ['./appointment-list.component.css'],
+  providers: [NgbModalConfig, NgbModal]
+  
 })
 export class AppointmentListComponent implements OnInit {
   appointments: Appointment[];
   msg:string;
   errorMsg:string;
+  userId: string;
 
-  constructor(private appointmentService: AppointmentService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.getAppointments();
+  constructor(private appointmentService: AppointmentService, private router: Router, config: NgbModalConfig, private modalService: NgbModal) { 
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
-  private getAppointments(){
-    this.appointmentService.getAppointmentsList().subscribe(data => {
+  ngOnInit(): void {
+    this.userId=localStorage.getItem("userId");
+    this.getAppointments(this.userId);
+  }
+
+  private getAppointments(id:string){
+    this.appointmentService.getAppointmentsByUserId(id).subscribe(data => {
       this.appointments = data;
     });
   }
@@ -34,7 +42,7 @@ export class AppointmentListComponent implements OnInit {
     this.router.navigate(['appointment-details', appointmentId]);
   }
   deleteAppointment(appointmentId: number){
-    if(confirm("Confirm Deletion of Appointment Id:"+appointmentId)){
+   
       this.appointmentService.deleteAppointment(appointmentId)
       .subscribe(data=>{
        
@@ -46,6 +54,10 @@ export class AppointmentListComponent implements OnInit {
           this.errorMsg=error.error;
           this.msg=undefined;
         });
-  }
+        this.getAppointments(this.userId);
 }
-}                                                         
+open(content) {
+  this.modalService.open(content, { centered: true });
+}
+
+}

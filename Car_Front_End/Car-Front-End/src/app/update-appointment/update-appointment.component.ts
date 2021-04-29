@@ -30,6 +30,7 @@ export class UpdateAppointmentComponent implements OnInit {
       this.goToAppointmentList();
     },
     error => console.log(error));
+    alert("Appointment Updated");
   }
 
 
@@ -42,6 +43,5 @@ export class UpdateAppointmentComponent implements OnInit {
   }
   goToAppointmentList(){
     this.router.navigate(['/appointments']);
-    alert("Appointment Updated")
   }
 }

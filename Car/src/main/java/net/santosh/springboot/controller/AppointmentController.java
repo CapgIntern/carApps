@@ -45,7 +45,7 @@ public class AppointmentController {
 		return ResponseEntity.ok().body(iappointmentservice.getAllAppointments());
 	}
 	
-	@GetMapping("/appointments/{userId}")
+	@GetMapping("/appointments/userid/{userId}")
 	public ResponseEntity<List<Appointment>> getOpenAppointments(@PathVariable String userId) {
 		return ResponseEntity.ok().body(iappointmentservice.getOpenAppointments(userId));
 	}

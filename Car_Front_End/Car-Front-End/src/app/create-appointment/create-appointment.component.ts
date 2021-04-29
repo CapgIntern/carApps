@@ -21,12 +21,12 @@ export class CreateAppointmentComponent implements OnInit {
       this.goToAppointmentList();
     },
     error => console.log(error));
+    alert("Appointment Added succesfully")
   }
 
   goToAppointmentList(){
     this.router.navigate(['/appointments']);
     localStorage.removeItem("carId");
-    alert("Appointment Added succesfully")
   }
   
   onSubmit(){

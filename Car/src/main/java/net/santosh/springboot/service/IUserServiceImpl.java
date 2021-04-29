@@ -87,12 +87,12 @@ public class IUserServiceImpl implements IUserService {
 	 * created date                          24-03-2021
 	 ********************************************************************************/
 
-	@Override
-	public User changePassword(String id, String oldpassword, String newpassword) {
+    @Override
+	public User changePassword(String id, String newpassword) {
 
 		User changeUser = null;
 		Optional<User> resultUser = userrepo.findById(id);
-		if ((resultUser != null) && (resultUser.get().getPassword().equals(oldpassword))) {
+		if (resultUser != null) {
 			changeUser = new User(id, newpassword, resultUser.get().getRole());
 			userrepo.save(changeUser);
 		} else {

@@ -36,6 +36,12 @@ export class MycarsService {
     return this.httpClient.delete(`${this.baseURL}/${"deletecar"}/${carId}`);
   }
 
+  getCarByBrand(brand: string): Observable<Mycars[]>{
+    return this.httpClient.get<Mycars[]>(`${this.baseURL}/${"carsbybrand"}/${brand}`);
+  }
 
+  getCarByModel(model: string): Observable<Mycars[]>{
+    return this.httpClient.get<Mycars[]>(`${this.baseURL}/${"carsbymodel"}/${model}`);
+  }
   
 }

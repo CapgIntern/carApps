@@ -34,6 +34,8 @@ export class MycarsDetailsComponent implements OnInit {
     });
   }
 
+
+
   updateCar(carId: number){
     this.router.navigate(['update-car', carId]);
   }
@@ -80,5 +82,7 @@ export class MycarsDetailsComponent implements OnInit {
   setCarId(id : number){
     localStorage.setItem("carId", JSON.stringify(id));
   }
+
+
 
 }

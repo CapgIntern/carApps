@@ -19,7 +19,9 @@ export class AppointmentService {
    return this.httpClient.post(`${this.baseURL}`, appointment);
   }
 
-  
+  getAppointmentsByUserId(userId: string): Observable<Appointment[]>{
+    return this.httpClient.get<Appointment[]>(`${this.baseURL}/userid/${userId}`);
+  }
  
 
   
