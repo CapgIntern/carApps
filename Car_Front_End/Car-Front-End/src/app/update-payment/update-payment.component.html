@@ -1,1 +1,34 @@
-<p>update-payment works!</p>
+<div class="col-md-6 offset-md-3">
+    <div class="alert alert-success" *ngIf="message !=undefined"> {{message}}</div>
+    <div class="alert alert-danger" *ngIf="errorMessage != undefined">{{errorMessage}}</div>
+    <h3> Update Payment </h3>
+    <form #form="ngForm" (ngSubmit) = "onSubmit()">
+        
+        <div class="form-group">
+            <label>Status</label>
+            <input type="text" class="form-control" placeholder="Enter Status" name="status" [(ngModel)] = "payment.status"
+            #status="ngModel" pattern="^[a-zA-Z]*$" required
+            [ngClass]="{'is-invalid': status.errors && (status.touched || status.dirty), 'is-valid': status.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="status.errors?.required">Status is required.</strong>
+                <strong *ngIf="status.errors?.pattern">Invalid Status.</strong>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="branch">Payment Type</label>
+            <select id="paymentType" name="paymentType"  [(ngModel)] = "payment.type" ngModel class="form-control">
+              <option value="credit card">CREDIT CARD</option>
+              <option value="debit card">DEBIT CARD</option>
+            </select>
+          </div>
+
+         
+
+
+       
+    
+        <button class = "btn btn-success" [disabled]="!form.valid" type ="submit">Update</button>
+    
+
+    

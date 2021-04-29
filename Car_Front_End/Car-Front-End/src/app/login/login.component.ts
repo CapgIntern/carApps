@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     },
     (error)=>
     {
-      this.errorMsg="invalid";
+      this.errorMsg="Invalid login credentials";
       
       this.msg=undefined
     });

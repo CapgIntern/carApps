@@ -28,21 +28,6 @@
                 
             </div>
             </div>
-            <!-- <div>
-                <input type="checkbox" onclick="change()">
-                <label>show password</label>
-            </div>
-            <script>
-                function change(){
-                    var pass = document.getElementById('pass');
-                    if(pass.type == "password"){
-                        pass.type='text';
-                    }
-                    else{
-                        pass.type='password';
-                    }
-                }
-            </script> -->
             
     
             <div class="form-group">
@@ -50,6 +35,7 @@
                 <select id="role" name="role"  [(ngModel)] = "user.role" #role="ngModel" ngModel class="form-control" required 
                 [ngClass]="{'is-invalid': role.errors && (role.touched || role.dirty), 'is-valid': role.valid}">
                   <option value="user">user</option>
+                 
                 </select>
               </div>
               

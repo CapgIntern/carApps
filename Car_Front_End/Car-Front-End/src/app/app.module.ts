@@ -39,6 +39,10 @@ import { AddSaleComponent } from './add-sale/add-sale.component';
 import { LoginComponent } from './login/login.component';
 import { LoginDetailsComponent } from './login-details/login-details.component';
 import { AdminDetailsComponent } from './admin-details/admin-details.component';
+import { CardDetailsComponent } from './card-details/card-details.component';
+import { CardListComponent } from './card-list/card-list.component';
+import { CreateCardComponent } from './create-card/create-card.component';
+import { UpdateCardComponent } from './update-card/update-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +80,10 @@ import { AdminDetailsComponent } from './admin-details/admin-details.component';
     LoginComponent,
     LoginDetailsComponent,
     AdminDetailsComponent,
+    CreateCardComponent,
+    CardDetailsComponent,
+    CardListComponent,
+    UpdateCardComponent,
   ],
   imports: [
     BrowserModule,

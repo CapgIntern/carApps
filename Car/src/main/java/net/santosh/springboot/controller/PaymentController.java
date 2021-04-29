@@ -70,8 +70,8 @@ public class PaymentController {
 	 * created date        24-03-2021
 	 *****************************************************/
 
-	@PutMapping("/updatePayment")
-	public ResponseEntity<Payment> updatePayment(@RequestBody long id, Payment payment) {
+	@PutMapping("/updatePayment/{id}")
+	public ResponseEntity<Payment> updatePayment(@PathVariable long id,@RequestBody Payment payment) {
 
 		Payment resultPayment = paymentService.updatePayment(id, payment);
 		return new ResponseEntity<Payment>(resultPayment, HttpStatus.OK);

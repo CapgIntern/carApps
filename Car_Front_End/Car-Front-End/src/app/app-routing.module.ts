@@ -28,6 +28,14 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { UpdateOrderComponent } from './update-order/update-order.component';
+import { CardDetailsComponent } from './card-details/card-details.component';
+import { CardListComponent } from './card-list/card-list.component';
+import { CreateCardComponent } from './create-card/create-card.component';
+import { CreatePaymentComponent } from './create-payment/create-payment.component';
+import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+import { PaymentListComponent } from './payment-list/payment-list.component';
+import { UpdateCardComponent } from './update-card/update-card.component';
+import { UpdatePaymentComponent } from './update-payment/update-payment.component';
 const routes: Routes = [
   {path: 'appointments', component: AppointmentListComponent},
   {path: 'sale-details/add-appointments', component: CreateAppointmentComponent},
@@ -56,7 +64,14 @@ const routes: Routes = [
   {path: 'orders', component: OrderListComponent},
   {path: 'order-details/:id', component: OrderDetailsComponent},
   {path: 'update-order/:id', component: UpdateOrderComponent},
-
+  {path: 'payments', component: PaymentListComponent},
+  {path: 'add-payments/:id', component: CreatePaymentComponent},
+  {path: 'update-payment/:id', component: UpdatePaymentComponent},
+  {path: 'payment-details/:id', component: PaymentDetailsComponent},
+  {path: 'cards', component: CardListComponent},
+  {path: 'customer-details/add-cards', component: CreateCardComponent},
+  {path: 'update-card/:id', component: UpdateCardComponent},
+  {path: 'card-details/:id', component: CardDetailsComponent}
 
 ];
 

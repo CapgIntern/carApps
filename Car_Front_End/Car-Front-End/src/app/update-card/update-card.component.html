@@ -1,0 +1,45 @@
+<div class="col-md-6 offset-md-3">
+    <div class="alert alert-success" *ngIf="message !=undefined"> {{message}}</div>
+    <div class="alert alert-danger" *ngIf="errorMessage != undefined">{{errorMessage}}</div>
+    <h3> Update Card </h3>
+    <form #form="ngForm" (ngSubmit) = "onSubmit()">
+        
+       
+
+          <div class="form-group">
+            <label>Card Name</label>
+            <input type="text" class="form-control" placeholder="Enter card Name" name="cardName" [(ngModel)] = "card.cardName"
+            #cardName="ngModel" pattern="^[a-zA-Z]*$" required
+            [ngClass]="{'is-invalid': cardName.errors && (cardName.touched || cardName.dirty), 'is-valid': cardName.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="cardName.errors?.required">cardName is required.</strong>
+                <strong *ngIf="cardName.errors?.pattern">Invalid cardName</strong>
+            </div>
+
+            <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" class="form-control" placeholder="Enter card Number" name="cardNumber" [(ngModel)] = "card.cardNumber"/>
+            </div>
+
+          <div class="form-group">
+            <label>Expiry Date</label>
+            <input type="date" class="form-control" placeholder="Enter Expiry Date" name="date" [(ngModel)] = "card.cardExpiry"
+            #cardExpiry="ngModel"  required
+            [ngClass]="{'is-invalid': cardExpiry.errors && (cardExpiry.touched || cardExpiry.dirty), 'is-valid': cardExpiry.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="cardExpiry.errors?.required">cardExpiry is required.</strong>
+            </div>
+
+            <div class="form-group">
+                <label>cvv</label>
+                <input type="text" class="form-control" placeholder="Enter cvv" name="cvv" [(ngModel)] = "card.cvv" maxlength="3"/>
+            </div>
+        </div>
+
+
+       
+    
+        <button class = "btn btn-success" [disabled]="!form.valid" type ="submit">Update</button>
+    
+
+    </div> 

@@ -1,1 +1,31 @@
-<p>payment-list works!</p>
+<h2> Payment List</h2>
+
+
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th> id</th>
+            <th>orderId</th>
+            <th> status</th>
+            <th> payment type</th>
+            <th> Card Id</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let payment of payments" >
+            <td> {{ payment.paymentId }} </td>
+            <td> {{ payment.orderId }} </td>
+            <td> {{ payment.status}} </td>
+            <td> {{ payment.type}} </td>
+            <td> {{ payment.cardId }}</td>
+            
+            <td>
+                
+                <button (click) = "updatePayment(payment.paymentId)" class = "btn btn-info"> Update</button>
+                <button (click) = "deletePayment(payment.paymentId)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "paymentDetails(payment.paymentId)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

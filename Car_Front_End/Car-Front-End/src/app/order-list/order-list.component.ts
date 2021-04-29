@@ -36,7 +36,9 @@ export class OrderListComponent implements OnInit {
     this.router.navigate(['update-order', orderId]);
   }
 
-  
+  addPayment(orderId: number){
+    this.router.navigate(['add-payments', orderId]);
+  }
 
   orderDetails(orderId: number){
     this.router.navigate(['order-details', orderId]);
