@@ -10,9 +10,16 @@ export class AppComponent {
   checkUser(): Boolean{
     return JSON.parse(localStorage.getItem("loginCheck"));
   }
+  checkAdmin(): Boolean{
+    return JSON.parse(localStorage.getItem("adminCheck"));
+  }
+  checkStatus():Boolean{
+    return (this.checkAdmin()||this.checkUser());
+  }
   logOut(){
-    localStorage.removeItem('userId');
+    localStorage.clear();
     localStorage.setItem("loginCheck", "false");
+    localStorage.setItem("adminCheck", "false");
     alert("You have logged out succesfully")
   }
 }

@@ -14,6 +14,7 @@ import net.santosh.springboot.exception.ModelEmptyListException;
 import net.santosh.springboot.exception.ModelNotFoundException;
 import net.santosh.springboot.exception.ModelUpdateException;
 import net.santosh.springboot.exception.ResourceNotFoundException;
+import net.santosh.springboot.model.Address;
 import net.santosh.springboot.model.Payment;
 import net.santosh.springboot.repository.IPaymentRepository;
 @Service("paymentser")
@@ -117,19 +118,12 @@ public class IPaymentServiceImpl implements IPaymentService {
 	}
 	
 	@Transactional
-	public Payment getPaymentByOrderId(long orderId) {
-		// TODO Auto-generated method stub
-		Optional<Payment> payment = paymentRepository.findByOrderId(orderId);
+	public List<Payment> getPaymentByUserId(String userId) {
 		try {
-			if(payment.isPresent()) {
-				return payment.get();
-			}else {
-				throw new ResourceNotFoundException("Order not found with id : " + orderId);
-			}
-			}
-			catch(Exception e) {
-				throw new ModelNotFoundException("Couldnt find the order by id"+ orderId );
-			}
+			return (List<Payment>) paymentRepository.findByUserId(userId);
+		} catch (Exception e) {
+			throw new ModelEmptyListException("Error retriving address...please try again");
+		}
 	}
 	
 	/************************************************************************************

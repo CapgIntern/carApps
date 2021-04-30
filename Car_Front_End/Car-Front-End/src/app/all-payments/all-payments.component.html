@@ -1,0 +1,11 @@
+<h1 style="text-align: center; margin: 10px;">All Payments</h1>
+<div class="row" style="margin-bottom: 90px;">
+    <div class="col-sm-4" *ngFor = "let payment of payments">
+      <div class="card text-center" style="margin: 10px">
+        <div class="card-body">
+          <h4 class="card-title">{{payment.paymentId}}</h4>
+          <p class="card-text">Payment ID: {{payment.paymentId}}<br>User ID: {{payment.userId}}<br>Order ID: {{payment.orderId}}<br>Satus: {{payment.status}}<br>Payment Type: {{payment.type}}</p>
+      </div>
+    </div>
+    </div>
+</div>

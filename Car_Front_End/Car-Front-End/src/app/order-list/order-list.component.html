@@ -1,7 +1,7 @@
 <h1 style="text-align: center; margin: 10px;">My Orders</h1>
 <div class="row" style="margin-bottom: 90px;">
     <div class="col-sm-4" *ngFor = "let order of orders">
-        <div *ngIf ="checkUser(order.userId)">
+      <span *ngIf ="checkUser(order.userId)">
       <div class="card text-center" style="margin: 10px;">
         <div class="card-body">
           <h4 class="card-title">{{order.orderId}}<br></h4>
@@ -58,5 +58,6 @@
         </div>
       </div>
       </div>
-    </div>
+    </span>
+</div>
 </div>

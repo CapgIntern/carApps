@@ -19,7 +19,7 @@ public interface IPaymentService {
 
 	public Payment getPaymentDetails(long id);
 
-	public Payment getPaymentByOrderId(long orderId);
+	public List<Payment> getPaymentByUserId(String userId);
 	
 	public List<Payment> getAllPaymentDetails();
 }

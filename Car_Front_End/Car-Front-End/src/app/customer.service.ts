@@ -13,7 +13,7 @@ export class CustomerService {
   constructor(private httpClient: HttpClient) { }
   
   getCustomersList(): Observable<Customer[]>{
-    return this.httpClient.get<Customer[]>(`${this.baseURL}`);
+    return this.httpClient.get<Customer[]>(`${"http://localhost:8800/c1/customers"}`);
   }
   createCustomer(customer: Customer): Observable<any>{
     return this.httpClient.post(`${this.baseURL}`, customer);

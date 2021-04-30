@@ -36,47 +36,62 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
 import { PaymentListComponent } from './payment-list/payment-list.component';
 import { UpdateCardComponent } from './update-card/update-card.component';
 import { UpdatePaymentComponent } from './update-payment/update-payment.component';
+import { CommonModule } from '@angular/common';
+import {AuthService as AuthGuard} from './auth.service';
+import { ErrorComponent } from './error/error.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
+import { AppointmentAllComponent} from './appointment-all/appointment-all.component';
+import { AllPaymentsComponent } from './all-payments/all-payments.component';
+import { AllOrdersComponent } from './all-orders/all-orders.component';
+
+
 const routes: Routes = [
-  {path: 'appointments', component: AppointmentListComponent},
-  {path: 'sale-details/add-appointments', component: CreateAppointmentComponent},
+  {path: 'appointments', component: AppointmentListComponent,canActivate:[AuthGuard]},
+  {path: 'sale-details/add-appointments', component: CreateAppointmentComponent,canActivate:[AuthGuard]},
   {path: '',component:CarListComponent},
-  {path: 'update-appointment/:id', component: UpdateAppointmentComponent},
-  {path: 'appointment-details/:id', component: AppointmentDetailsComponent},
-  {path: 'car-list', component:MycarsDetailsComponent},
-  {path: 'car-list/add-cars', component: CreateCarComponent},
-  {path: 'update-car/:id', component: UpdateCarComponent},
-  {path: 'car-details/:id', component: CarDetailsComponent},
-  {path: 'customer-details', component: CustomerDetailsComponent},
-  {path: 'address-details', component: AddressDetailsComponent},
-  {path: 'update-customer/:id', component: UpdateCustomerComponent},
-  {path: 'sale-details', component: SaleDetailsComponent},
-  {path: 'customer-details/add-address', component: AddAddressComponent},
-  {path: 'update-address/:id', component: UpdateAddressComponent},
-  {path: 'car-list/add-sale', component: AddSaleComponent},
-  {path: 'users', component:UserListComponent},
+  {path: 'update-appointment/:id', component: UpdateAppointmentComponent,canActivate:[AuthGuard]},
+  {path: 'appointment-details/:id', component: AppointmentDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'car-list', component:MycarsDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'car-list/add-cars', component: CreateCarComponent,canActivate:[AuthGuard]},
+  {path: 'update-car/:id', component: UpdateCarComponent,canActivate:[AuthGuard]},
+  {path: 'car-details/:id', component: CarDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'customer-details', component: CustomerDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'address-details', component: AddressDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'update-customer/:id', component: UpdateCustomerComponent,canActivate:[AuthGuard]},
+  {path: 'sale-details', component: SaleDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'customer-details/add-address', component: AddAddressComponent,canActivate:[AuthGuard]},
+  {path: 'update-address/:id', component: UpdateAddressComponent,canActivate:[AuthGuard]},
+  {path: 'car-list/add-sale', component: AddSaleComponent,canActivate:[AuthGuard]},
+  {path: 'users', component:UserListComponent,canActivate:[AuthGuard]},
   {path: 'add-user', component: CreateUserComponent},
-  {path: 'update-user/:id', component: UpdateUserComponent},
-  {path: 'user-details/:id', component: UserDetailsComponent},
+  {path: 'update-user/:id', component: UpdateUserComponent,canActivate:[AuthGuard]},
+  {path: 'user-details/:id', component: UserDetailsComponent,canActivate:[AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'logindetails/:id', component:LoginDetailsComponent},
-  {path: 'admindetails/:id', component:AdminDetailsComponent},
-  {path: 'add-orders/:appid', component: CreateOrderComponent},
-  {path: 'orders', component: OrderListComponent},
-  {path: 'order-details/:id', component: OrderDetailsComponent},
-  {path: 'update-order/:id', component: UpdateOrderComponent},
-  {path: 'payments', component: PaymentListComponent},
-  {path: 'add-payments/:id', component: CreatePaymentComponent},
-  {path: 'update-payment/:id', component: UpdatePaymentComponent},
-  {path: 'payment-details/:id', component: PaymentDetailsComponent},
-  {path: 'cards', component: CardListComponent},
-  {path: 'customer-details/add-cards', component: CreateCardComponent},
-  {path: 'update-card/:id', component: UpdateCardComponent},
-  {path: 'card-details/:id', component: CardDetailsComponent}
+  {path: 'logindetails/:id', component:LoginDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'admindetails/:id', component:AdminDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'add-orders/:appid', component: CreateOrderComponent,canActivate:[AuthGuard]},
+  {path: 'orders', component: OrderListComponent,canActivate:[AuthGuard]},
+  {path: 'order-details/:id', component: OrderDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'update-order/:id', component: UpdateOrderComponent,canActivate:[AuthGuard]},
+  {path: 'payments', component: PaymentListComponent,canActivate:[AuthGuard]},
+  {path: 'add-payments/:id', component: CreatePaymentComponent,canActivate:[AuthGuard]},
+  {path: 'update-payment/:id', component: UpdatePaymentComponent,canActivate:[AuthGuard]},
+  {path: 'payment-details/:id', component: PaymentDetailsComponent,canActivate:[AuthGuard]},
+  {path: 'cards', component: CardListComponent,canActivate:[AuthGuard]},
+  {path: 'customer-details/add-cards', component: CreateCardComponent,canActivate:[AuthGuard]},
+  {path: 'update-card/:id', component: UpdateCardComponent,canActivate:[AuthGuard]},
+  {path: 'card-details/:id', component: CardDetailsComponent,canActivate:[AuthGuard]},
+  {path:'error',component:ErrorComponent},
+  {path: 'customer-list', component: CustomerListComponent,canActivate:[AuthGuard]},
+  {path: 'appointments-all', component: AppointmentAllComponent,canActivate:[AuthGuard]},
+  {path: 'all-orders', component: AllOrdersComponent,canActivate:[AuthGuard]},
+  {path: 'all-payments', component: AllPaymentsComponent,canActivate:[AuthGuard]},
+
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),CommonModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

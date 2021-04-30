@@ -1,0 +1,18 @@
+<h1 style="text-align: center; margin: 10px;">Appointments List</h1>
+<div class="row" style="margin-bottom: 90px;">
+    <div class="col-sm-4" *ngFor = "let appointment of appointments">
+      <div class="card text-center" style="margin: 10px">
+        <div class="card-body">
+          <h4 class="card-title">{{appointment.model}}</h4>
+          <p class="card-text">Appointment ID: {{appointment.appointmentId}}<br>Location: {{appointment.location}}<br>Date: {{appointment.preferredDate}}<br>Time: {{appointment.preferredTime}}</p>
+          <div>
+              
+
+           
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+</div>

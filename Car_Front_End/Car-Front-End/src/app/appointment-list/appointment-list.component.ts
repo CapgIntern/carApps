@@ -50,14 +50,13 @@ export class AppointmentListComponent implements OnInit {
       .subscribe(data=>{
        
         this.errorMsg=undefined;
-        this.appointmentService.getAppointmentsList().subscribe(data=>this.appointments=data);
         console.log(this.appointments);
       },
         error=>{
           this.errorMsg=error.error;
           this.msg=undefined;
         });
-        this.getAppointments(this.userId);
+      this.getAppointments(this.userId);
 }
 open(content) {
   this.modalService.open(content, { centered: true });

@@ -21,11 +21,12 @@ export class LoginComponent implements OnInit {
   LoginUser(){
     this.userService.loginUser(this.user).subscribe(data=>{
       if (this.user.role=="admin"){
-        this.router.navigate(['admindetails', this.user.userId]); 
+        this.adminLogin();
+        this.router.navigate(['./sale-details']); 
       }
       else{
         this.login();
-        this.router.navigate(['./car-list']);
+        this.router.navigate(['./sale-details']);
       }
     },
     (error)=>
@@ -43,8 +44,16 @@ login(){
   
 localStorage.setItem('userId',this.user.userId);
 localStorage.setItem("loginCheck", "true");
+localStorage.setItem("adminCheck", "false");
 
 }
+
+adminLogin(){
+  localStorage.setItem('userId',this.user.userId);
+  localStorage.setItem("adminCheck", "true");
+  localStorage.setItem("loginCheck", "false");
+}
+
 logOut(){
   this.user=undefined;
   localStorage.removeItem('userId');

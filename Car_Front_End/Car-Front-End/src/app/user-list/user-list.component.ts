@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class UserListComponent implements OnInit {
   msg:string;
   errorMsg:string;
   user: User[];
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService,config: NgbModalConfig, private modalService: NgbModal,private router: Router) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+   }
 
   ngOnInit(): void {
     this.getUser();
@@ -35,7 +40,6 @@ export class UserListComponent implements OnInit {
   } 
 
   deleteUser(userId: string){
-    if(confirm("Confirm Deletion of User Id:"+userId)){
       this.userService.deleteUser(userId)
       .subscribe(data=>{
         this.msg="deleted user succesfully";
@@ -47,6 +51,9 @@ export class UserListComponent implements OnInit {
           this.errorMsg=error.error;
           this.msg=undefined;
         });
-    }
+    
+  }
+  open(content) {
+    this.modalService.open(content, { centered: true });
   }
 }

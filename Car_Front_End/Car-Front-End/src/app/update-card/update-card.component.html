@@ -18,7 +18,13 @@
 
             <div class="form-group">
                 <label>Card Number</label>
-                <input type="text" class="form-control" placeholder="Enter card Number" name="cardNumber" [(ngModel)] = "card.cardNumber"/>
+                <input type="text" class="form-control" placeholder="Enter card Number" name="cardNumber" [(ngModel)] = "card.cardNumber" maxlength="16" minlength="13"
+                #cardNumber="ngModel" pattern="^[0-9]*$" required
+                [ngClass]="{'is-invalid': cardNumber.errors && (cardNumber.touched || cardNumber.dirty), 'is-valid': cardNumber.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="cardNumber.errors?.required">Minimum 13 numbers required.</strong>
+                <strong *ngIf="cardNumber.errors?.pattern"> Only Numbers are Allowed.</strong>
+            </div>
             </div>
 
           <div class="form-group">
@@ -32,7 +38,13 @@
 
             <div class="form-group">
                 <label>cvv</label>
-                <input type="text" class="form-control" placeholder="Enter cvv" name="cvv" [(ngModel)] = "card.cvv" maxlength="3"/>
+                <input type="text" class="form-control" placeholder="Enter cvv" name="cvv" [(ngModel)] = "card.cvv" maxlength="3"
+                #cvv="ngModel" pattern="^[0-9]*$" required
+            [ngClass]="{'is-invalid': cvv.errors && (cvv.touched || cvv.dirty), 'is-valid': cvv.valid}"/>
+            <div class="invalid-feedback">
+                <strong *ngIf="cvv.errors?.required">cvv is required.</strong>
+                <strong *ngIf="cvv.errors?.pattern"> Only Numbers are Allowed.</strong>
+            </div>
             </div>
         </div>
 
@@ -42,4 +54,4 @@
         <button class = "btn btn-success" [disabled]="!form.valid" type ="submit">Update</button>
     
 
-    </div> 
+    </div>

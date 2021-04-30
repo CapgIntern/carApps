@@ -23,6 +23,8 @@ public class Payment {
 	private String status;
 	@Column(name = "cardid")
 	private long cardId;
+	@Column(name = "userid")
+	private String userId;
 
 	/****************************
 	 * Method: Payment Description: It is used to initialize the empty constructor.
@@ -38,13 +40,15 @@ public class Payment {
 	 * constructor. Created By CHITTA YASWANTH SAI Created Date 24-MARCH-2021
 	 *****************************/
 
-	public Payment(long paymentId, long orderId,String type, String status, long cardId) {
+	public Payment(long paymentId, long orderId,String type, String status, long cardId, String userId) {
 		super();
 		this.cardId = cardId;
 		this.orderId = orderId;
 		this.paymentId = paymentId;
 		this.type = type;
 		this.status = status;
+		this.userId = userId;
+		
 
 	}
 
@@ -86,6 +90,14 @@ public class Payment {
 
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	@Override

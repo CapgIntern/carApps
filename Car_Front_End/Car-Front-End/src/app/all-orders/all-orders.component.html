@@ -1,0 +1,10 @@
+<h1 style="text-align: center; margin: 10px;">All Orders</h1>
+<div class="row" style="margin-bottom: 90px;">
+    <div class="col-sm-4" *ngFor = "let order of orders">
+      <div class="card text-center" style="margin: 10px;">
+        <div class="card-body">
+          <h4 class="card-title">{{order.orderId}}<br></h4>
+          <p class="card-text">Amount: {{order.amount}}<br>BillingDate: {{order.billingDate}}<br>userId: {{order.userId}}</p>
+      </div>
+    </div>
+</div>

@@ -12,6 +12,7 @@ export class CreatePaymentComponent implements OnInit {
 
   payment : Payment = new Payment();
   orderId : number;
+  userId:string;
 
   message:string;
   errorMessage:string;
@@ -21,6 +22,7 @@ export class CreatePaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderId = this.route.snapshot.params['id'];
+    this.userId = localStorage.getItem('userId'); 
   }
 
   savePayment(){
@@ -42,6 +44,7 @@ export class CreatePaymentComponent implements OnInit {
   onSubmit(){
     console.log(this.payment);
     this.payment.orderId = this.orderId;
+    this.payment.userId = this.userId;
     this.savePayment();
   }
 

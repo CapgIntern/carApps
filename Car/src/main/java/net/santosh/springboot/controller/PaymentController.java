@@ -92,10 +92,10 @@ public class PaymentController {
 		return new ResponseEntity<Payment>(resultPayment, HttpStatus.OK);
 	}
 
-	@GetMapping("/getPaymentDetailsByOrderId/{orderid}")
-	public ResponseEntity<Payment> GetPaymentDetailsByOrder(@PathVariable long orderId) {
-		Payment resultPayment = paymentService.getPaymentByOrderId(orderId);
-		return new ResponseEntity<Payment>(resultPayment, HttpStatus.OK);
+	@GetMapping("/getPaymentDetailsByUserId/{userid}")
+	public ResponseEntity<List<Payment>> GetPaymentDetailsByUser(@PathVariable("userid") String userId) {
+		List<Payment> resultPayment = paymentService.getPaymentByUserId(userId);
+		return new ResponseEntity<List<Payment>>(resultPayment, HttpStatus.OK);
 	}
 	/*****************************************************
 	 * Method              get all payments

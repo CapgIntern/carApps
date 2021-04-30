@@ -18,25 +18,53 @@
         
         <li class = "nav-item">
           <a *ngIf="checkUser();" routerLink="orders" routerLinkActive="active" class="nav-link" >My Orders</a>
-      </li>
+        </li>
       
 
-      <li class = "nav-item">
-        <a *ngIf="checkUser();" routerLink="payments" routerLinkActive="active" class="nav-link" >My Payments</a>
-    </li>
-    
-        <!-- <li class = "nav-item">
-          <a *ngIf="checkUser();" routerLink="users" routerLinkActive="active" class="nav-link" >Users</a>
-        </li> -->
         <li class = "nav-item">
-          <a *ngIf="checkUser() else reg;" routerLink="customer-details" routerLinkActive="active" class="nav-link" >Profile</a>
+          <a *ngIf="checkUser();" routerLink="payments" routerLinkActive="active" class="nav-link" >My Payments</a>
+        </li>
+
+        <li class = "nav-item">
+          <a *ngIf="checkAdmin();" routerLink="sale-details" routerLinkActive="active" class="nav-link" >On Sale</a>
+        </li>
+
+        <li class = "nav-item">
+          <a *ngIf="checkAdmin();" routerLink="users" routerLinkActive="active" class="nav-link" >Users</a>
+        </li>
+
+        <li class = "nav-item">
+          <a *ngIf="checkAdmin();" routerLink="customer-list" routerLinkActive="active" class="nav-link" >All Customers</a>
+        </li>
+
+        <li class = "nav-item">
+          <a *ngIf="checkAdmin();" routerLink="appointments-all" routerLinkActive="active" class="nav-link" >All Appointments</a>
+        </li>
+
+        <li class = "nav-item">
+          <a *ngIf="checkAdmin();" routerLink="all-orders" routerLinkActive="active" class="nav-link" >All Orders</a>
+        </li>
+
+        <li class = "nav-item">
+          <a *ngIf="checkAdmin();" routerLink="all-payments" routerLinkActive="active" class="nav-link" >All Payments</a>
+        </li>
+
+        <li class = "nav-item">
+          <a *ngIf="checkStatus(); else reg;" routerLink="customer-details" routerLinkActive="active" class="nav-link" >Profile</a>
           <ng-template #reg><a routerLink="add-user" routerLinkActive="active" class="nav-link">Register</a></ng-template>
         </li>
 
-      <li class = "nav-item">
-        <a *ngIf="checkUser(); else login" (click)="logOut()" routerLink="" routerLinkActive="active" class="nav-link" style="cursor: pointer;" >Log Out</a>
-        <ng-template #login><a routerLink="login" routerLinkActive="active" class="nav-link">Log In</a></ng-template>
-      </li>
+        <li class = "nav-item">
+          <a *ngIf="checkStatus(); else login" (click)="logOut()" routerLink="" routerLinkActive="active" class="nav-link" style="cursor: pointer;" >Log Out</a>
+          <ng-template #login><a routerLink="login" routerLinkActive="active" class="nav-link">Log In</a></ng-template>
+        </li>
+
+
+
+
+
+
+
     </ul>
   </nav>
 

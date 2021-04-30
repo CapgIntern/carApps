@@ -1,27 +1,11 @@
-
-<h2> User List</h2>
-
-
-<table class = "table table-striped">
-    <thead>
-        <tr>
-            <th> userid</th>
-            <th> password</th>
-            <th> role</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor = "let user of user" >
-            <td> {{ user.userId }} </td>
-            <td> {{ user.password}} </td>
-            <td> {{ user.role}} </td>
-            <td>
-                
-                <button (click) = "updateUser(user.userId)" class = "btn btn-info"> Update</button>
-                <button (click) = "deleteUser(user.userId)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
-                <button (click) = "userDetails(user.userId)" class = "btn btn-info" style="margin-left: 10px"> View</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
+<h1 style="text-align: center; margin: 10px;">User List</h1>
+<div class="row" style="margin-bottom: 90px;">
+    <div class="col-sm-4" *ngFor = "let user of user">
+      <div class="card text-center" style="margin: 10px">
+        <div class="card-body">
+          <h4 class="card-title">{{user.model}}</h4>
+          <p class="card-text">User ID: {{user.userId}}<br>role: {{user.role}}</p>
+        </div>
+      </div>
+    </div>
+</div>

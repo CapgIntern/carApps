@@ -43,6 +43,9 @@ import { CardDetailsComponent } from './card-details/card-details.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { CreateCardComponent } from './create-card/create-card.component';
 import { UpdateCardComponent } from './update-card/update-card.component';
+import { AppointmentAllComponent } from './appointment-all/appointment-all.component';
+import { AllOrdersComponent } from './all-orders/all-orders.component';
+import { AllPaymentsComponent } from './all-payments/all-payments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +87,9 @@ import { UpdateCardComponent } from './update-card/update-card.component';
     CardDetailsComponent,
     CardListComponent,
     UpdateCardComponent,
+    AppointmentAllComponent,
+    AllOrdersComponent,
+    AllPaymentsComponent,
   ],
   imports: [
     BrowserModule,

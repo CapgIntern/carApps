@@ -1,5 +1,6 @@
 package net.santosh.springboot.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,5 +20,7 @@ import net.santosh.springboot.model.Payment;
 public interface IPaymentRepository extends JpaRepository<Payment, Long> {
 
 	Optional<Payment> findByOrderId(long orderId);
+
+	List<Payment> findByUserId(String userId);
 	
 }

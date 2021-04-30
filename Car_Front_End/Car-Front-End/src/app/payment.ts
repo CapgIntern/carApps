@@ -6,6 +6,7 @@ export class Payment {
  orderId: number;
  status: string;
  type: string;
+ userId: string;
  
  
 

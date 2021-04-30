@@ -32,5 +32,8 @@ export class PaymentService {
   deletePayment(paymentId: number): Observable<Object>{
     return this.httpClient.delete(`${"http://localhost:8800/removePayment"}/${paymentId}`);
   }
+  getPaymentsByUserId(userId: string): Observable<Payment[]>{
+    return this.httpClient.get<Payment[]>(`${"http://localhost:8800/getPaymentDetailsByUserId"}/${userId}`);
+  }
 
 }

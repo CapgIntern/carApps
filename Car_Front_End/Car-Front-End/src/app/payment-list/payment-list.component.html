@@ -1,31 +1,66 @@
-<h2> Payment List</h2>
+<h1 style="text-align: center; margin: 10px;">Payments List</h1>
+<div class="row" style="margin-bottom: 90px;">
+    <div class="col-sm-4" *ngFor = "let payment of payments">
+        <div *ngIf ="checkUser(payment.userId)">
+      <div class="card text-center" style="margin: 10px">
+        <div class="card-body">
+          <h4 class="card-title">{{payment.paymentId}}</h4>
+          <p class="card-text">Satus: {{payment.status}}<br>Payment Type: {{payment.type}}<br>Card ID: {{payment.cardId}}</p>
+          <div>
+               <!-- Pop up form for view -->
+            <ng-template #viewpayment let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Payment Details</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Payment ID: {{payment.paymentId}}<br>Order ID: {{payment.orderId}}<br>Satus: {{payment.status}}<br>Payment Type: {{payment.type}}<br>Card ID: {{payment.cardId}}</p>
+                </div>
+                <div class="modal-footer">
+                      
+                    <button type="button" class="btn btn-outline-primary" (click)="d('Cross click')" style="margin: 10px">Ok</button>
+                </div>
+              </ng-template>
+            <!-- Pop up form for view end -->
+
+            <button (click) = "open(viewpayment)" class = "btn btn-outline-info" style="margin: 10px"> View</button>
 
 
-<table class = "table table-striped">
-    <thead>
-        <tr>
-            <th> id</th>
-            <th>orderId</th>
-            <th> status</th>
-            <th> payment type</th>
-            <th> Card Id</th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor = "let payment of payments" >
-            <td> {{ payment.paymentId }} </td>
-            <td> {{ payment.orderId }} </td>
-            <td> {{ payment.status}} </td>
-            <td> {{ payment.type}} </td>
-            <td> {{ payment.cardId }}</td>
-            
-            <td>
-                
-                <button (click) = "updatePayment(payment.paymentId)" class = "btn btn-info"> Update</button>
-                <button (click) = "deletePayment(payment.paymentId)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
-                <button (click) = "paymentDetails(payment.paymentId)" class = "btn btn-info" style="margin-left: 10px"> View</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+  
+          
+            <button (click) = "updatePayment(payment.paymentId)" class = "btn btn-outline-primary" style="margin: 10px"> Update</button>
+
+            <!-- Pop up form for delete start -->
+            <ng-template #deletepayment let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Payment Details</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Are you sure you want to delete Payment with<span class="text-primary"> "Payment ID: {{payment.paymentId}}"</span> ?</strong></p>
+                    
+                    <p class="card-text">Payment ID: {{payment.paymentId}}<br>Order ID: {{payment.orderId}}<br>Satus: {{payment.status}}<br>Payment Type: {{payment.type}}<br>Card ID: {{payment.cardId}}</p>
+                </div>
+                <div class="modal-footer">
+                    <p>All information associated to this payment will be permanently deleted.
+                        <span class="text-danger">This operation can not be undone.</span>
+                    </p>
+                <button type="button" class="btn btn-outline-secondary" (click)="d('Cross click')" style="margin: 10px">Cancel</button>
+                  <button type="button" ngbAutofocus class="btn btn-danger" (click)="d('Cross click');deletePayment(payment.paymentId)" style="margin: 10px">Ok</button>
+                </div>
+              </ng-template>
+            <!-- Pop up form for delete end -->
+
+            <button (click) = "open(deletepayment)" class = "btn btn-outline-danger" style="margin: 10px"> Delete</button>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    </div>
+</div>

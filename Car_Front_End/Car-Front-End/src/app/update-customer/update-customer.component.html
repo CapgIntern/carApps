@@ -5,7 +5,7 @@
         <div class="form-group">
             <label>Name</label>
             <input type="text" class="form-control" placeholder="Enter Your Name" name="name" [(ngModel)] = "customer.name"
-            #name="ngModel" pattern="^[a-zA-Z]*$" required
+            #name="ngModel" pattern="^[a-zA-Z\s]+*$" required
             [ngClass]="{'is-invalid': name.errors && (name.touched || name.dirty), 'is-valid': name.valid}"/>
             <div class="invalid-feedback">
                 <strong *ngIf="name.errors?.required"> Name is required.</strong>
