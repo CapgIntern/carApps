@@ -40,12 +40,6 @@ export class MycarsDetailsComponent implements OnInit {
     this.router.navigate(['update-car', carId]);
   }
 
-
-
-  // carDetails(carId: number){
-  //   this.router.navigate(['car-details', carId]);
-  // }
-
   deleteCar(carId: number){
     this.carService.deleteCar(carId).subscribe( data => {
       console.log(data);
