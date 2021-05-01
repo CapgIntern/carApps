@@ -20,6 +20,8 @@ export class SaleDetailsComponent implements OnInit {
   filter: Search = new Search();
   mycar : Mycars[];
   userId: string;
+  message:string;
+  errorMessage:string;
   constructor(private salesService: SalesService, private carService: MycarsService, private router: Router, config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -51,9 +53,9 @@ export class SaleDetailsComponent implements OnInit {
     this.carService.transferUser(carId,this.userId).subscribe( data =>{
       console.log(data);
       this.getOnSaleCars();
+      this.message="Car Bought Sucessfully";
     },
     error => console.log(error))
-    alert("Car Bought successfully");
   }
 
   carUser(id: string): Boolean{

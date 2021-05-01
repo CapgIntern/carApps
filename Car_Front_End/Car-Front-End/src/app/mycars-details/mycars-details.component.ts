@@ -18,6 +18,7 @@ export class MycarsDetailsComponent implements OnInit {
   sale: Sales;
   userId: string;
   onSale: Boolean;
+  message:string;
   constructor(private salesService: SalesService, private carService: MycarsService, private router: Router, config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -43,6 +44,7 @@ export class MycarsDetailsComponent implements OnInit {
   deleteCar(carId: number){
     this.carService.deleteCar(carId).subscribe( data => {
       console.log(data);
+      this.message = "Car deleted Sucessfully"
       this.getCarsByUserId(this.userId);
     });
   }
@@ -61,6 +63,7 @@ export class MycarsDetailsComponent implements OnInit {
   deleteSale(saleId: number){
     this.salesService.deleteSale(saleId).subscribe( data => {
       console.log(data);
+      this.message = "Sale Removed Sucessfully"
       this.getCarsByUserId(this.userId);
     });
   }
