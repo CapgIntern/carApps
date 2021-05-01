@@ -37,7 +37,7 @@
   </div>
     <div class="col-sm-4" *ngFor = "let car of mycar">
       <div>
-      <div class="card text-center" style="margin: 10px;">
+      <div [ngClass]="carUser(car.userId) == true ? 'card border-success text-center' : 'card border-warning text-center' " style="margin: 10px;">
         <div class="card-body">
           <h4 class="card-title">{{car.model}}<span *ngIf="carUser(car.userId)" class="badge badge-success">My Car</span></h4>
           <p class="card-text">Brand: {{car.brand}}<br>Variant: {{car.variant}}</p>

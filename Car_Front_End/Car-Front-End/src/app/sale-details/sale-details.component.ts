@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Mycars} from '../mycars';
 import { Search} from '../search';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Sales } from '../sales';
 import { MycarsService } from '../mycars.service';
@@ -20,7 +20,7 @@ export class SaleDetailsComponent implements OnInit {
   filter: Search = new Search();
   mycar : Mycars[];
   userId: string;
-  constructor(private salesService: SalesService, private route: ActivatedRoute, private carService: MycarsService, private router: Router, config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(private salesService: SalesService, private carService: MycarsService, private router: Router, config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
    }
