@@ -25,7 +25,7 @@ export class MycarsDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = localStorage.getItem("userId");
-    this.getCarsByUserId(this.userId);
+    this.getCarsByUserId(this.userId);  
   }
 
   private getCarsByUserId(userId: string){
