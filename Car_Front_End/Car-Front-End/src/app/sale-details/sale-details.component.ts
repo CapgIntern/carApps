@@ -19,12 +19,14 @@ export class SaleDetailsComponent implements OnInit {
   sale : Sales;
   filter: Search = new Search();
   mycar : Mycars[];
+  userId: string;
   constructor(private salesService: SalesService, private route: ActivatedRoute, private carService: MycarsService, private router: Router, config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
    }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('userId');
     this.getOnSaleCars();
   }
 
@@ -43,6 +45,24 @@ export class SaleDetailsComponent implements OnInit {
     this.salesService.getSaleByCarId(carid).subscribe(data => {
       this.sale = data;
     });
+  }
+
+  transferUser(carId: number){
+    this.carService.transferUser(carId,this.userId).subscribe( data =>{
+      console.log(data);
+      this.getOnSaleCars();
+    },
+    error => console.log(error))
+    alert("Car Bought successfully");
+  }
+
+  carUser(id: string): Boolean{
+    if(this.userId === id){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
   open(content) {

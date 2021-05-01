@@ -35,7 +35,6 @@ public class ICarServiceImpl implements ICarService {
 	
 	@Autowired
 	private IForSaleRepository IForSaleRepository;
-
 	/****************************
 	 * Method                     addCar
 	 * Description                It is used to add a new car in the database
@@ -219,7 +218,18 @@ public class ICarServiceImpl implements ICarService {
 			if (carList.isPresent()) {
 				Car carUpdate = carList.get();
 				carUpdate.setUserId(userId);
-
+				carUpdate.setOnSale(false);
+				
+				Optional<ForSale> saleItem = this.IForSaleRepository.findByCarId(id);
+				try {
+					if (saleItem.isPresent()) {
+						this.IForSaleRepository.delete(saleItem.get());
+					} else {
+						throw new ResourceNotFoundException("sale not found with ID :" + id);
+					}
+				} catch (Exception e) {
+					throw new ModelNotFoundException("Couldn't find the sale by id" + id);
+				}
 				ICarRepository.save(carUpdate);
 				return carUpdate;
 			} else {

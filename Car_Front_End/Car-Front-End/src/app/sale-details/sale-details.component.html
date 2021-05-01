@@ -39,7 +39,7 @@
       <div>
       <div class="card text-center" style="margin: 10px;">
         <div class="card-body">
-          <h4 class="card-title">{{car.model}}<br></h4>
+          <h4 class="card-title">{{car.model}}<span *ngIf="carUser(car.userId)" class="badge badge-success">My Car</span></h4>
           <p class="card-text">Brand: {{car.brand}}<br>Variant: {{car.variant}}</p>
           <div>
             <ng-template #viewcar let-c="close" let-d="dismiss">
@@ -61,8 +61,32 @@
             <!-- Pop up form for view end -->
 
             <button (click) = "open(viewcar); getSale(car.carId)" class = "btn btn-outline-info" style="margin: 10px"> View Car</button>
-            <button class = "btn btn-outline-success" style="margin: 10px"> Buy Car </button>
-            <button (click) = "setCarId(car.carId)" routerLink="add-appointments" routerLinkActive="active" class="btn btn-secondary" style="margin: 10px">Add Appointment</button>
+            
+            <!-- Pop up form for buycar start -->
+            <ng-template #buycar let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title"><span class="text-danger">Buy Car ?</span></h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <p><strong>Are you sure you want to Buy car with<span class="text-primary"> "Car ID: {{car.carId}}"</span> ?</strong></p>
+                  
+                  <p class="card-text">Brand: {{car.brand}}<br>Model: {{car.model}}<br>Variant: {{car.variant}}<br>Registration Year: {{car.registrationYear}}<br>Registration State: {{car.registrationState}}</p>
+              </div>
+              <div class="modal-footer">
+                  <p>
+                      <span class="text-success">This operation can not be undone.</span>
+                  </p>
+              <button type="button" class="btn btn-outline-secondary" (click)="d('Cross click')" style="margin: 10px">Cancel</button>
+                <button type="button" ngbAutofocus class="btn btn-success" (click)="d('Cross click');transferUser(car.carId)" style="margin: 10px">Ok</button>
+              </div>
+            </ng-template>
+          <!-- Pop up form for buycar end -->
+            
+            <button [disabled]= "carUser(car.userId)" (click) = "open(buycar)" class = "btn btn-outline-success" style="margin: 10px"> Buy Car </button>
+            <button [disabled]= "carUser(car.userId)" (click) = "setCarId(car.carId)" routerLink="add-appointments" routerLinkActive="active" class="btn btn-secondary" style="margin: 10px">Add Appointment</button>
         </div>
         
       </div>

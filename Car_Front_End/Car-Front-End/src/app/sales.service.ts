@@ -15,6 +15,7 @@ export class SalesService {
   getCarOnSale(): Observable<Mycars[]>{
     return this.httpClient.get<Mycars[]>(`${this.baseURL}/${"onsale"}`);
   }
+  
   getSaleByCarId(carId: number): Observable<Sales>{
     return this.httpClient.get<Sales>(`${this.baseURL}/${"salebycarid"}/${carId}`);
   }
