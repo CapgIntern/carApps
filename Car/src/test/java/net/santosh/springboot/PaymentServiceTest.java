@@ -1,46 +1,46 @@
-//package net.santosh.springboot;
-//
-//import static org.junit.Assert.assertEquals;
-//import static org.mockito.ArgumentMatchers.any;
-//import static org.mockito.Mockito.never;
-//import static org.mockito.Mockito.times;
-//import static org.mockito.Mockito.verify;
-//import static org.mockito.Mockito.when;
-//
-//import java.time.LocalDate;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Optional;
-//
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.MockitoJUnitRunner;
-//
-//import net.santosh.springboot.model.Card;
-//import net.santosh.springboot.model.Payment;
-//import net.santosh.springboot.repository.IPaymentRepository;
-//import net.santosh.springboot.service.IPaymentServiceImpl;
-//
-///**********
-// * @author                 CHITTA YASWANTH SAI
-// * Description             It is a service implementation test class that defines the methods
-// *                         to test the service.
-// * Version                 1.0
-// * created date            24-03-2021
-// *
-// **********/
-//
-//@RunWith(MockitoJUnitRunner.class)
-//public class PaymentServiceTest {
-//
-//	@InjectMocks
-//	IPaymentServiceImpl iPaymentServiceImpl;
-//
-//	@Mock
-//	IPaymentRepository iPaymentRepository;
-//	
+package net.santosh.springboot;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import net.santosh.springboot.model.Card;
+import net.santosh.springboot.model.Payment;
+import net.santosh.springboot.repository.IPaymentRepository;
+import net.santosh.springboot.service.IPaymentServiceImpl;
+
+/**********
+ * @author                 CHITTA YASWANTH SAI
+ * Description             It is a service implementation test class that defines the methods
+ *                         to test the service.
+ * Version                 1.0
+ * created date            24-03-2021
+ *
+ **********/
+
+@RunWith(MockitoJUnitRunner.class)
+public class PaymentServiceTest {
+
+	@InjectMocks
+	IPaymentServiceImpl iPaymentServiceImpl;
+
+	@Mock
+	IPaymentRepository iPaymentRepository;
+	
 //	/**********
 //	 * Method                     addPaymentTest
 //	 * Description                It is used to test addPayment method 
@@ -60,26 +60,26 @@
 //		assertEquals(payment.toString(), values.toString());
 //
 //	}
-//
-//	/**********
-//	 * Method                     removepaymentTest
-//	 * Description                It is used to test removePayment method 
-//	 * created by                 CHITTA YASWANTH SAI
-//	 * created date               24-03-2021
-//	 ***********/
-//
-//
-//	@Test
-//	public void removePaymentTest() {
-//		verify(iPaymentRepository, never()).delete(any(Payment.class));
-//	}
-//
-//	/**********
-//	 * Method                     getPaymentTest
-//	 * Description                It is used to test getPayments method 
-//	 * created by                 CHITTA YASWANTH SAI
-//	 * created date               24-03-2021
-//	 ***********/
+
+	/**********
+	 * Method                     removepaymentTest
+	 * Description                It is used to test removePayment method 
+	 * created by                 CHITTA YASWANTH SAI
+	 * created date               24-03-2021
+	 ***********/
+
+
+	@Test
+	public void removePaymentTest() {
+		verify(iPaymentRepository, never()).delete(any(Payment.class));
+	}
+
+	/**********
+	 * Method                     getPaymentTest
+	 * Description                It is used to test getPayments method 
+	 * created by                 CHITTA YASWANTH SAI
+	 * created date               24-03-2021
+	 ***********/
 //
 //	@Test
 //	public void getPaymentDetailsTest() {
@@ -157,4 +157,4 @@
 //		assertEquals(3, check_payment_list.size());
 //		verify(iPaymentRepository, times(1)).findAll();
 //	}
-//}
+}

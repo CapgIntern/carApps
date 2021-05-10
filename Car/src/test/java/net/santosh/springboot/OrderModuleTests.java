@@ -1,44 +1,44 @@
-//package net.santosh.springboot;
-//
-//import static org.junit.Assert.assertEquals;
-//import static org.mockito.ArgumentMatchers.any;
-//import static org.mockito.Mockito.never;
-//import static org.mockito.Mockito.verify;
-//import static org.mockito.Mockito.when;
-//
-//import java.time.LocalDate;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Optional;
-//
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.MockitoJUnitRunner;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import net.santosh.springboot.model.*;
-//import net.santosh.springboot.service.*;
-//import net.santosh.springboot.repository.*;
-//import net.santosh.springboot.exception.*;
-//
-///**********************************************************************************
-// * @author                 V Raghuveer
-// * Description             It is a service implementation test class that defines the methods
-// *                         to test the service.
-// * Version                 1.0
-// * created date            24-03-2021
-// *
-// ****************************************************************************************/
-//@SpringBootTest
-//@RunWith(MockitoJUnitRunner.class)
-//public class OrderModuleTests {
-//	@InjectMocks
-//	IOrderServiceImpl iOrderImpl;
-//
-//	@Mock
-//	IOrderRepository iOrderRepo;
-//
+package net.santosh.springboot;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import net.santosh.springboot.model.*;
+import net.santosh.springboot.service.*;
+import net.santosh.springboot.repository.*;
+import net.santosh.springboot.exception.*;
+
+/**********************************************************************************
+ * @author                 V Raghuveer
+ * Description             It is a service implementation test class that defines the methods
+ *                         to test the service.
+ * Version                 1.0
+ * created date            24-03-2021
+ *
+ ****************************************************************************************/
+@SpringBootTest
+@RunWith(MockitoJUnitRunner.class)
+public class OrderModuleTests {
+	@InjectMocks
+	IOrderServiceImpl iOrderImpl;
+
+	@Mock
+	IOrderRepository iOrderRepo;
+
 //	/************************************************************************************
 //	 * Method                     addOrderTest
 //	 * Description                It is used to test addOrder method 
@@ -53,17 +53,17 @@
 //		Order order_values = iOrderImpl.addOrder(order);
 //		assertEquals(123L, order_values.getOrderId());
 //	}
-//
-//	/************************************************************************************
-//	 * Method                     removeorderTest
-//	 * Description                It is used to test removeorder method 
-//	 * created by                 V Raghuveer
-//	 * created date               24-03-2021
-//	 ***********************************************************************************/
-//	@Test
-//	public void removeCustomerTest() {
-//		verify(iOrderRepo, never()).delete(any(Order.class));
-//	}
+
+	/************************************************************************************
+	 * Method                     removeorderTest
+	 * Description                It is used to test removeorder method 
+	 * created by                 V Raghuveer
+	 * created date               24-03-2021
+	 ***********************************************************************************/
+	@Test
+	public void removeCustomerTest() {
+		verify(iOrderRepo, never()).delete(any(Order.class));
+	}
 //
 //	/************************************************************************************
 //	 * Method                     getorderTest
@@ -116,4 +116,4 @@
 //		iOrderImpl.updateOrder(123L, new_order);
 //		assertEquals(LocalDate.of(2001, 05, 03), new_order.getBillingDate());
 //	}
-//}
+}

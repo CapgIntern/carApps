@@ -1,46 +1,46 @@
-//package net.santosh.springboot;
-//
-//import static org.junit.Assert.assertEquals;
-//import static org.mockito.ArgumentMatchers.any;
-//import static org.mockito.Mockito.never;
-//import static org.mockito.Mockito.verify;
-//import static org.mockito.Mockito.when;
-//
-//import java.time.LocalDate;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Optional;
-//
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.MockitoJUnitRunner;
-//import org.springframework.boot.test.context.SpringBootTest;
-//
-//import net.santosh.springboot.exception.CustomerNotFoundException;
-//import net.santosh.springboot.model.Address;
-//import net.santosh.springboot.model.Customer;
-//import net.santosh.springboot.repository.ICustomerRepository;
-//import net.santosh.springboot.service.ICustomerServiceImpl;
-//
-///**********************************************************************************
-// * @author                 G.sai nikesh
-// * Description             It is a service implementation test class that defines the methods
-// *                         to test the service.
-// * Version                 1.0
-// * created date            24-03-2021
-// *
-// ****************************************************************************************/
-//@SpringBootTest
-//@RunWith(MockitoJUnitRunner.class)
-//public class CustomerModuleTest {
-//
-//	@InjectMocks
-//	ICustomerServiceImpl iCustomerImpl;
-//
-//	@Mock
-//	ICustomerRepository iCustomerRepository;
+package net.santosh.springboot;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import net.santosh.springboot.exception.CustomerNotFoundException;
+import net.santosh.springboot.model.Address;
+import net.santosh.springboot.model.Customer;
+import net.santosh.springboot.repository.ICustomerRepository;
+import net.santosh.springboot.service.ICustomerServiceImpl;
+
+/**********************************************************************************
+ * @author                 G.sai nikesh
+ * Description             It is a service implementation test class that defines the methods
+ *                         to test the service.
+ * Version                 1.0
+ * created date            24-03-2021
+ *
+ ****************************************************************************************/
+@SpringBootTest
+@RunWith(MockitoJUnitRunner.class)
+public class CustomerModuleTest {
+
+	@InjectMocks
+	ICustomerServiceImpl iCustomerImpl;
+
+	@Mock
+	ICustomerRepository iCustomerRepository;
 //	/************************************************************************************
 //	 * Method                     addcustomerTest
 //	 * Description                It is used to test addcustomer method 
@@ -58,17 +58,17 @@
 //		assertEquals("Nikesh", customer_values.getName());
 //		assertEquals("sainikesh94@gmail.com", customer_values.getEmail());
 //	}
-//	/************************************************************************************
-//	 * Method                     removecustomerTest
-//	 * Description                It is used to test removecustomer method 
-//	 * created by                 G sai nikesh
-//	 * created date               24-03-2021
-//	 ***********************************************************************************/
-//	@Test
-//	public void removeCustomerTest() {
-//		verify(iCustomerRepository, never()).delete(any(Customer.class));
-//	}
-//
+	/************************************************************************************
+	 * Method                     removecustomerTest
+	 * Description                It is used to test removecustomer method 
+	 * created by                 G sai nikesh
+	 * created date               24-03-2021
+	 ***********************************************************************************/
+	@Test
+	public void removeCustomerTest() {
+		verify(iCustomerRepository, never()).delete(any(Customer.class));
+	}
+
 //	/************************************************************************************
 //	 * Method                     getcustomerTest
 //	 * Description                It is used to test getcustomer method 
@@ -129,4 +129,4 @@
 //		iCustomerImpl.updateCustomer("123", new_customer_1);
 //		assertEquals("Sai Nikesh", new_customer_1.getName());
 //	}
-//}
+}
